@@ -1,0 +1,654 @@
+.container-fluid {
+    background-color: black;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+  
+  body {
+    overflow-x: hidden; /* Prevent horizontal scroll on the whole page */
+  }
+  :host ::ng-deep .mdc-tab {
+    padding: 0px;
+  }
+  :host ::ng-deep .mat-mdc-tab .mdc-tab__text-label,
+  .mat-mdc-tab-link .mdc-tab__text-label {
+    color: rgb(247 243 243 / 60%);
+    font-family: "Montserrat", sans-serif;
+  }
+  
+  :host::ng-deep .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active
+    .mdc-tab__text-label,
+  .mat-mdc-tab-link:not(.mat-mdc-tab-disabled).mdc-tab--active
+    .mdc-tab__text-label {
+    color: #ffff;
+    font-family: "Montserrat", sans-serif;
+    background-color: #463c11;
+    padding: 30px;
+    border-radius: 20px 20px 0 0;
+  }
+  :host ::ng-deep .mat-mdc-tab.mdc-tab {
+    margin-right: 20px;
+    height: 74px;
+    flex-grow: 0;
+  }
+  :host ::ng-deep .mat-mdc-tab-body-content {
+    height: 100%;
+    overflow: auto;
+    border: solid;
+    border-color: #463c11;
+    border-radius: 0 10px 10px 10px;
+  }
+  .mat-header {
+    flex-direction: row;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    .deposit-btn {
+      display: flex;
+      justify-content: flex-end;
+      position: relative;
+      top: 60px;
+    }
+    .search-inputs {
+      background-color: #463c11;
+      font-family: "Montserrat", sans-serif;
+      border-color: #463c11;
+      color: #ffffff;
+    }
+    .search-inputs::placeholder {
+      color: #ffffff;
+    }
+    .Search-input {
+      position: relative;
+      right: 70px;
+      width: 300px;
+    }
+    .btn-Sign-up {
+      font-family: "Montserrat", sans-serif;
+      background-color: #fdd017;
+      color: #302702;
+      font-size: 15px;
+      font-weight: 700;
+      border-radius: 10px;
+      //   position: fixed;
+    }
+    .btn-sports-group{
+      display: flex;
+      justify-content: space-evenly;
+    }
+    .mat-game-btn {
+      display: flex;
+      justify-content: space-around;
+
+      .btn-games {
+        font-family: "Montserrat", sans-serif;
+        background-color: #463c11;
+        border-color: #463c11 !important;
+        text-align: center;
+        color: #fdd017;
+        font-size: 20px;
+        font-weight: 600;
+        border-radius: 10px;
+        padding: 20px;
+      }
+      .btn-game {
+        font-family: "Montserrat", sans-serif;
+        // background-color: #463C11
+        border-color: #fdd017 !important;
+        text-align: center;
+        color: #fdd017;
+        opacity: 0.5;
+        font-size: 20px;
+        font-weight: 600;
+        border-radius: 10px;
+        padding: 20px;
+      }
+    }
+  }
+  .card-nba {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+  .point-card-nba {
+    // display: flex;
+    // flex-wrap: wrap;
+    //   flex: 1 1 100px;
+    .nba-card {
+      background-color: #18170f;
+      border-color: #ffff;
+      border-radius: 20px;
+  
+      // border: 15px !important;
+    }
+    .border-changed-more{
+      border-color: #fdd017 !important; /* Change to your desired color */
+    }
+    .border-changed-less {
+      border-color: #fdd017 !important; ; /* Change to your desired color for 'LESS' */
+    }
+  
+    .player-img {
+      height: 150px;
+    }
+    .points-card {
+      display: flex;
+      align-items: center;
+      font-family: "Montserrat", sans-serif;
+      background-color: #463c11;
+      color: #fff9c7;
+      border-radius: 15px;
+    }
+    .GSW-text {
+      text-align: center;
+      font-family: "Montserrat", sans-serif;
+      color: #ffff;
+    }
+    .btn-less {
+      border-color: #463c11;
+      border-bottom-right-radius: 20px;
+      margin-left: 1px;
+      text-align: center;
+      font-family: "Montserrat", sans-serif;
+      color: #ffff;
+      background-color: #463c11;
+    }
+    .btn-more {
+      border-color: #463c11;
+      border-bottom-left-radius: 20px;
+      text-align: center;
+      font-family: "Montserrat", sans-serif;
+      color: #ffffff;
+      background-color: #463c11;
+    }
+  
+    .clicked {
+      background-color: #fdd017 !important;
+      color: #463c11 !important;
+    }
+  }
+  .player-card {
+    .btn-less {
+      border-color: #463c11;
+      margin-left: 2px;
+      text-align: center;
+      font-family: "Montserrat", sans-serif;
+      color: #ffff;
+      background-color: #463c11;
+    }
+    .btn-more {
+      border-color: #463c11;
+      // border-bottom-left-radius: 20px;
+      text-align: center;
+      font-family: "Montserrat", sans-serif;
+      color: #ffffff;
+      background-color: #463c11;
+    }
+  
+    .clicked {
+      background-color: #fdd017 !important;
+      color: #463c11 !important;
+    }
+  }
+  .my-profile-card {
+    background-color: #0e0e09;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin: 50px;
+    .profile-card {
+      background-color: #18170f;
+    }
+    .profile-img {
+      height: 100px;
+    }
+    .player-name {
+      color: #ffff;
+      font-family: "Montserrat", sans-serif;
+      text-align: center;
+    }
+    .player-joined {
+      color: #8c8b87;
+      font-family: "Montserrat", sans-serif;
+      text-align: center;
+    }
+    .public-profile {
+      // position: relative;
+      .example-small-box,
+      .example-large-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+  
+  
+  :host ::ng-deep .public-prof .mdc-tab {
+    padding: 0px;
+  }
+  :host ::ng-deep .mat-mdc-tab .mdc-tab__text-label,
+  .mat-mdc-tab-link .mdc-tab__text-label {
+    color: rgb(247 243 243 / 60%);
+    font-family: "Montserrat", sans-serif;
+  }
+  :host
+    ::ng-deep
+    .public-profile
+    .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active
+    .mdc-tab__text-label,
+  .mat-mdc-tab-link:not(.mat-mdc-tab-disabled).mdc-tab--active
+    .mdc-tab__text-label {
+    color: #000 !important;
+    font-family: "Montserrat", sans-serif !important;
+    background-color: #c8a60d !important;
+    padding: 20px !important;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+  }
+  :host ::ng-deep .public-profile .mat-mdc-tab-labels {
+    width: 0px;
+  }
+  :host ::ng-deep .public-profile .mat-mdc-tab.mdc-tab {
+    margin-right: 0 !important;
+    height: 50px !important;
+    flex-grow: 0;
+  }
+  :host
+    ::ng-deep
+    .public-profile
+    .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs
+    > .mat-mdc-tab-header
+    .mat-mdc-tab {
+    flex-grow: 1;
+    background-color: #18170f;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  
+  :host ::ng-deep .public-profile .mat-mdc-tab-label-container {
+    display: flex;
+    flex-grow: 1;
+    overflow: hidden;
+    z-index: 1;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    right: 100px;
+  }
+  :host ::ng-deep .public-profile .mat-mdc-tab-body-content {
+    overflow: auto;
+    border: none;
+  }
+  :host ::ng-deep .btn-group .btn-outline-primary {
+    --bs-btn-color: #ffffff;
+    --bs-btn-border-color: #111212;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #0d6efd;
+    --bs-btn-hover-border-color: #333333;
+    --bs-btn-focus-shadow-rgb: 13, 110, 253;
+    --bs-btn-active-color: #000000;
+    --bs-btn-active-bg: #ffff !important;
+    --bs-btn-active-border-color: #333333;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #0d6efd;
+    --bs-btn-disabled-bg: #333333;
+    --bs-btn-disabled-border-color: #333333;
+    --bs-gradient: none;
+    margin: 10px;
+    // width: 120px;
+    border-radius: 12px;
+    font-family: "Montserrat", sans-serif !important;
+  }
+  :host ::ng-deep .btn-group,
+  .btn-group-vertical {
+    position: relative;
+    display: inline-flex;
+    vertical-align: middle;
+    flex-wrap: wrap;
+  }
+  :host ::ng-deep .btn-outline-primary {
+    background-color: #333333;
+  }
+  :host ::ng-deep .btn-group > .btn:not(:last-child):not(.dropdown-toggle) {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 8px;
+  }
+  .follower-small-card {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    .card-follower {
+      color: #ffffff;
+      background-color: #18170f;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+      font-family: "Montserrat", sans-serif;
+    }
+    .card-folloewing {
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px;
+      background-color: #18170f;
+      color: #ffffff;
+      font-family: "Montserrat", sans-serif;
+    }
+  }
+  .winning-percentage {
+    width: 340px;
+    position: relative;
+    left: 55px;
+    .card-winning {
+      background-color: #18170f;
+      color: #ffffff;
+      font-family: "Montserrat", sans-serif;
+      padding: 20px;
+    }
+    .winning-lable {
+      color: #ffffff;
+      font-family: "Montserrat", sans-serif;
+    }
+  }
+  :host ::ng-deep .winning-percentage .progress-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    color: var(--bs-progress-bar-color);
+    text-align: center;
+    white-space: nowrap;
+    background-color: #fdd017;
+    transition: var(--bs-progress-bar-transition);
+  }
+  :host::ng-deep .Rosters
+    .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active
+    .mdc-tab__text-label,
+  .mat-mdc-tab-link:not(.mat-mdc-tab-disabled).mdc-tab--active
+    .mdc-tab__text-label {
+    color: #000 !important;
+    font-family: "Montserrat", sans-serif !important;
+    background-color: #ffffff !important;
+    padding: 20px !important;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10;
+    border-top-right-radius: 10;
+    margin: 0px !important;
+    position: absolute;
+  }
+  :host::ng-deep .Rosters
+    .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs
+    > .mat-mdc-tab-header
+    .mat-mdc-tab {
+    flex-grow: 1;
+    background-color: #18170f;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  :host ::ng-deep .Rosters .mat-mdc-tab-label-container {
+    display: flex;
+    flex-grow: 1;
+    overflow: hidden;
+    z-index: 1;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  :host ::ng-deep .Rosters .mat-mdc-tab .mdc-tab__text-label,
+  .mat-mdc-tab-link .mdc-tab__text-label {
+    color: rgb(247 243 243 / 60%);
+    font-family: "Montserrat", sans-serif;
+    padding: 20px;
+    padding-right: 20px;
+    background-color: #333333;
+    margin: 0px !important;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  :host ::ng-deep .Rosters .mat-mdc-tab.mdc-tab {
+    margin-right: 20px;
+    height: 50px;
+    flex-grow: 0;
+  }
+  :host ::ng-deep .Rosters .mat-mdc-tab-body-content {
+    border: none;
+  }
+  .Rosters {
+    .picks-text {
+      color: #ffffff;
+      font-family: "Montserrat", sans-serif;
+    }
+  
+  }
+  .players {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    .info {
+      color: #ffffff;
+      position: relative;
+      right: 30px;
+      font-family: "Montserrat", sans-serif;
+    }
+    .point-less-more {
+      color: #ffffff;
+      font-family: "Montserrat", sans-serif;
+      background-color: #333333;
+      text-align: center;
+    }
+    .progress {
+      position: relative;
+      right: 30px;
+    }
+  }
+  :host ::ng-deep .players .progress-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    color: var(--bs-progress-bar-color);
+    text-align: center;
+    white-space: nowrap;
+    background-color: #fdd017;
+    transition: var(--bs-progress-bar-transition);
+  }
+  
+  .select-player {
+    background-color: #18170f;
+    color: #ffffff;
+    font-family: "Montserrat", sans-serif;
+    .selected-card {
+      background-color: #2e2c1d;
+      color: #ffffff;
+      font-family: "Montserrat", sans-serif;
+    }
+    .cancal{
+      color: #858262;
+    
+    }
+    .cancal-card{
+      text-decoration: none;
+    }
+    .teams-text {
+      color: #ffffff;
+      font-family: "Montserrat", sans-serif;
+      text-align: start;
+      position: relative;
+    }
+    .player-point {
+      color: #fdd017;
+      font-family: "Montserrat", sans-serif;
+    }
+    .selected-btn-more {
+      background-color: #fdd017;
+      font-family: "Montserrat", sans-serif;
+      border-color: #fdd017;
+      color: #2e2c1d;
+    }
+    .selected-btn-less {
+      background-color: #2e2c1d;
+      font-family: "Montserrat", sans-serif;
+      border-color: #fdd017;
+      color: #ffffff;
+    }
+    .one-more-add {
+      display: flex;
+      justify-content: center;
+    }
+    .almost-text {
+      display: flex;
+      justify-content: center;
+      color: #efe796;
+      font-family: "Montserrat", sans-serif;
+    }
+    .card-investment {
+      display: flex;
+      justify-content: center;
+      .invest-card {
+        background-color: #1d1c10;
+        .invest-text {
+          display: flex;
+          justify-content: start;
+          color: #ffffff;
+          font-family: "Montserrat", sans-serif;
+        }
+      }
+    }
+  
+    .Place-Roster-btn {
+      background-color: #fdd017;
+      color: #050614;
+      font-family: "Montserrat", sans-serif;
+      border-radius: 10px;
+    }
+  }
+  .profile {
+    display: flex;
+    justify-content: center;
+    .profile-cards {
+      background-color: #0e0e09;
+      color: #ffffff;
+      text-align: center;
+      .follower-small-cards {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        .card-followers {
+          color: #ffffff;
+          background-color: #18170f;
+          border-top-right-radius: 0px;
+          border-bottom-right-radius: 0px;
+          border-top-left-radius: 10px;
+          border-bottom-left-radius: 10px;
+          font-family: "Montserrat", sans-serif;
+        }
+        .card-folloewings {
+          border-top-right-radius: 10px;
+          border-bottom-right-radius: 10px;
+          border-top-left-radius: 0px;
+          border-bottom-left-radius: 0px;
+          background-color: #18170f;
+          color: #ffffff;
+        }
+      }
+    }
+  
+    .credit-card {
+      background-color: #18170f;
+      color: #ffffff;
+      font-family: "Montserrat", sans-serif;
+    }
+  }
+  .boosted {
+    .boosted-payout {
+      background-color: #18170f;
+      border-color: #302e21;
+      .Payouts-text {
+        color: #ffffff;
+        font-family: "Montserrat", sans-serif;
+      }
+    }
+    .dynamic-play {
+      background-color: #2e2c1c;
+      border-color: #393724 !important;
+      .dynamic-play-text {
+        color: #ffffff;
+        font-family: "Montserrat", sans-serif;
+      }
+      .You-must-text {
+        color: #ffffff;
+        font-family: "Montserrat", sans-serif;
+      }
+    }
+    .coorect-4 {
+      border-color: #393724 !important;
+      color: #ffffff;
+      font-family: "Montserrat", sans-serif;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 25px;
+    }
+    .coorect-3 {
+      border-color: #393724 !important;
+      color: #ffffff;
+      font-family: "Montserrat", sans-serif;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 25px;
+    }
+    .intense-play {
+      background-color: #fdd017;
+    }
+    .instese-correct {
+      margin-bottom: 0px;
+      background-color: #fee57e;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 25px;
+    }
+    .checkbox-radio{
+      border-radius: 10px;
+      color: #000;
+      // background-color: #ffffff;
+    }
+  //   .form-check-input:checked {
+  //     background-color: #0d6efd;
+  //     border-color: #f8f9f9;
+  // }
+  
+  }
+  //search filed icon 
+  .Search-input {
+    position: relative;
+    width: 300px; /* Adjust the width as needed */
+  }
+
+  .search-inputs {
+    width: 100%;
+    padding-right: 40px; /* Make space for the icon */
+    padding-left: 10px; /* Add left padding for aesthetics */
+    height: 40px; /* Adjust height as needed */
+    box-sizing: border-box;
+    font-size: 16px; /* Adjust font size as needed */
+  }
+
+  .search-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #ccc; /* Adjust color as needed */
+  }

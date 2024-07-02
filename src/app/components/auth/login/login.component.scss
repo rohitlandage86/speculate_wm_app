@@ -1,0 +1,206 @@
+.container-fluid {
+    background-color: black;
+  }
+.stepper{
+  background-color: black;
+  .next-btn{
+    font-family: "Montserrat", sans-serif;
+    background-color: #fdd017;
+    color: #302702;
+    font-size: 15px;
+      font-weight: 800;
+    padding: 30px;
+  }
+  .passbtn{
+    background-color:#211700 ;
+    border-color: #302702;
+    border: 0px;
+    color: #FFFFFF;
+
+  }
+  .btn-back{
+    font-family: "Montserrat", sans-serif;
+    color: #FFFFFF;
+    background-color: #302702;
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+      font-weight: 800;
+    padding: 30px;
+  }
+  .btn-Sign-up{
+    font-family: "Montserrat", sans-serif;
+    color: black;
+    background-color: #B3B3B3;
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+      font-weight: 800;
+    padding: 30px;
+  }
+  .text-2 {
+    font-family: "Montserrat", sans-serif;
+    font-style: bold;
+    color: #fdd017;
+    font-size: 40px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .text-3 {
+    color: #ffff;
+    font-style: normal;
+    font-size: 40px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+  }
+  .mat-form-field{
+    border: #fdd017;
+  }
+  .mat-field-lable{
+    color: hwb(37 66% 21% / 0.966);
+  }
+  .first-name{
+    border-radius: 12px;
+  }
+ .Terms-policy{
+  color: #FFFFFF;
+  font-size: 20px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+ }
+ .form-check-input{
+  background-color: #fdd017;
+ width: 1.5rem;
+ padding: 10px;
+ 
+  }
+  .upload-btn{
+    font-family: "Montserrat", sans-serif;
+    background-color: #FFFFFF;
+    font-size: 15px;
+      font-weight: 800;
+      padding: 5px;
+      width: 150px;
+border-radius: 7px;
+  }
+  .select-day{
+    height: 65px;
+  }
+  .text-account{
+    text-align: center;
+    .account-have{
+        font-family: "Montserrat", sans-serif;
+        text-align: center;
+      color: #B3B3B3;
+        font-size: 20px;
+          font-weight: 400;
+      }
+  }
+  .forgot{
+    text-align: end;
+    
+    .forgot-pass{
+        font-family: "Montserrat", sans-serif;
+        text-decoration: none;
+      color: #fdd017;
+        font-size: 20px;
+          font-weight: 400;
+      }
+  }
+
+ 
+}
+:host ::ng-deep .mat-mdc-text-field-wrapper:not(.mdc-text-field--outlined) .mat-mdc-form-field-infix {
+  padding-top: 24px;
+  padding-bottom: 8px;
+  display: flex;
+}
+
+:host ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: #211700;
+
+}
+:host ::ng-deep .mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input {
+  color: #FFFFFF;
+}
+:host ::ng-deep .form-control {
+  background-color: #211700;
+  color:  hwb(37 66% 21% / 0.966);
+  border-radius: 10px;
+  border-color: #51382b;
+}
+:host ::ng-deep .form-control:focus {
+  border-color: #744b35; 
+  box-shadow: 0 0 0 0.1rem #744b35; 
+}
+
+:host ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+  height: 0px;
+}
+:host ::ng-deep.mat-horizontal-stepper-header-container {
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    display: none;
+}
+  .sign-img{
+    text-align: center;
+    .text-color {
+      color: #fdd017;
+      font-family: "Montserrat", sans-serif;
+      font-size: 2rem;
+      font-weight: 600;
+    }
+  }
+  .games {
+    border-color: #504106 !important;
+    display: flex;
+    border-width: 0.9px !important;
+    justify-content: center;
+    .img {
+      margin: 10px;
+    }
+    .img-1 {
+      color: #fdd017;
+      font-family: "Montserrat", sans-serif;
+    }
+    .img-1-text {
+      color: #fdd017;
+      font-family: "Montserrat", sans-serif;
+      margin-top: 15px;
+      text-align: center;
+    }
+    .img-1:hover,
+  .img-1-text:hover {
+      opacity: 0.7; 
+      transition: opacity 0.3s ease;
+      transition: text-shadow 0.6s ease; 
+      font-family: "Montserrat", sans-serif;
+      // font-size: 1em; 
+      // transition: font-size 0.3s ease;
+  }
+  }
+    .footer{
+      background-color: #232323;
+      .products{
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          .product{
+            font-family: "Montserrat", sans-serif;
+              color: #ffff;
+              font-size: 20px;
+              font-weight: 600;
+             
+          }
+          .footer-link{
+            font-family: "Montserrat", sans-serif;
+              font-size: 17px;
+              font-weight: 500;
+              margin: 5px;
+              text-align: start;
+              color: #77513E;
+              text-decoration: none;
+              margin-left: 65px;
+          }
+      }
+   
+  }

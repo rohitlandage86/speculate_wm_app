@@ -1,0 +1,114 @@
+<div class="container-fluid">
+  <div class="row mx-5">
+    <section id="nav-bar" *ngIf="isHomePage">
+      <div class="row">
+        <nav class="navbar navbar-expand-lg navbar-light p-0">
+          <div class="container p-0 m-0">
+            <a class="navbar-brand" href="#">
+              <img src="../../assets/images/logo/speculate_logo.png" alt="Logo" />
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse ps-3" id="navbarNav">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Today’s Board</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Sports</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Promos</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">How to Play</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Download</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Media</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Help Center</a>
+                </li>
+              </ul>
+              <div class="d-flex align-items-center mb-3">
+                <button class="btn me-3" [routerLink]="['/gambler', { outlets: { sub_Menu: ['sign-up']}}]" >Sign Up</button>
+                <button class="btn me-3" [routerLink]="['/gambler', { outlets: { sub_Menu: ['login']}}]">Log In</button>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </section>
+    <section id="nav-bar-conditional" *ngIf="!isHomePage">
+      <nav class="navbar navbar-expand-lg navbar-light p-0">
+        <div class="container p-0 m-0">
+          <a class="navbar-brand" href="#">
+            <img src="../../assets/images/logo/speculate_logo.png" alt="Logo" />
+          </a>
+        </div>
+      </nav>
+    </section>
+  </div>
+
+  <router-outlet *ngIf="isHomePage"></router-outlet>
+  <router-outlet name="sub_Menu" *ngIf="!isHomePage"></router-outlet>
+
+  <div class="row footer m-5 mb-0">
+    <div class="col-md-12 d-flex mt-5 mb-3">
+      <div class="col-md-3">
+        <a class="navbar-brand" href="#">
+          <img src="../../../../assets/images/logo/speculate_logo.png" alt="Logo" />
+        </a>
+      </div>
+      <div class="col-md-2 products">
+        <label class="product">PRODUCT</label>
+        <a href="" class="footer-link">Download App</a>
+        <a href="" class="footer-link">NFL</a>
+        <a href="" class="footer-link">CFB</a>
+        <a href="" class="footer-link">NBA</a>
+        <a href="" class="footer-link">MLB</a>
+        <a href="" class="footer-link">NHL</a>
+      </div>
+      <div class="col-md-2 products">
+        <label class="product">COMPANY</label>
+        <a href="" class="footer-link">Awards</a>
+        <a href="" class="footer-link">Careers</a>
+        <a href="" class="footer-link">Press</a>
+        <a href="" class="footer-link">Merch Store</a>
+      </div>
+      <div class="col-md-2 products">
+        <label class="product">RESOURCES</label>
+        <a href="" class="footer-link">Terms Of Services</a>
+        <a href="" class="footer-link">Privacy Policy</a>
+        <a href="" class="footer-link">Refund Policy</a>
+        <a href="" class="footer-link">Responsible Gaming</a>
+        <a href="" class="footer-link">Sitemap</a>
+        <a href="" class="footer-link">Enable Accessibility</a>
+      </div>
+      <div class="col-md-2 products">
+        <label class="product">SUPPORT</label>
+        <a href="" class="footer-link">Help Centre</a>
+        <a href="" class="footer-link">Resources</a>
+        <a href="" class="footer-link">Deposit</a>
+        <a href="" class="footer-link">Withdrawals</a>
+        <a href="" class="footer-link">Reboots</a>
+        <a href="" class="footer-link">Enable Accessibility</a>
+        <div class="d-flex ms-5">
+          <a class="navbar-brand m-2" href="#">
+            <img src="../../../../assets/images/logo/facebook-icon.svg" alt="Logo" />
+          </a>
+          <a class="navbar-brand m-2" href="#">
+            <img src="../../../../assets/images/logo/instagram-icon.svg" alt="Logo" />
+          </a>
+          <a class="navbar-brand m-2" href="#">
+            <img src="../../../../assets/images/logo/twitter-icon.svg" alt="Logo" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

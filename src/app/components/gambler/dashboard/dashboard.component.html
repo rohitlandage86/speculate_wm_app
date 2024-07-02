@@ -1,0 +1,604 @@
+<div class="container-fluid p-0">
+  <div class="row mx-5 mb-4 mat-header">
+    <div class="col-md-10 m-0 mb-3">
+      <div class="d-flex deposit-btn">
+        <div class="Search-input">
+          <input
+            type="search"
+            placeholder="Search"
+            class="form-control search-inputs"
+          />
+          <i class="fa fa-solid fa-magnifying-glass search-icon"></i>
+        </div>
+        <button mat-button class="btn btn-Sign-up mx-3" routerLink="sign-up">
+          Deposit
+        </button>
+      </div>
+      <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+        <mat-tab label="Field">
+          <div class="container">
+            <div class="col-md-12 justify-content-center">
+              <div class="btn-sports-group">
+                <div
+                  class="mat-game-btn mt-3"
+                  *ngFor="let item of allSportsList; let i = index"
+                >
+                  <button
+                    mat-button
+                    class="btn border"
+                    [ngClass]="{
+                      'btn-games': activeButtonIndex === i,
+                      'btn-game': activeButtonIndex !== i
+                    }"
+                    (click)="setActiveButton(i)"
+                    (click)="getBettingBetwma(item.sport_id)"
+                  >
+                    <span class="d-flex text-center">
+                      <img
+                        [src]="baseUrlImage + 'images/sports/' + item.image"
+                        alt="sport image"
+                        class="img-fluid mt-1"
+                        style="height: 20px; width: 20px; margin-right: 8px"
+                      />
+                      <label>
+                        {{ item.sports_name }}
+                      </label>
+                    </span>
+                  </button>
+                </div>
+              </div>
+              <div
+                class="btn-group ms-4 mt-4 row justify-content-center"
+                role="group"
+                aria-label="Basic checkbox toggle button group"
+                *ngFor="let item of allBettingBetwmaList; let i = index"
+              >
+                <input
+                  type="checkbox"
+                  class="btn-check btn-1"
+                  [id]="'btncheck' + i"
+                  autocomplete="off"
+                />
+                <label
+                  class="btn btn-outline-primary fw-medium m-0"
+                  [for]="'btncheck' + i"
+                >
+                  {{ item.name }}
+                </label>
+              </div>
+              <div class="row">
+                <div
+                  class="point-card-nba d-flex flex-wrap"
+                  [ngClass]="isExpanded ? 'col-md-8 ' : 'col-md-12'"
+                >
+                  <div
+                    class="px-4 py-3"
+                    [ngClass]="isExpanded ? 'col-md-6' : 'col-md-4'"
+                    *ngFor="let player of playersList; let i = index"
+                  >
+                    <div
+                      class="card nba-card"
+                      [ngClass]="{
+                        'border-changed-more': player.clickedMore,
+                        'border-changed-less': player.clickedLess
+                      }"
+                    >
+                      <img
+                        [src]="
+                          '../../assets/images/dashboard-point-card-img/' +
+                          player.imgSrc
+                        "
+                        class="player-img"
+                        alt="{{ player.name }}"
+                      />
+                      <div>
+                        <div class="card points-card p-3 mx-4 fs-5 fw-medium">
+                          {{ player.points }} POINTS
+                        </div>
+                      </div>
+                      <small class="GSW-text fw-bolded fs-6">{{
+                        player.team
+                      }}</small>
+                      <small class="GSW-text">{{ player.match }}</small>
+                      <h3 class="GSW-text fw-medium fs-4">
+                        {{ player.name }}
+                      </h3>
+                      <div class="d-flex">
+                        <button
+                          class="form-control btn-more"
+                          [ngClass]="{ clicked: player.clickedMore }"
+                          (click)="onSelectPlayer(player, 'more')"
+                        >
+                          MORE
+                        </button>
+                        <button
+                          class="form-control btn-less"
+                          [ngClass]="{ clicked: player.clickedLess }"
+                          (click)="onSelectPlayer(player, 'less')"
+                        >
+                          LESS
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="col-md-4 player-card pt-3"
+                  *ngIf="isExpanded && selectedPlayers.length > 0"
+                >
+                  <div class="card select-player">
+                    <div>
+                      <h2 class="current m-3">Current Roster</h2>
+                      <div
+                        class="card selected-card p-2 m-3"
+                        *ngFor="let player of selectedPlayers"
+                      >
+                        <a
+                          href="javascript:void(0)"
+                          class="d-flex justify-content-end cancal-card"
+                          (click)="removePlayer(i)"
+                        >
+                          <i class="fa fa-times cancal"></i>
+                        </a>
+                        <div class="d-flex">
+                          <div style="margin-top: -20px">
+                            <div class="d-flex justify-content-end">
+                              <h3 class="teams-text">{{ player.name }}</h3>
+                            </div>
+
+                            <small class="teams-text">{{ player.match }}</small>
+                            <h3 class="player-point fw-medium fs-4">
+                              {{ player.points }} POINTS
+                            </h3>
+                            <div class="d-flex">
+                              <button
+                                class="form-control btn-more"
+                                [ngClass]="{ clicked: player.clickedMore }"
+                              >
+                                MORE
+                              </button>
+                              <button
+                                class="form-control btn-less"
+                                [ngClass]="{ clicked: player.clickedLess }"
+                              >
+                                LESS
+                              </button>
+                            </div>
+                          </div>
+                          <div class="d-flex align-items-end">
+                            <img
+                              [src]="
+                                '../../assets/images/dashboard-point-card-img/' +
+                                player.imgSrc
+                              "
+                              class="player-img"
+                              alt="{{ player.name }}"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row boosted p-4 pt-2">
+                        <div
+                          class="card py-3 boosted-payout m-1"
+                          *ngIf="selectedPlayers.length >= 2"
+                        >
+                          <p class="fs-3 fw-bold text-center Payouts-text">
+                            Boosted Payouts
+                          </p>
+                          <div class="d-flex justify-content-between">
+                            <div class="card dynamic-play p-2 border">
+                              <div class="d-flex justify-content-between">
+                                <h5 class="dynamic-play-text fs-6">
+                                  Dynamic Play
+                                </h5>
+                                <div class="form-check">
+                                  <input
+                                    class="form-check-input checkbox-radio"
+                                    type="checkbox"
+                                    [formControl]="dynamicPlayControl"
+                                    (change)="onCheckboxChange('dynamic')"
+                                    id="flexRadioDynamic"
+                                  />
+                                </div>
+                              </div>
+                              <small class="You-must-text m-1"
+                                >You must hit 3 out of 4 Rosters</small
+                              >
+                              <div class="d-flex border mb-2 coorect-4 p-1 m-1">
+                                <small class="mb-0"> 4 Correct </small>
+                                <small class="mb-0"> 5X </small>
+                              </div>
+                              <div class="d-flex border coorect-3 p-1 m-1">
+                                <small class="mb-0"> 3 Correct </small>
+                                <small class="mb-0"> 1.5X </small>
+                              </div>
+                            </div>
+                            <div class="card intense-play p-1 m-1">
+                              <div class="d-flex justify-content-between">
+                                <h5 class="fs-6 fw-bold">Intense Play</h5>
+                                <div class="form-check">
+                                  <input
+                                    class="form-check-input checkbox-radio"
+                                    type="checkbox"
+                                    [formControl]="intensePlayControl"
+                                    (change)="onCheckboxChange('intense')"
+                                    id="flexRadioIntense"
+                                  />
+                                </div>
+                              </div>
+                              <small class="m-1"
+                                >You must hit 4 out of 4 Rosters</small
+                              >
+                              <div
+                                class="d-flex border instese-correct p-1 m-1"
+                              >
+                                <small class="mb-0"> 4 Correct </small>
+                                <small class="mb-0"> 10X </small>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div>
+                        <div *ngIf="selectedPlayers.length === 1">
+                          <div class="one-more-add">
+                            <img
+                              src="../../assets/images/dashboard-img/1-more-card.svg"
+                              class="player-img"
+                              alt=""
+                            />
+                          </div>
+                          <small class="almost-text fs-4 fw-bold m-3"
+                            >Almost There!</small
+                          >
+                          <small class="almost-text">Add 1 more Player</small>
+                          <small class="almost-text"
+                            >to Complete Your Roster</small
+                          >
+                        </div>
+
+                        <div class="card-investment">
+                          <div class="card invest-card m-3 p-2">
+                            <small class="invest-text fs-5"> Investment </small>
+                            <h3 class="invest-text">$ 40</h3>
+                          </div>
+                          <div class="card invest-card m-3 p-3">
+                            <small class="invest-text fs-5"> Reward </small>
+                            <h3 class="invest-text">$ 60</h3>
+                          </div>
+                        </div>
+                        <div class="p-3 m-2">
+                          <button
+                            class="form-control Place-Roster-btn fs-5 fw-medium"
+                          >
+                            Place Roster
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="Active Roster">
+          <div class="col-md-12">
+            <div class="col-md-11 mt-4 profile px-3">
+              <div class="card profile-cards m-4 p-5">
+                <h3 class="player-name">Boyd Dave</h3>
+                <small class="player-joined">JOINED MAY 2023</small>
+                <div class="follower-small-cards">
+                  <div class="card card-followers px-4 py-3">
+                    <h3>0</h3>
+                    <small> Roster Won</small>
+                  </div>
+                  <div class="card card-folloewings px-4 py-3">
+                    <h3>$ 0.00</h3>
+                    <small> Amount Won</small>
+                  </div>
+                </div>
+                <div class="d-flex mt-2">
+                  <div class="card credit-card px-5">
+                    <small>Credit</small>
+                    <small> $25.00</small>
+                  </div>
+                  <div class="">
+                    <button
+                      mat-button
+                      class="btn px-4 py-4 ms-2 btn-Sign-up"
+                      routerLink="sign-up"
+                    >
+                      Deposit
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12 mb-5">
+              <mat-tab-group dynamicHeight class="Rosters">
+                <mat-tab label=" Open Rosters" class="Open-Rosters fw-bolder">
+                  <div class="mt-5 ms-5">
+                    <h3 class="fs-3 fw-bold ms-5 picks-text">
+                      3 picks to win $60
+                    </h3>
+                  </div>
+
+                  <div class="players">
+                    <img
+                      src="../../assets/images/dashboard-point-card-img/dash-point-card-stephen curry.svg"
+                      class="player-img"
+                      alt=""
+                    />
+                    <div>
+                      <div class="row mt-3 info">
+                        <h3>Stephen Curry</h3>
+                        <small>GSW-G </small>
+                        <small>Vs. Sac Mon 10:10pm</small>
+                      </div>
+                      <div class="progress">
+                        <div
+                          class="progress-bar"
+                          role="progressbar"
+                          style="width: 25%"
+                          aria-valuenow="25"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        ></div>
+                      </div>
+                    </div>
+
+                    <div class="card point-less-more p-2 mb-3 px-3">
+                      <h5>MORE</h5>
+                      <h5 class="fs-5">26.0</h5>
+                      <h5 class="fs-5">LESS</h5>
+                    </div>
+                  </div>
+
+                  <div class="players">
+                    <img
+                      src="../../assets/images/dashboard-point-card-img/dash-point-card-stephen curry.svg"
+                      class="player-img"
+                      alt=""
+                    />
+                    <div>
+                      <div class="row mt-3 info">
+                        <h3>Stephen Curry</h3>
+                        <small>GSW-G </small>
+                        <small>Vs. Sac Mon 10:10pm</small>
+                      </div>
+                      <div class="progress">
+                        <div
+                          class="progress-bar"
+                          role="progressbar"
+                          style="width: 25%"
+                          aria-valuenow="25"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        ></div>
+                      </div>
+                    </div>
+
+                    <div class="card point-less-more p-2 mb-3 px-3">
+                      <h5>MORE</h5>
+                      <h5 class="fs-5">26.0</h5>
+                      <h5 class="fs-5">LESS</h5>
+                    </div>
+                  </div>
+
+                  <div class="players">
+                    <img
+                      src="../../assets/images/dashboard-point-card-img/dash-point-card-stephen curry.svg"
+                      class="player-img"
+                      alt=""
+                    />
+                    <div>
+                      <div class="row mt-3 info">
+                        <h3>Stephen Curry</h3>
+                        <small>GSW-G </small>
+                        <small>Vs. Sac Mon 10:10pm</small>
+                      </div>
+                      <div class="progress">
+                        <div
+                          class="progress-bar"
+                          role="progressbar"
+                          style="width: 25%"
+                          aria-valuenow="25"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        ></div>
+                      </div>
+                    </div>
+
+                    <div class="card point-less-more p-2 mb-3 px-3">
+                      <h5>MORE</h5>
+                      <h5 class="fs-5">26.0</h5>
+                      <h5 class="fs-5">LESS</h5>
+                    </div>
+                  </div>
+                </mat-tab>
+                <mat-tab label="  Past Rosters" class="Past-Rosters fw-bolder">
+                </mat-tab>
+              </mat-tab-group>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="My Profile">
+          <div class="col-md-12">
+            <div class="card my-profile-card m-5">
+              <div class="col-md-3 mt-4">
+                <div class="card profile-card m-4 p-4 py-5">
+                  <img
+                    src="../../assets/images/dashboard-point-card-img/my profile img/Ellipse 9.svg"
+                    alt=""
+                    class="profile-img"
+                  />
+                  <h3 class="player-name">Boyd Dave</h3>
+                  <small class="player-joined">JOINED MAY 2023</small>
+                </div>
+              </div>
+              <div class="col-md-5 m-5">
+                <div class="public-profile">
+                  <mat-tab-group dynamicHeight class="tab-private-public">
+                    <mat-tab label="Private" class="tab-private">
+                      <div class="follower-small-card">
+                        <div class="card card-follower px-5 p-3">
+                          <h3>1.4K</h3>
+                          <small>Followers</small>
+                        </div>
+                        <div class="card card-folloewing p-3 px-5">
+                          <h3>500</h3>
+                          <small>Following</small>
+                        </div>
+                      </div>
+                      <div class="winning-percentage">
+                        <div class="card mt-4 card-winning">
+                          <samp
+                            class="d-flex"
+                            style="
+                              justify-content: space-between;
+                              align-items: center;
+                            "
+                          >
+                            <small class="winning-lable"
+                              >Winning Percentage</small
+                            >
+                            <p id="percentage-value" class="mb-0">30%</p>
+                          </samp>
+
+                          <div class="progress">
+                            <div
+                              class="progress-bar"
+                              role="progressbar"
+                              style="width: 25%"
+                              aria-valuenow="25"
+                              aria-valuemin="0"
+                              aria-valuemax="100"
+                            ></div>
+                          </div>
+                        </div>
+                      </div>
+                    </mat-tab>
+                    <mat-tab label=" Public" class="public-tab">
+                      <div class="example-large-box mat-elevation-z4">
+                        Large content
+                      </div>
+                    </mat-tab>
+                  </mat-tab-group>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-12 mb-5">
+              <mat-tab-group dynamicHeight class="Rosters">
+                <mat-tab label=" Open Rosters" class="Open-Rosters fw-bolder">
+                  <div class="mt-5 ms-5">
+                    <h3 class="fs-3 fw-bold ms-5 picks-text">
+                      3 picks to win $60
+                    </h3>
+                  </div>
+
+                  <div class="players">
+                    <img
+                      src="../../assets/images/dashboard-point-card-img/dash-point-card-stephen curry.svg"
+                      class="player-img"
+                      alt=""
+                    />
+                    <div>
+                      <div class="row mt-3 info">
+                        <h3>Stephen Curry</h3>
+                        <small>GSW-G </small>
+                        <small>Vs. Sac Mon 10:10pm</small>
+                      </div>
+                      <div class="progress">
+                        <div
+                          class="progress-bar"
+                          role="progressbar"
+                          style="width: 25%"
+                          aria-valuenow="25"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        ></div>
+                      </div>
+                    </div>
+
+                    <div class="card point-less-more p-2 mb-2 px-3">
+                      <h5>MORE</h5>
+                      <h5 class="fs-5">26.0</h5>
+                      <h5 class="fs-5">LESS</h5>
+                    </div>
+                  </div>
+
+                  <div class="players">
+                    <img
+                      src="../../assets/images/dashboard-point-card-img/dash-point-card-stephen curry.svg"
+                      class="player-img"
+                      alt=""
+                    />
+                    <div>
+                      <div class="row mt-3 info">
+                        <h3>Stephen Curry</h3>
+                        <small>GSW-G </small>
+                        <small>Vs. Sac Mon 10:10pm</small>
+                      </div>
+                      <div class="progress">
+                        <div
+                          class="progress-bar"
+                          role="progressbar"
+                          style="width: 25%"
+                          aria-valuenow="25"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        ></div>
+                      </div>
+                    </div>
+
+                    <div class="card point-less-more p-2 mb-2 px-3">
+                      <h5>MORE</h5>
+                      <h5 class="fs-5">26.0</h5>
+                      <h5 class="fs-5">LESS</h5>
+                    </div>
+                  </div>
+
+                  <div class="players">
+                    <img
+                      src="../../assets/images/dashboard-point-card-img/dash-point-card-stephen curry.svg"
+                      class="player-img"
+                      alt=""
+                    />
+                    <div>
+                      <div class="row mt-3 info">
+                        <h3>Stephen Curry</h3>
+                        <small>GSW-G </small>
+                        <small>Vs. Sac Mon 10:10pm</small>
+                      </div>
+                      <div class="progress">
+                        <div
+                          class="progress-bar"
+                          role="progressbar"
+                          style="width: 25%"
+                          aria-valuenow="25"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        ></div>
+                      </div>
+                    </div>
+
+                    <div class="card point-less-more p-2 mb-2 px-3">
+                      <h5>MORE</h5>
+                      <h5 class="fs-5">26.0</h5>
+                      <h5 class="fs-5">LESS</h5>
+                    </div>
+                  </div>
+                </mat-tab>
+                <mat-tab label="Past Rosters" class="Past-Rosters fw-bolder">
+                </mat-tab>
+              </mat-tab-group>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

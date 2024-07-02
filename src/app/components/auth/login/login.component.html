@@ -1,0 +1,135 @@
+<div class="container-fluid">
+  <div class="row mx-5">
+    <div class="col-md-12 d-flex">
+      <div class="col-md-6 sign-up">
+        <mat-stepper class="stepper">
+          <mat-step errorMessage="Name is required.">
+            <form  [formGroup]="form">
+              <h6 class="text-3 mt-3">Log In</h6>
+
+              <div class="row my-5">
+                <mat-form-field class="form-control ">
+                  <mat-label class="mat-field-lable"
+                    >Enter Your Email Id</mat-label
+                  >
+                  <input
+                    matInput
+                    type="email"
+                      formControlName="email_id"
+                  />
+                </mat-form-field>
+                <div class="">
+                  <span *ngIf="controls['email_id'].invalid &&  (controls['email_id'].dirty || controls['email_id'].touched) ">
+                      <span *ngIf="controls['email_id'].errors?.['required']" class="text-danger "><small>Email is required.</small></span>
+                      <span *ngIf="controls['email_id'].errors?.['email']" class="text-danger "><small>Invalid email  format.</small></span>
+                  </span>
+              </div>
+              </div>
+              <div class="row">
+                <mat-form-field class="form-control">
+                  <mat-label class="mat-field-lable"
+                    >Enter Your Password</mat-label
+                  >
+
+                  <input matInput formControlName="password" 
+                  [type]="passwordVisible ? 'text' : 'password'"
+                  [ngClass]="{
+                    'is-invalid':
+                        controls['password'].invalid &&
+                        (controls['password'].dirty ||
+                        controls['password'].touched)
+                    }"/>
+                    <button class="passbtn " type="button" (click)="togglePasswordVisibility()">
+                      <i [class.fa-eye]="passwordVisible" [class.fa-eye-slash]="!passwordVisible" class="fa fa-solid"></i>
+                    </button>
+                  
+                </mat-form-field>
+                <div class="">
+                  <span *ngIf="controls['password'].invalid && (controls['password'].dirty || controls['password'].touched)">
+                      <span class="text-danger "><small>Password is required.</small></span>
+                  </span>
+              </div>
+                <div class="forgot my-4">
+                  <a href="" class="forgot-pass"> Forgot Password ? </a>
+                </div>
+              </div>
+
+              <div class="row">
+                <button
+                  mat-button
+                  class="next-btn m-2 form-control"
+                (click)="login()"
+                >
+                  Get Started
+                </button>
+              </div>
+              <div class="text-account my-4">
+                <label for="" class="account-have">Don’t Have Account ? </label>
+              </div>
+              <div class="row">
+                <button
+                  mat-button
+                  class="m-2 form-control btn-Sign-up"
+                 routerLink="/auth/sign-up"
+                >
+                  Sign Up
+                </button>
+              </div>
+            </form>
+          </mat-step>
+        </mat-stepper>
+      </div>
+      <div class="col-md-6 sign-img">
+        <p class="text-color">SPECULATE</p>
+        <p class="text-color">DAILY FANTASY</p>
+        <div class="player-card">
+          <img
+            src="../../../../assets/images/sign-up-img/sign-up img.svg"
+            alt="Logo"
+          />
+        </div>
+        <div>
+          <img
+            src="../../../../assets/images/sign-up-img/sign-up-action-img.svg"
+            alt="Logo"
+          />
+        </div>
+
+        <div class="row">
+          <div class="games">
+            <div class="img">
+              <a class="img-1"
+                ><img src="../../../../assets/images/nba-img.png" alt="Logo"
+              /></a>
+              <h1 class="img-1-text">NBA</h1>
+            </div>
+            <div class="img">
+              <a class="img-1"
+                ><img src="../../../../assets/images/MLB_img.png" alt="Logo"
+              /></a>
+              <h1 class="img-1-text">MLB</h1>
+            </div>
+            <div class="img">
+              <a class="img-1"
+                ><img src="../../../../assets/images/cfb_img.png" alt="Logo"
+              /></a>
+              <h1 class="img-1-text">CFB</h1>
+            </div>
+            <div class="img">
+              <a class="img-1"
+                ><img src="../../../../assets/images/nhl_img.png" alt="Logo"
+              /></a>
+              <h1 class="img-1-text mt-4">NHL</h1>
+            </div>
+            <div class="img">
+              <a class="img-1"
+                ><img src="../../../../assets/images/nfl_img.png" alt="Logo"
+              /></a>
+              <h1 class="img-1-text mt-4">NFL</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

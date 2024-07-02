@@ -1,0 +1,181 @@
+
+<div class="container-fluid">
+    <div class="row mx-5 ">
+        <div class="col-md-12 d-flex ">
+            <div class="col-md-6 sign-up mt-4">
+              <label class="stepper-lable fs-5 fw-medium ps-3 ">Step {{selectedIndex + 1}} of 3</label>
+              <mat-stepper #stepper class="stepper" [selectedIndex]="selectedIndex" (selectionChange)="onStepChange($event)">
+                <form [formGroup]="sign_upForm">
+                  <mat-step [stepControl]="sign_upForm" errorMessage="Name is required.">
+                    <h6 class="text-3 mt-3">
+                      Enter Your <a class="text-2">Name </a>
+                    </h6>
+                    <div class="row my-5">
+                      <mat-form-field class="form-control ">
+                        <mat-label class="mat-field-lable">First Name</mat-label>
+                        <input matInput formControlName="first_name" class="first-name">
+                      </mat-form-field>
+                      <small class="text-danger">
+                        <div
+                          *ngIf="
+                            controls['first_name'].invalid &&
+                            (controls['first_name'].dirty ||
+                              controls['first_name'].touched)
+                          "
+                        >
+                          <small>First Name is required</small>
+                        </div></small
+                      >
+                    </div>
+                    <div class="row mb-5">
+                      <mat-form-field class="form-control ">
+                        <mat-label class="mat-field-lable">Last Name</mat-label>
+                        <input matInput formControlName="last_name">
+                      </mat-form-field>
+                      <small class="text-danger">
+                        <div
+                          *ngIf="
+                            controls['last_name'].invalid &&
+                            (controls['last_name'].dirty ||
+                              controls['last_name'].touched)
+                          "
+                        >
+                          <small>Last Name is required</small>
+                        </div></small
+                      >
+                    </div>
+                    <h6 class="text-3">Date of <a class="text-2">Birth </a></h6>
+                    <div class="d-flex my-4">
+                      <select class="form-control me-2 select-day" id="day" name="day" (change)="onDayChange($event)">
+                        <option value="" disabled selected>Select Day</option>
+                        <option *ngFor="let day of days" [value]="day">{{ day }}</option>
+                      </select>
+                      <select class="form-control me-2 select-day" id="month" name="month" (change)="onMonthChange($event)">
+                        <option value="" disabled selected>Select Month</option>
+                        <option *ngFor="let month of months" [value]="month">{{ month }}</option>
+                      </select>
+                      <select class="form-control me-2 select-day" id="year" name="year" (change)="onYearChange($event)">
+                        <option value="" disabled selected>Select Year</option>
+                        <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                      </select>
+                    </div>
+                    
+                    
+                    <div class="d-flex">
+                      <button mat-button matStepperPrevious class="m-2 form-control btn-back">Back</button>
+                      <button mat-button matStepperNext class="next-btn m-2 form-control">Continue</button>
+                    </div>
+                  </mat-step>
+                  <mat-step [stepControl]="sign_upForm" errorMessage="Address is required.">
+                    <h6 class="text-3 my-5">Your Mobile <a class="text-2">Number </a></h6>
+                    <div class="row">
+                      <mat-form-field class="form-control mb-4">
+                        <mat-label class="mat-field-lable">Enter Your Mobile Number</mat-label>
+                        <input matInput formControlName="mobile">
+                      </mat-form-field>
+                    </div>
+                    <h6 class="text-3 mb-5 mt-3">Choose Your <a class="text-2">Region </a></h6>
+                    <div class="row mb-3">
+                      <div class="col-md-12 d-flex">
+                        <div class="col-md-8">
+                          <mat-form-field class="form-control mb-4">
+                            <mat-label class="mat-field-lable">Enter Your Address</mat-label>
+                            <input matInput formControlName="address">
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-4 ms-3">
+                          <div class="form-group">
+                            <select class="form-select py-4 form-control" aria-label="Default select example" formControlName="state_id">
+                              <option hidden value="null" disabled selected>Select State</option>
+                              <option > Maharashtra </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="mt-3 d-flex">
+                        <input class="form-check-input mx-2" type="checkbox" formControlName="terms_privacy_policy" (change)="onTermsPrivacyCheckedChange($event)">
+                        <p class="Terms-policy">Terms of Service and Privacy Policy Agreement</p>
+                      </div>
+                      
+                    </div>
+                    <div class="d-flex">
+                      <button mat-button matStepperPrevious class="m-2 form-control btn-back">Back</button>
+                      <button mat-button matStepperNext class="next-btn form-control m-2">Create Account</button>
+                    </div>
+                  </mat-step>
+                  <mat-step>
+                    <h6 class="text-3 mb-5 mt-3">Create Your <a class="text-2">Account </a></h6>
+                    <div class="row">
+                      <mat-form-field class="form-control mb-4">
+                        <mat-label class="mat-field-lable">Username</mat-label>
+                        <input matInput formControlName="user_name">
+                      </mat-form-field>
+                    </div>
+                    <div class="row">
+                      <mat-form-field class="form-control mb-4">
+                        <mat-label class="mat-field-lable">Email ID</mat-label>
+                        <input matInput formControlName="email_id">
+                      </mat-form-field>
+                    </div>
+                    <div class="row">
+                      <mat-form-field class="form-control mb-4">
+                        <mat-label class="mat-field-lable">Password</mat-label>
+                        <input matInput type="password" formControlName="password">
+                      </mat-form-field>
+                    </div>
+                    <div class="d-flex">
+                      <button mat-button matStepperPrevious class="m-2 btn-back form-control">Back</button>
+                      <button mat-button (click)="SubmitSignup()" class="next-btn form-control m-2" >Get Started</button>
+                    </div>
+                  </mat-step>
+                </form>
+              </mat-stepper>
+            </div>
+            <div class="col-md-6 sign-img">
+                <p class="text-color">SPECULATE</p>
+                <p class="text-color"> DAILY FANTASY</p>
+               <div class="player-selected-card">
+                <img src="../../../../assets/images/sign-up-img/sign-up img.svg" alt="Logo" class="img-fluid"/>
+               </div> 
+               <div class="dive-action">
+                 <img src="../../../../assets/images/sign-up-img/sign-up-action-img.svg" alt="Logo" class="img-fluid" />
+               </div>
+    
+                <div class="row games-sign-up">
+                    <div class=" games">
+                      <div class="img">
+                        <a class="img-1"
+                          ><img src="../../../../assets/images/nba-img.png" alt="Logo" class="img-fluid"
+                        /></a>
+                        <h1 class="img-1-text">NBA</h1>
+                      </div>
+                      <div class="img">
+                        <a class="img-1"
+                          ><img src="../../../../assets/images/MLB_img.png" alt="Logo" class="img-fluid"
+                        /></a>
+                        <h1 class="img-1-text">MLB</h1>
+                      </div>
+                      <div class="img">
+                        <a class="img-1"
+                          ><img src="../../../../assets/images/cfb_img.png" alt="Logo" class="img-fluid"
+                        /></a>
+                        <h1 class="img-1-text">CFB</h1>
+                      </div>
+                      <div class="img">
+                        <a class="img-1"
+                          ><img src="../../../../assets/images/nhl_img.png" alt="Logo" class="img-fluid"
+                        /></a>
+                        <h1 class="img-1-text mt-4">NHL</h1>
+                      </div>
+                      <div class="img ">
+                        <a class="img-1"
+                          ><img src="../../../../assets/images/nfl_img.png" alt="Logo" class="img-fluid"
+                        /></a>
+                        <h1 class="img-1-text mt-4">NFL</h1>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+      </div>
