@@ -22,4 +22,18 @@ export class GamblerService {
     getConfigurationbyBaseUrl(id:any): Observable<any>{
       return this.http.get(this.baseUrl + 'api/configuration/'+id)
     }
+     //get all sports data lists...............................................................
+     getAllSportsDataLists(sport_id: any, betting_bet_type_id: any, betting_period_type_id:any,current_date:any,betting_market_type_id:any): Observable<any> {
+      let params: any = {
+        sport_id: sport_id,
+          betting_bet_type_id: betting_bet_type_id,
+          betting_period_type_id:betting_period_type_id,
+          current_date:current_date,
+          betting_market_type_id:betting_market_type_id,
+      };
+
+      return this.http.get(this.baseUrl + 'api/sports-data', {
+          params: params
+      });
+  }
 }

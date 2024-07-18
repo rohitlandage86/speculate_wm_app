@@ -27,7 +27,7 @@ const routes: Routes = [
     outlet: "sub_Menu",
     canActivate:[AuthGuard]
   },
-  
+ 
 ];
 
 @NgModule({
