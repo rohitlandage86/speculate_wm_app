@@ -30,8 +30,7 @@
                       'btn-games': activeButtonIndex === i,
                       'btn-game': activeButtonIndex !== i
                     }"
-                    (click)="setActiveButton(i)"
-                    (click)="getBettingBetwma(item.sport_id)"
+                    (click)="handleButtonClick(i,item.sport_id)"
                   >
                     <span class="d-flex text-center">
                       <img
@@ -47,33 +46,38 @@
                   </button>
                 </div>
               </div>
-              <div
-                class="btn-group ms-4 mt-4 row justify-content-center"
-                role="group"
-                aria-label="Basic checkbox toggle button group"
-                *ngFor="let item of allBettingBetwmaList; let i = index"
-              >
-                <input
-                  type="checkbox"
-                  class="btn-check btn-1"
-                  [id]="'btncheck' + i"
-                  autocomplete="off"
-                />
-                <label
-                  class="btn btn-outline-primary fw-medium m-0"
-                  [for]="'btncheck' + i"
+              <div class="col-md-12 d-flex flex-wrap justify-content-center">
+                <div
+                  class="btn-group ms-4 mt-4 row justify-content-center"
+                  role="group"
+                  aria-label="Basic checkbox toggle button group"
+                  *ngFor="let item of allBettingBetwmaList; let i = index"
                 >
-                  {{ item.name }}
-                </label>
+                  <input
+                    type="checkbox"
+                    class="btn-check btn-1"
+                    [id]="'btncheck' + i"
+                    autocomplete="off"
+                    (click)="getAllSportsDataList(item.betting_bet_type_id)"
+                  />
+                  <label
+                    class="btn btn-outline-primary fw-medium m-0"
+                    [for]="'btncheck' + i"
+                  >
+                    {{ item.name }}
+                  </label>
+                </div>
               </div>
-              <div class="row">
+              
+              <!-- *ngIf="allSportsDatatList.length > 0" -->
+              <div class="row" >
                 <div
                   class="point-card-nba d-flex flex-wrap"
-                  [ngClass]="isExpanded ? 'col-md-8 ' : 'col-md-12'"
+                  [ngClass]="{ 'col-md-8': isExpanded && selectedPlayers.length > 0, 'col-md-12': !isExpanded || selectedPlayers.length === 0 }"
                 >
                   <div
                     class="px-4 py-3"
-                    [ngClass]="isExpanded ? 'col-md-6' : 'col-md-4'"
+                    [ngClass]="{ 'col-md-6': isExpanded && selectedPlayers.length > 0, 'col-md-4': !isExpanded || selectedPlayers.length === 0 }"
                     *ngFor="let player of playersList; let i = index"
                   >
                     <div
@@ -84,10 +88,7 @@
                       }"
                     >
                       <img
-                        [src]="
-                          '../../assets/images/dashboard-point-card-img/' +
-                          player.imgSrc
-                        "
+                        [src]="'../../assets/images/dashboard-point-card-img/' + player.imgSrc"
                         class="player-img"
                         alt="{{ player.name }}"
                       />
@@ -96,13 +97,9 @@
                           {{ player.points }} POINTS
                         </div>
                       </div>
-                      <small class="GSW-text fw-bolded fs-6">{{
-                        player.team
-                      }}</small>
+                      <small class="GSW-text fw-bolded fs-6">{{ player.team }}</small>
                       <small class="GSW-text">{{ player.match }}</small>
-                      <h3 class="GSW-text fw-medium fs-4">
-                        {{ player.name }}
-                      </h3>
+                      <h3 class="GSW-text fw-medium fs-4">{{ player.name }}</h3>
                       <div class="d-flex">
                         <button
                           class="form-control btn-more"
@@ -131,7 +128,7 @@
                       <h2 class="current m-3">Current Roster</h2>
                       <div
                         class="card selected-card p-2 m-3"
-                        *ngFor="let player of selectedPlayers"
+                        *ngFor="let player of selectedPlayers; let i = index"
                       >
                         <a
                           href="javascript:void(0)"
@@ -145,7 +142,6 @@
                             <div class="d-flex justify-content-end">
                               <h3 class="teams-text">{{ player.name }}</h3>
                             </div>
-
                             <small class="teams-text">{{ player.match }}</small>
                             <h3 class="player-point fw-medium fs-4">
                               {{ player.points }} POINTS
@@ -167,43 +163,33 @@
                           </div>
                           <div class="d-flex align-items-end">
                             <img
-                              [src]="
-                                '../../assets/images/dashboard-point-card-img/' +
-                                player.imgSrc
-                              "
+                              [src]="'../../assets/images/dashboard-point-card-img/' + player.imgSrc"
                               class="player-img"
                               alt="{{ player.name }}"
                             />
                           </div>
                         </div>
                       </div>
-                      <div class="row boosted p-4 pt-2">
-                        <div
-                          class="card py-3 boosted-payout m-1"
-                          *ngIf="selectedPlayers.length >= 2"
-                        >
-                          <p class="fs-3 fw-bold text-center Payouts-text">
-                            Boosted Payouts
-                          </p>
+                      <div class="row boosted p-4 pt-2" *ngIf="selectedPlayers.length >= 2">
+                        <div class="card py-3 boosted-payout m-1">
+                          <p class="fs-3 fw-bold text-center Payouts-text">Boosted Payouts</p>
                           <div class="d-flex justify-content-between">
                             <div class="card dynamic-play p-2 border">
                               <div class="d-flex justify-content-between">
-                                <h5 class="dynamic-play-text fs-6">
-                                  Dynamic Play
-                                </h5>
+                                <h5 class="dynamic-play-text fs-6">Dynamic Play</h5>
                                 <div class="form-check">
                                   <input
                                     class="form-check-input checkbox-radio"
                                     type="checkbox"
                                     [formControl]="dynamicPlayControl"
-                                    (change)="onCheckboxChange('dynamic')"
+                                    (change)="onCheckboxChange(player, 'dynamic')"
                                     id="flexRadioDynamic"
                                   />
                                 </div>
                               </div>
-                              <small class="You-must-text m-1"
-                                >You must hit 3 out of 4 Rosters</small
-                              >
+                              <small class="You-must-text m-1">
+                                You must hit 3 out of 4 Rosters
+                              </small>
                               <div class="d-flex border mb-2 coorect-4 p-1 m-1">
                                 <small class="mb-0"> 4 Correct </small>
                                 <small class="mb-0"> 5X </small>
@@ -221,17 +207,13 @@
                                     class="form-check-input checkbox-radio"
                                     type="checkbox"
                                     [formControl]="intensePlayControl"
-                                    (change)="onCheckboxChange('intense')"
+                                    (change)="onCheckboxChange(player, 'intense')"
                                     id="flexRadioIntense"
                                   />
                                 </div>
                               </div>
-                              <small class="m-1"
-                                >You must hit 4 out of 4 Rosters</small
-                              >
-                              <div
-                                class="d-flex border instese-correct p-1 m-1"
-                              >
+                              <small class="m-1">You must hit 4 out of 4 Rosters</small>
+                              <div class="d-flex border instese-correct p-1 m-1">
                                 <small class="mb-0"> 4 Correct </small>
                                 <small class="mb-0"> 10X </small>
                               </div>
@@ -239,7 +221,8 @@
                           </div>
                         </div>
                       </div>
-
+                      
+              
                       <div>
                         <div *ngIf="selectedPlayers.length === 1">
                           <div class="one-more-add">
@@ -249,15 +232,11 @@
                               alt=""
                             />
                           </div>
-                          <small class="almost-text fs-4 fw-bold m-3"
-                            >Almost There!</small
-                          >
+                          <small class="almost-text fs-4 fw-bold m-3">Almost There!</small>
                           <small class="almost-text">Add 1 more Player</small>
-                          <small class="almost-text"
-                            >to Complete Your Roster</small
-                          >
+                          <small class="almost-text">to Complete Your Roster</small>
                         </div>
-
+              
                         <div class="card-investment">
                           <div class="card invest-card m-3 p-2">
                             <small class="invest-text fs-5"> Investment </small>
@@ -269,9 +248,7 @@
                           </div>
                         </div>
                         <div class="p-3 m-2">
-                          <button
-                            class="form-control Place-Roster-btn fs-5 fw-medium"
-                          >
+                          <button class="form-control Place-Roster-btn fs-5 fw-medium">
                             Place Roster
                           </button>
                         </div>
@@ -280,6 +257,18 @@
                   </div>
                 </div>
               </div>
+              <!-- <div row  *ngIf="allSportsDatatList.length === 0">
+                <div class="d-flex justify-content-center mt-2">
+                  <img
+                  src="../../../../assets/images/dashboard-img/404 error.jpg"
+                  class="error-img img-fluid"
+                  alt=""
+                />
+                   <h1 class="text-danger">Error Not Found</h1>
+                </div>
+           
+              </div> -->
+              
             </div>
           </div>
         </mat-tab>
