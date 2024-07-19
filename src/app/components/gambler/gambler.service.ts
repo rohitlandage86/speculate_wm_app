@@ -9,7 +9,12 @@ import { environment } from 'src/environments/environments';
 })
 export class GamblerService {
   baseUrl = environment.baseUrl;
-  constructor(private http: HttpClient) { }
+  config_baseUrl:any
+  constructor(private http: HttpClient) {
+    let data:any =localStorage.getItem('data')
+    let configuration = JSON.parse(data)
+    this.config_baseUrl = configuration.configurations[0].base_url
+   }
   // get all sports............................................................
   getAllSportswmaList(): Observable<any> {
     return this.http.get(this.baseUrl + 'api/sports/wma');
@@ -31,7 +36,6 @@ export class GamblerService {
           current_date:current_date,
           betting_market_type_id:betting_market_type_id,
       };
-
       return this.http.get(this.baseUrl + 'api/sports-data', {
           params: params
       });
