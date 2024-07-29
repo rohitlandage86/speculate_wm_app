@@ -19,7 +19,9 @@ export class SignUpComponent implements OnInit {
   days: string[] = [];
   months: string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   years: string[] = [];
-  geoCoder:any
+  geoCoder:any;
+  allStateList: Array<any> = [];
+  passwordVisible: boolean = false;
   constructor(
     private fb: FormBuilder,
     private _authService: AuthService,
@@ -27,22 +29,21 @@ export class SignUpComponent implements OnInit {
     private _toastr: ToastrService,
     private _sharedService: SharedService,
 
-  ) {
-    this.createSign_upFormGroup();
-  }
+  ) {}
 
   ngOnInit() {
+    this.createSign_upFormGroup();
     this.initializeDays();
     this.initializeYears();
     // Fetch the IP address and patch it to the form
-    this._sharedService.getIPAddress().subscribe((data: any) => {
+    // this._sharedService.getIPAddress().subscribe((data: any) => {
     
-      this.sign_upForm.patchValue({
-        ip_address: data.ip
+    //   this.sign_upForm.patchValue({
+    //     ip_address: data.ip
         
-      });
+    //   });
 
-    });
+    // });
     
 
     // Get device information and patch it to the form
@@ -52,15 +53,16 @@ export class SignUpComponent implements OnInit {
     });
     
 
-    // Fetch live location and patch it to the form
-    this._sharedService.getCurrentPosition().then(position => {
-      this.sign_upForm.patchValue({
-           location: `${position.latitude},${position.longitude}`
-      });
-      this.getAddress(position.latitude,position.longitude)
-    }).catch(error => {
-      console.error('Error getting location', error);
-    });
+    // // Fetch live location and patch it to the form
+    // this._sharedService.getCurrentPosition().then(position => {
+    //   this.sign_upForm.patchValue({
+    //        location: `${position.latitude},${position.longitude}`
+    //   });
+    //   this.getAddress(position.latitude,position.longitude)
+    // }).catch(error => {
+    //   console.error('Error getting location', error);
+    // });
+    this.getAllStateList();
   }
 
   getAddress(latitude: any, longitude: any) {
@@ -94,10 +96,10 @@ export class SignUpComponent implements OnInit {
       terms_privacy_policy: [0, Validators.required], // Initialize with 0
       user_name: ['', Validators.required],
       email_id: ['', [Validators.required, Validators.email]],
-      ip_address: ['', [Validators.required]],
+      ip_address: ['192.158.1.38', [Validators.required]],
       device_info: [null, Validators.required],
       platform: ['web', Validators.required],
-      location: ['', Validators.required],
+      location: ['sangli', Validators.required],
       password: ['', Validators.required]
     });
   }
@@ -176,17 +178,15 @@ export class SignUpComponent implements OnInit {
     let data = this.sign_upForm.value;
     console.log("data=", data);
     if (this.sign_upForm.valid) {
-      console.log('hii', this.sign_upForm.value);
-
+      // console.log('hii', this.sign_upForm.value);
       this._authService.signUp(data).subscribe({
         next: (res: any) => {
-          console.log(res);
+          // console.log(res);
           if (res.status == 200 || res.status == 201) {
-            res.business.category = res.category;
             localStorage.setItem('accessToken', res.token);
             localStorage.setItem('expiresin', res.expiresIn);
             localStorage.setItem('isLogin', 'true');
-            this.router.navigate(['/gambler', 'dashboard']);
+            this.router.navigate(['/gambler', { outlets: { sub_Menu: 'dashboard' } }]);
             this._toastr.success(res.message);
             this.sign_upForm.reset();
           } else {
@@ -203,10 +203,26 @@ export class SignUpComponent implements OnInit {
       });
     } else {
       this.sign_upForm.markAllAsTouched();
-    }
+    };
+
   }
+        //get  State list...
+        getAllStateList() {
+          this._authService.allstateList().subscribe({
+            next: (res: any) => {
+              if (res.data.length > 0) {
+                this.allStateList = res.data;
+              }
+            }
+          });
+        }
 
   onStepChange(event: any) {
     this.selectedIndex = event.selectedIndex;
+  }
+  //password show and hide
+
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible;
   }
 }

@@ -13,14 +13,19 @@ const routes: Routes = [
       import("../app/components/auth/auth.module").then((m) => m.AuthModule),
   },
   {
-    path: "gambler",
-    loadChildren: () =>
-      import("../app/components/gambler/gambler.module").then((m) => m.GamblerModule),
-  },
-  {
     path: "super-admin",
     loadChildren: () =>
       import("../app/components/super-admin/super-admin.module").then((m) => m.SuperAdminModule),
+  },
+  {
+    path: "speculate",
+    loadChildren: () =>
+      import("../app/components/speculate/speculate.module").then((m) => m.SpeculateModule),
+  },
+  {
+    path: "gambler",
+    loadChildren: () =>
+      import("../app/components/gambler/gambler.module").then((m) => m.GamblerModule),
   },
 ];
 

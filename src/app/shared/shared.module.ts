@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import {MatPaginatorModule} from '@angular/material/paginator';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatStepperModule } from '@angular/material/stepper';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [],
-  imports: [
+  imports: [ 
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -21,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatTabsModule,
     MatStepperModule,
     HttpClientModule,
+    MatPaginatorModule,
   ],
   exports:[
     CommonModule,
@@ -34,6 +36,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatTabsModule,
     MatStepperModule,
     HttpClientModule,
+    MatPaginatorModule
   ]
 })
 export class SharedModule { }

@@ -49,4 +49,5 @@ setLoading(isLoading: any) {
 setLoading1(isLoading1: any) {
   this.__isLoading1.next(isLoading1);
 } 
+
 }

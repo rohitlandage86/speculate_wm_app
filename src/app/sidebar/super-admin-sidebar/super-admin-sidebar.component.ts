@@ -1,0 +1,18 @@
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-super-admin-sidebar',
+  templateUrl: './super-admin-sidebar.component.html',
+  styleUrls: ['./super-admin-sidebar.component.scss']
+})
+export class SuperAdminSidebarComponent implements OnInit {
+  showSubMenu: string | null = null;
+
+  constructor() {}
+
+  ngOnInit(): void {
+
+  }
+}
+
+
