@@ -24,8 +24,8 @@ export class LoginComponent {
   }
   createForm() {
     this.form = this.fb.group({
-      email_id: [null, [Validators.required, Validators.email]],
-      password: [null, Validators.required]
+      email_id: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
     });
   }
 
@@ -33,12 +33,12 @@ export class LoginComponent {
     return this.form.controls;
   }
   login() {
+  
     this.isSubmitted = true; // Set isSubmitted to true when the login process starts.
     if (this.form.valid) {
 
       this._authService.login(this.form.value).subscribe({
         next: (res: any) => {
-          // console.log('res', res);
           this.isSubmitted = false;
           if (res.status == 200) {
             localStorage.setItem('accessToken', res.token);
@@ -48,9 +48,17 @@ export class LoginComponent {
             localStorage.setItem('isLogin', 'true');
             this._sharedService.setIsLogin(true);
             this._toastrService.clear();
-            this.router.navigate(['/gambler', { outlets: { sub_Menu: 'dashboard' } }]);
+            // console.log('res', res); 
             this._toastrService.success(res.message);
-           
+            if (res.data.user_type_id == 1) {
+              this.router.navigate(['/super-admin', { outlets: { super_Menu: 'super-admin' } }]);
+            } else if (res.data.user_type_id == 2 || res.data.user_type_id == 3) {
+              this.router.navigate(['/speculate', { outlets: { speculate_Menu: 'speculate-dashboard' } }]);
+            } else if (res.data.user_type_id == 4) {
+              this.router.navigate(['/gambler', { outlets: { sub_Menu: 'dashboard' } }]);
+            } else {
+              this.router.navigate(['']);
+            }
           }
         },
         error: (err: any) => {
@@ -61,11 +69,7 @@ export class LoginComponent {
           } else {
             this._toastrService.error("Internal Server Error");
           }
-        },
-        // complete: () => {
-        //   console.log('Complete callback executed'); // Add this line for debugging
-        //   this.isSubmitted = false; // Set isSubmitted to false when the login process is complete.
-        // }
+        }
 
       });
     } else {
@@ -74,7 +78,7 @@ export class LoginComponent {
       this._toastrService.warning('Fill required fields');
     }
   }
-
+//password show and hide
 
   togglePasswordVisibility() {
     this.passwordVisible = !this.passwordVisible;

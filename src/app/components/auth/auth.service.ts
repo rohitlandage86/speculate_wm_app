@@ -27,7 +27,10 @@ export class AuthService {
   signUp(data: any) {
     return this.http.post(this.url + 'api/gambler/signup', data);
   }
-
+     //state list
+     allstateList(){
+      return this.http.get(this.url + 'api/state/wma');
+    }
    
  public isAuthenticated(): boolean {
   return this.getToken() !== null;

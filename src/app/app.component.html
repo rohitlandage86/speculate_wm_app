@@ -1,49 +1,49 @@
-<div class="container-fluid">
+<div class="container-fluid p-0">
   <div class="row mx-5">
-    <section id="nav-bar" *ngIf="isHomePage">
+    <section id="nav-bar" *ngIf="!isSuperadmin&&!isSpeculateDashboard" >
       <div class="row">
         <nav class="navbar navbar-expand-lg navbar-light p-0">
           <div class="container p-0 m-0">
-            <a class="navbar-brand" href="#">
-              <img src="../../assets/images/logo/speculate_logo.png" alt="Logo" />
+            <a class="navbar-brand">
+              <img src="../../assets/images/logo/speculate_logo.png" alt="Logo" routerLink="/" />
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse ps-3" id="navbarNav">
+            <div class="collapse navbar-collapse ps-3" id="navbarNav" *ngIf="isHomePage">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Today’s Board</a>
+                  <a class="nav-link">Today’s Board</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Sports</a>
+                  <a class="nav-link">Sports</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Promos</a>
+                  <a class="nav-link">Promos</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">How to Play</a>
+                  <a class="nav-link">How to Play</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Download</a>
+                  <a class="nav-link">Download</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Media</a>
+                  <a class="nav-link">Media</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Help Center</a>
+                  <a class="nav-link">Help Center</a>
                 </li>
               </ul>
               <div class="d-flex align-items-center mb-3">
-                <button class="btn me-3" [routerLink]="['/gambler', { outlets: { sub_Menu: ['sign-up']}}]" >Sign Up</button>
-                <button class="btn me-3" [routerLink]="['/gambler', { outlets: { sub_Menu: ['login']}}]">Log In</button>
+                <button class="btn me-3" [routerLink]="['/auth/sign-up']">Sign Up</button>
+                <button class="btn me-3" routerLink="/auth/login">Log In</button>
               </div>
             </div>
           </div>
         </nav>
       </div>
     </section>
-    <section id="nav-bar-conditional" *ngIf="!isHomePage">
+    <!-- <section id="nav-bar-conditional" >
       <nav class="navbar navbar-expand-lg navbar-light p-0">
         <div class="container p-0 m-0">
           <a class="navbar-brand" href="#">
@@ -51,13 +51,17 @@
           </a>
         </div>
       </nav>
-    </section>
+    </section> -->
+  
   </div>
+  <router-outlet *ngIf="!isSuperadmin&&!isSpeculateDashboard"></router-outlet>
+  <router-outlet name="sub_Menu" *ngIf="!isHomePage && !isSpeculateDashboard && !isSuperadmin"></router-outlet>
+  <app-super-admin-sidebar *ngIf="isSuperadmin&&!isSignUp"></app-super-admin-sidebar>
+  <app-speculate-sidebar *ngIf="isSpeculateDashboard&&!isSignUp"></app-speculate-sidebar>
+  <!-- <router-outlet name="speculate_Menu" *ngIf="isSignUp && isSpeculateDashboard && !isHomePage"></router-outlet>-->
+  <!-- <router-outlet name="super_Menu" *ngIf="isSuperAdminDashboard && !isHomePage && !isSpeculateDashboard && !isSignUp"></router-outlet>  -->
 
-  <router-outlet *ngIf="isHomePage"></router-outlet>
-  <router-outlet name="sub_Menu" *ngIf="!isHomePage"></router-outlet>
-
-  <div class="row footer m-5 mb-0">
+  <div class="row footer m-5 mb-0" *ngIf="!isSpeculateDashboard&&!isSuperadmin">
     <div class="col-md-12 d-flex mt-5 mb-3">
       <div class="col-md-3">
         <a class="navbar-brand" href="#">

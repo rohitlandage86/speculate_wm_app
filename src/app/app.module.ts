@@ -11,11 +11,17 @@ import { provideToastr, ToastrModule } from 'ngx-toastr';
 import { AuthGuard } from './shared/auth-guard.service';
 import { AuthInterceptor } from './shared/auth-interceptor.service';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { SuperAdminSidebarComponent } from './sidebar/super-admin-sidebar/super-admin-sidebar.component';
+import { GamblerSidebarComponent } from './sidebar/gambler-sidebar/gambler-sidebar.component';
+import { SpeculateSidebarComponent } from './sidebar/speculate-sidebar/speculate-sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    SuperAdminSidebarComponent,
+    GamblerSidebarComponent,
+    SpeculateSidebarComponent,
    
   ],
   imports: [
