@@ -54,7 +54,7 @@ export class LoginComponent {
             if (res.data.user_type_id == 1) {
               this.router.navigate(['/super-admin', { outlets: { super_Menu: 'super-admin' } }]);
             } else if (res.data.user_type_id == 2 || res.data.user_type_id == 3) {
-              this.router.navigate(['/speculate', { outlets: { speculate_Menu: 'speculate-dashboard' } }]);
+              this.router.navigate(['/admin', { outlets: { admin_Menu: 'admin-dashboard' } }]);
             } else if (res.data.user_type_id == 4) {
               this.router.navigate(['/gambler', { outlets: { sub_Menu: 'dashboard' } }]);
             } else {

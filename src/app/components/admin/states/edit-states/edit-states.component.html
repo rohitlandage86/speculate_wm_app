@@ -1,0 +1,98 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-10 mt-5">
+        <div class="card p-3">
+          <div class="card-header bg-dark d-flex justify-content-between p-3">
+            <strong class="text-white"
+              > Edit State</strong
+            >
+          </div>
+          <div class="card-body">
+            <form [formGroup]="statesForm">
+              <div class="row">
+                <div class="mb-3 col-md-6">
+                  <label for="state_name" class="mb-1"
+                    >State Name
+                    <span style="color: red" *ngIf="!controls['state_name'].value"
+                      >*</span
+                    >
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="exampleInputname1"
+                    formControlName="state_name"
+                    aria-describedby="emailHelp"
+                    [ngClass]="{
+                      'is-invalid':
+                        controls['state_name'].invalid &&
+                        (controls['state_name'].dirty ||
+                          controls['state_name'].touched)
+                    }"
+                  />
+                  <div
+                    class="text-danger"
+                    *ngIf="
+                      controls['state_name'].invalid &&
+                      (controls['state_name'].dirty ||
+                        controls['state_name'].touched)
+                    "
+                  >
+                    <small>Please provide a valid State Name.</small>
+                  </div>
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label for="description" class="mb-1"
+                      >Description
+                      <span style="color: red" *ngIf="!controls['description'].value"
+                        >*</span
+                      >
+                    </label>
+                    <textarea
+                      type="text"
+                      class="form-control "
+                      id="exampleInputname1"
+                      formControlName="description"
+                      aria-describedby="emailHelp"
+                      [ngClass]="{
+                        'is-invalid':
+                          controls['description'].invalid &&
+                          (controls['description'].dirty ||
+                            controls['description'].touched)
+                      }"
+                    ></textarea>
+                    <div
+                      class="text-danger"
+                      *ngIf="
+                        controls['description'].invalid &&
+                        (controls['description'].dirty ||
+                          controls['description'].touched)
+                      "
+                    >
+                      <small>Please provide a valid Description.</small>
+                    </div>
+                  </div>
+              </div>
+    
+              <div>
+                <button type="submit" class="btn btn-warning" (click)="submit()">
+                Update 
+                </button>
+                <button
+                  type="submit"
+                  class="btn btn-secondary ms-3"
+                  [routerLink]="[
+                    '/admin',
+                    { outlets: { admin_Menu: 'states' } }
+                  ]"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

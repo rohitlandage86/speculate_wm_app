@@ -13,7 +13,7 @@ import { AuthInterceptor } from './shared/auth-interceptor.service';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { SuperAdminSidebarComponent } from './sidebar/super-admin-sidebar/super-admin-sidebar.component';
 import { GamblerSidebarComponent } from './sidebar/gambler-sidebar/gambler-sidebar.component';
-import { SpeculateSidebarComponent } from './sidebar/speculate-sidebar/speculate-sidebar.component';
+import { AdminSidebarComponent } from './sidebar/admin-sidebar/admin-sidebar.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { SpeculateSidebarComponent } from './sidebar/speculate-sidebar/speculate
     HomeComponent,
     SuperAdminSidebarComponent,
     GamblerSidebarComponent,
-    SpeculateSidebarComponent,
+    AdminSidebarComponent,
    
   ],
   imports: [
