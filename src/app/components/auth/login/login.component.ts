@@ -45,6 +45,7 @@ export class LoginComponent {
             localStorage.setItem("untitled_id", res.data.untitled_id);
             localStorage.setItem("email_id", res.data.email_id);
             localStorage.setItem('tokenExpiresIn', res.tokenExpiresIn);
+            localStorage.setItem('data',  JSON.stringify(res.data));
             localStorage.setItem('isLogin', 'true');
             this._sharedService.setIsLogin(true);
             this._toastrService.clear();
