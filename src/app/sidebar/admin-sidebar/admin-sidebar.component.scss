@@ -23,6 +23,24 @@
     border-bottom: 1px solid #FFFF!important;
 }
 
+:host ::ng-deep.dropdown-menu.show {
+    display: block;
+    background-color:#333;
+
+}
+:host ::ng-deep.dropdown-item{
+    color: #fff;
+
+}
+:host ::ng-deep .dropdown-item:hover{
+ color: black; 
+
+}
+:host ::ng-deep  .dropdown-item:active {
+    color: #FFFF;
+    text-decoration: none;
+    background-color: black;
+}
 .nav-drop-down{
     display: none;
     
@@ -32,6 +50,14 @@
     a{
         color: #FFFF!important;
     }
+}
+.nav-submenu {
+    display: none;
+    padding-left: 20px;
+}
+
+.nav-item.active > .nav-submenu {
+    display: block;
 }
 
 
@@ -49,7 +75,6 @@
     z-index: 1;
     width: 100%;
 }
-
 
 .nav-item:hover .nav-drop-down {
     display: block; /* Show the dropdown when the parent is hovered */

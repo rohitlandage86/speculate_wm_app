@@ -1,6 +1,6 @@
 <div class="container-fluid p-0">
   <div class="row mx-5">
-    <section id="nav-bar" *ngIf="!isSuperadmin&&!isSpeculateDashboard" >
+    <section id="nav-bar" *ngIf="!isSuperadmin&&!isAdmin" >
       <div class="row">
         <nav class="navbar navbar-expand-lg navbar-light p-0">
           <div class="container p-0 m-0">
@@ -54,14 +54,14 @@
     </section> -->
   
   </div>
-  <router-outlet *ngIf="!isSuperadmin&&!isSpeculateDashboard"></router-outlet>
-  <router-outlet name="sub_Menu" *ngIf="!isHomePage && !isSpeculateDashboard && !isSuperadmin"></router-outlet>
+  <router-outlet *ngIf="!isSuperadmin&&!isAdmin"></router-outlet>
+  <router-outlet name="sub_Menu" *ngIf="!isHomePage&& !isSuperadmin && !isAdmin"></router-outlet>
   <app-super-admin-sidebar *ngIf="isSuperadmin&&!isSignUp"></app-super-admin-sidebar>
-  <app-speculate-sidebar *ngIf="isSpeculateDashboard&&!isSignUp"></app-speculate-sidebar>
+  <app-admin-sidebar *ngIf="isAdmin&&!isSuperadmin&&!isSignUp"></app-admin-sidebar>
   <!-- <router-outlet name="speculate_Menu" *ngIf="isSignUp && isSpeculateDashboard && !isHomePage"></router-outlet>-->
   <!-- <router-outlet name="super_Menu" *ngIf="isSuperAdminDashboard && !isHomePage && !isSpeculateDashboard && !isSignUp"></router-outlet>  -->
 
-  <div class="row footer m-5 mb-0" *ngIf="!isSpeculateDashboard&&!isSuperadmin">
+  <div class="row footer m-5 mb-0" *ngIf="!isSuperadmin&&!isAdmin">
     <div class="col-md-12 d-flex mt-5 mb-3">
       <div class="col-md-3">
         <a class="navbar-brand" href="#">

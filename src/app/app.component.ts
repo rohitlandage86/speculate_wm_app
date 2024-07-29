@@ -11,9 +11,7 @@ export class AppComponent implements OnInit, AfterContentChecked{
   isSignUp = false;
   isHomePage: boolean = false;
   isSuperadmin = false;
-
-  
-  isSpeculateDashboard = false;
+  isAdmin = false;
   isGamblerDashboard = false;
 
 
@@ -28,28 +26,29 @@ export class AppComponent implements OnInit, AfterContentChecked{
           this.isSignUp = true;
           this.isHomePage = false;
           this.isSuperadmin = false;
-          this.isSpeculateDashboard = false;
-
+          this.isAdmin = false;
+          this.isGamblerDashboard = false;
         } else if (currentRoute === '/' ) {
           this.isHomePage = true;
           this.isSignUp = false;
           this.isSuperadmin = false;
-          this.isSpeculateDashboard = false;
+          this.isAdmin = false;
         } else if (currentRoute?.split('/')[1] === 'super-admin') {
           this.isHomePage = false;
           this.isSignUp = false;
           this.isSuperadmin = true;
-          this.isSpeculateDashboard = false;
-        }else if (currentRoute?.split('/')[1] === 'speculate') {
-          this.isSpeculateDashboard = true;
+          this.isAdmin = false;
+        }else if (currentRoute?.split('/')[1] === 'admin') {
+          this.isAdmin = true;
           this.isSignUp = false;
           this.isHomePage = false;
           this.isSuperadmin = false;
-         } else {
+          this.isGamblerDashboard = false;
+        } else {
           this.isHomePage = false;
           this.isSignUp = false;
           this.isSuperadmin = false;
-          this.isSpeculateDashboard = false;
+          this.isAdmin = false;
         }
         // console.log(currentRoute);
         

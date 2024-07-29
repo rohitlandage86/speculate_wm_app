@@ -1,0 +1,60 @@
+<div class="container-fluid p-0">
+    <div class="row h-100 m-0">
+        <div class="side-bar">
+            <div class="logo p-3">
+                <img class="large-logo" src="../../assets/images/logo/speculate_logo.png" alt="SurveyBrewery">
+            </div>
+            <div class="menu">
+                <ul class="nav">
+                    <li class="nav-item"> 
+                        <a class="nav-link" [routerLink]="['/admin', { outlets: { admin_Menu: 'admin-dashboard' } }]">Dashboard</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" id="organization-link">Organization</a>
+                        <ul class="nav-submenu" id="organization-submenu">
+                            <li class="nav-item">
+                                <a class="nav-link">Create</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link">User</a>
+                            </li>
+                        </ul>
+                    </li> -->
+                    <li class="nav-item dropdown" id="sidebarAccordion">
+                        <a class="nav-link dropdown-toggle "  role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Profile
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" [routerLink]="['/admin', { outlets: { admin_Menu: 'organization' } }]">Organization</a></li>
+                          <li><a class="dropdown-item" [routerLink]="['/admin', { outlets: { admin_Menu: 'user-organization' } }]">User</a></li>
+                        </ul>
+                      </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Masters
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" [routerLink]="['/admin', { outlets: { admin_Menu: 'states' } }]">States</a></li>
+                          <li><a class="dropdown-item" [routerLink]="['/admin', { outlets: { admin_Menu: 'sports' } }]">Sports</a></li>
+                        </ul>
+                      </li>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Gambling
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" [routerLink]="['/admin', { outlets: { admin_Menu: 'gambler-user' } }]">Users</a></li>
+                        </ul>
+                      </li>
+                   
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="body">
+            <router-outlet name="admin_Menu"></router-outlet>
+        </div>
+    </div>
+</div>
