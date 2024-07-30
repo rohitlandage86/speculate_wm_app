@@ -116,3 +116,19 @@
 }
 
 
+.side-bar .nav-link {
+    position: relative;
+}
+
+.side-bar .nav-link .arrow {
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid;
+    border-bottom: 2px solid;
+    transform: rotate(45deg);
+    transition: transform 0.2s ease;
+}
+
+.side-bar .nav-link[aria-expanded="true"] .arrow {
+    transform: rotate(-135deg);
+}

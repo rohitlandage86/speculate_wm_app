@@ -25,8 +25,6 @@ export class ViewGamblerUserComponent implements OnInit{
     getGamblersById(id: any) {
       this._adminService.getGamblersById(id).subscribe((result: any) => {
         this.gamblerDetails = result.data; 
-        console.log(this.gamblerDetails);
-        
       });
     }
 

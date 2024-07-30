@@ -12,6 +12,8 @@ import { EditStatesComponent } from './states/edit-states/edit-states.component'
 import { EditUserOrganizationComponent } from './user-organization/edit-user-organization/edit-user-organization.component';
 import { GamblerUserComponent } from './gambler-user/gambler-user.component';
 import { ViewGamblerUserComponent } from './gambler-user/view-gambler-user/view-gambler-user.component';
+import { ViewOrganizationComponent } from './organization/view-organization/view-organization.component';
+import { ViewSportsComponent } from './sports/view-sports/view-sports.component';
 
 
 @NgModule({
@@ -25,6 +27,8 @@ import { ViewGamblerUserComponent } from './gambler-user/view-gambler-user/view-
     EditUserOrganizationComponent,
     GamblerUserComponent,
     ViewGamblerUserComponent,
+    ViewOrganizationComponent,
+    ViewSportsComponent,
   
   ],
   imports: [

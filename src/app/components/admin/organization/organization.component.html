@@ -23,7 +23,7 @@
                         <td> {{item.email_id }}</td>
                         <td>{{ item.contact_number}} </td>
                         <td> {{item.address |titlecase}}</td>
-                        <td><i class="fa fa-regular fa-eye fs-4" [routerLink]="['/admin', { outlets: { admin_Menu: ['edit-organization',item.org_id]}}]"></i></td>
+                        <td><i class="fa fa-regular fa-eye fs-4" (click)="openDialog(item)"></i></td>
                       </tr>
                       <tr class=" fw-bold text-center" *ngIf="allOrganizationList.length===0">
                         <td colspan="10" class="text-danger">No Data Available</td>

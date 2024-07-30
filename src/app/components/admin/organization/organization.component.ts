@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { SuperAdminService } from '../../super-admin/super-admin.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ViewOrganizationComponent } from './view-organization/view-organization.component';
 
 @Component({
   selector: 'app-organization',
@@ -14,7 +16,7 @@ export class OrganizationComponent  implements OnInit{
   total = 0;
 
   constructor(
-    private _superAdminService: SuperAdminService
+    private _superAdminService: SuperAdminService,private dialog: MatDialog
   ) { }
   
   ngOnInit(): void {
@@ -32,6 +34,19 @@ export class OrganizationComponent  implements OnInit{
         }
       });
     }
+       //open module...
+       openDialog(data?: any) {
+        const dialogRef = this.dialog.open(ViewOrganizationComponent, {
+          data: data,
+          width: '50%',
+          panelClass: 'mat-mdc-dialog-container'
+        });
+        dialogRef.afterClosed().subscribe((message:any) => {
+            this.getAllOrganizationList();
+            console.log('nothing happen');
+          
+        });
+      }
     onPageChange(event: PageEvent): void {
       this.page = event.pageIndex + 1;
       this.perPage = event.pageSize;

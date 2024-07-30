@@ -23,7 +23,7 @@
                         <td> {{item.small_name | titlecase }}</td>
                         <td> {{item.api_keys |titlecase}}</td>
                         <td>{{ item.description |titlecase}}</td>
-                        <td><i class="fa fa-regular fa-eye fs-4" [routerLink]="['/super-admin', { outlets: { super_Menu: ['edit-sports',item.sport_id]}}]"></i></td>
+                        <td><i class="fa fa-regular fa-eye fs-4"  (click)="openDialog(item)"></i></td>
                       </tr>
                       <tr class=" fw-bold text-center" *ngIf="allSportsList.length===0">
                         <td colspan="10" class="text-danger">No Data Available</td>

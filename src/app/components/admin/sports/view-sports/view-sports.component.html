@@ -1,0 +1,85 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-12 m-5">
+        <div class="card p-3 ">
+          <div class="card-header  d-flex justify-content-between p-3">
+            <strong class="text-dark"
+              > View Sports </strong
+            >
+          </div>
+          <div class="card-body">
+            <form >
+              <div class="row">
+                <div class="mb-3 col-md-4">
+                  <label for="user_name" class="mb-1 fw-bold "
+                    >Sport Name : 
+                  </label>  <label cLabel for="weight">{{ sportsDetails.sports_name }} </label>
+                </div>
+                <div class="mb-3 col-md-3">
+                    <label for="name" class="mb-1 fw-bold"
+                      >Small Name :
+                    </label>
+                    <label cLabel for="weight">{{ sportsDetails.small_name }} </label>
+                  </div>
+                  <div class="mb-3 col-md-4">
+                    <label for="name" class="mb-1 fw-bold"
+                      >Description :
+                    </label>
+                    <label cLabel for="weight">{{ sportsDetails.description }} </label>
+                  </div>
+               
+              </div>
+              <div class="row">
+             
+                  <div class="mb-3 col-md-12">
+                    <label for="name" class="mb-1 fw-bold"
+                      >	Api Keys :
+                    </label>
+                    <label cLabel for="weight">{{ sportsDetails.api_keys }} </label>
+                  </div>
+                <!-- <div class="mb-3 col-md-4">
+                    <label for="name" class="mb-1 fw-bold"
+                      >Address :
+                    </label>
+                    <label cLabel for="weight"> {{ sportsDetails.address }} </label>
+                  </div>
+                  <div class="mb-3 col-md-3">
+                    <label for="name" class="mb-1 fw-bold"
+                      >City
+                      :
+                    </label>
+                    <label cLabel for="weight">{{ sportsDetails.city
+                 }} </label>
+                  </div> -->
+                
+              </div>
+              <!-- <div class="row">
+                <div class="mb-3 col-md-4">
+                    <label for="name" class="mb-1 fw-bold"
+                      >State :
+                    </label>
+                    <label cLabel for="weight">{{ sportsDetails.state }} </label>
+                  </div>
+                <div class="mb-3 col-md-4">
+                    <label for="name" class="mb-1 fw-bold"
+                       >Country :
+                    </label>
+                    <label cLabel for="weight"> {{ sportsDetails.country }} </label>
+                  </div>
+              </div> -->
+              <div>
+                <button
+                  type="submit"
+                  class="btn btn-secondary ms-3"
+                (click)="closeDialog()"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
