@@ -1,47 +1,44 @@
 <div class="container-fluid">
-    <div class="row justify-content-center ">
-        <div class="col-md-10 mt-5">
-            <div class="card p-3">
-                <div class="card-header d-flex justify-content-between p-3">
-                    <strong>Event</strong>
-                    <button
-                    type="button"
-                    class="fw-bold btn btn-outline-dark"
-                  [routerLink]="['/super-admin', { outlets: { super_Menu: 'add-event' } }]"
-                  >
-                    Add
-                  </button>
-                  </div>
-                <table class="table  table-hover table-bordered table-responsive">
-                    <thead class="table-dark">
-                      <tr>
-                        <th scope="col">Sr.No</th>
-                        <th scope="col">Record Id</th>
-                        <th scope="col"> Name</th>
-                        <th scope="col">Sports Name</th>
-                        <!-- <th scope="col">Address</th> -->
-                        <th scope="col"> Edit</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let item of allEventList; let i = index">
-                        <td> {{ i + 1}} </td>
-                        <td>{{ item.record_id}} </td>
-                        <td> {{item.name | titlecase}}</td>
-                        <td> {{item.sports_name }}</td>
-                        <!-- <td> {{item.address |titlecase}}</td> -->
-                        <td><i class="fa fa-solid fa-pen-to-square fs-4" [routerLink]="['/super-admin', { outlets: { super_Menu: ['edit-event',item.betting_event_type_id]}}]"></i></td>
-                      </tr>
-                  </table>
-                  <div class="col-md-12">
-                    <mat-paginator [length]="total" [pageSize]="perPage" [pageSizeOptions]="[5, 10, 25, 100]"
-                    aria-label="Select page" [showFirstLastButtons]="true" (page)="onPageChange($event)">
-                </mat-paginator>
-                </div>
-            </div>
-            
+  <div class="row justify-content-center ">
+    <div class="col-md-10 mt-5">
+      <div class="card p-3">
+        <div class="card-header d-flex justify-content-between p-3">
+          <strong>Event</strong>
+          <button type="button" class="fw-bold btn btn-outline-dark"
+            [routerLink]="['/super-admin', { outlets: { super_Menu: 'add-event' } }]">
+            Add
+          </button>
         </div>
+        <table class="table  table-hover table-bordered table-responsive">
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">Sr.No</th>
+              <th scope="col">Record Id</th>
+              <th scope="col"> Name</th>
+              <th scope="col">Sports Name</th>
+              <th scope="col"> Edit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of allEventList; let i = index">
+              <td> {{ i + 1}} </td>
+              <td>{{ item.record_id}} </td>
+              <td> {{item.name | titlecase}}</td>
+              <td> {{item.sports_name }}</td>
+              <td><i class="fa fa-solid fa-pen-to-square fs-4"
+                  [routerLink]="['/super-admin', { outlets: { super_Menu: ['edit-event',item.betting_event_type_id]}}]"></i>
+              </td>
+            </tr>
+            <tr class="fw-bold text-center" *ngIf="allEventList.length === 0">
+              <td colspan="10" class="text-danger">No Data Available</td>
+            </tr>
+        </table>
+        <div class="col-md-12">
+          <mat-paginator [length]="total" [pageSize]="perPage" [pageSizeOptions]="[5, 10, 25, 100]"
+            aria-label="Select page" [showFirstLastButtons]="true" (page)="onPageChange($event)">
+          </mat-paginator>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
-
-
