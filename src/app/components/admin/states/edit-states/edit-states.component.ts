@@ -40,11 +40,10 @@ export class EditStatesComponent implements OnInit {
     return this.statesForm.controls;
   }
   submit() {
-  this.updateStates() ;
+    this.updateStates();
   }
   updateStates() {
     let data = this.statesForm.getRawValue();
-
     if (this.statesForm.valid) {
       this._superAdminService.editStates(this.state_Id, data).subscribe({
         next: (res: any) => {
@@ -69,13 +68,13 @@ export class EditStatesComponent implements OnInit {
     }
   }
 
-    getStatesById(id: any) {
-      this._superAdminService.getStatesById(id).subscribe({
-        next: (result: any) => {
-          this.controls['state_name'].patchValue(result.data.state_name);
-          this.controls['description'].patchValue(result.data.description);
-        },
-      });
-    }
+  getStatesById(id: any) {
+    this._superAdminService.getStatesById(id).subscribe({
+      next: (result: any) => {
+        this.controls['state_name'].patchValue(result.data.state_name);
+        this.controls['description'].patchValue(result.data.description);
+      },
+    });
+  }
 
 }
