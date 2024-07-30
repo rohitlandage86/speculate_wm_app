@@ -7,12 +7,12 @@ import { PageEvent } from '@angular/material/paginator';
   templateUrl: './states.component.html',
   styleUrls: ['./states.component.scss']
 })
-export class StatesComponent implements OnInit{
+export class StatesComponent implements OnInit {
   allStatesList: Array<any> = [];
   page = 1;
   perPage = 50;
-  total = 0; 
-  constructor(private _superAdminService:SuperAdminService) { }
+  total = 0;
+  constructor(private _superAdminService: SuperAdminService) { }
 
   ngOnInit(): void {
     this.getAllStatesList();

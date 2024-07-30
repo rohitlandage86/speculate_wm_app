@@ -1,80 +1,78 @@
 <div class="container-fluid">
-    <div class="row justify-content-center">
-      <div class="col-md-12 m-5">
-        <div class="card p-3 ">
-          <div class="card-header  d-flex justify-content-between p-3">
-            <strong class="text-dark"
-              > View Gambler User</strong
-            >
-          </div>
-          <div class="card-body">
-            <form >
-              <div class="row">
-                <div class="mb-3 col-md-4">
-                  <label for="user_name" class="mb-1 fw-bold "
-                    >First Name : 
-                  </label>  <label cLabel for="weight">{{ gamblerDetails.first_name }} </label>
-                </div>
-                <div class="mb-3 col-md-4">
-                  <label for="name" class="mb-1 fw-bold"
-                    >Last Name :
-                  </label>
-                  <label cLabel for="weight">{{ gamblerDetails.last_name }} </label>
-                </div>
-                <div class="mb-3 col-md-4">
-                    <label for="name" class="mb-1 fw-bold"
-                      >Mobile No	 :
-                    </label>
-                    <label cLabel for="weight">{{ gamblerDetails.mobile }} </label>
-                  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-12 m-5">
+      <div class="card p-3">
+        <div class="card-header d-flex justify-content-between p-3">
+          <strong class="text-dark"> View Gambler User</strong>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="row">
+              <div class="mb-3 col-md-4">
+                <label for="user_name" class="mb-1 fw-bold"
+                  >First Name :
+                </label>
+                <label cLabel for="weight"
+                  >{{ gamblerDetails.first_name }}
+                </label>
               </div>
-              <div class="row">
-                <div class="mb-3 col-md-4">
-                    <label for="name" class="mb-1 fw-bold"
-                      >Address :
-                    </label>
-                    <label cLabel for="weight"> {{ gamblerDetails.address }} </label>
-                  </div>
-                  <div class="mb-3 col-md-4">
-                    <label for="name" class="mb-1 fw-bold"
-                      >DOB :
-                    </label>
-                    <label cLabel for="weight">{{ gamblerDetails.dob |date : "dd-MM-yyyy" }} </label>
-                  </div>
-                  <div class="mb-3 col-md-4">
-                    <label for="name" class="mb-1 fw-bold"
-                      >Platform :
-                    </label>
-                    <label cLabel for="weight">{{ gamblerDetails.platform }} </label>
-                  </div>
+              <div class="mb-3 col-md-4">
+                <label for="name" class="mb-1 fw-bold">Last Name : </label>
+                <label cLabel for="weight"
+                  >{{ gamblerDetails.last_name }}
+                </label>
               </div>
-              <div class="row">
-                <div class="mb-3 col-md-4">
-                    <label for="name" class="mb-1 fw-bold"
-                       >IP Address :
-                    </label>
-                    <label cLabel for="weight"> {{ gamblerDetails.ip_address }} </label>
-                  </div>
-                  <div class="mb-3 col-md-4">
-                    <label for="name" class="mb-1 fw-bold"
-                      >Device Info:
-                    </label>
-                    <label cLabel for="weight">{{ gamblerDetails.device_info }} </label>
-                  </div>
+              <div class="mb-3 col-md-4">
+                <label for="name" class="mb-1 fw-bold">Mobile No : </label>
+                <label cLabel for="weight">{{ gamblerDetails.mobile }} </label>
               </div>
-              <div>
-                <button
-                  type="submit"
-                  class="btn btn-secondary ms-3"
+            </div>
+            <div class="row">
+              <div class="mb-3 col-md-4">
+                <label for="name" class="mb-1 fw-bold">Address : </label>
+                <label cLabel for="weight">
+                  {{ gamblerDetails.address }}
+                </label>
+              </div>
+              <div class="mb-3 col-md-4">
+                <label for="name" class="mb-1 fw-bold">DOB : </label>
+                <label cLabel for="weight"
+                  >{{ gamblerDetails.dob | date : "dd-MM-yyyy" }}
+                </label>
+              </div>
+              <div class="mb-3 col-md-4">
+                <label for="name" class="mb-1 fw-bold">Platform : </label>
+                <label cLabel for="weight"
+                  >{{ gamblerDetails.platform }}
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="mb-3 col-md-4">
+                <label for="name" class="mb-1 fw-bold">IP Address : </label>
+                <label cLabel for="weight">
+                  {{ gamblerDetails.ip_address }}
+                </label>
+              </div>
+              <div class="mb-3 col-md-4">
+                <label for="name" class="mb-1 fw-bold">Device Info: </label>
+                <label cLabel for="weight"
+                  >{{ gamblerDetails.device_info }}
+                </label>
+              </div>
+            </div>
+            <div>
+              <button
+                type="submit"
+                class="btn btn-secondary ms-3"
                 (click)="closeDialog()"
-                >
-                  Cancel
-                </button>
-              </div>
-            </form>
-          </div>
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
-  
+</div>

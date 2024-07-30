@@ -11,13 +11,12 @@ import { AdminService } from '../../admin.service';
 export class ViewOrganizationComponent implements OnInit {
   organizationId: any;
   organizationDetails: any = {};
-  constructor(private dialogRef: MatDialogRef<OrganizationComponent>,@Inject(MAT_DIALOG_DATA) public data: any, private _adminService:AdminService) { }
+  constructor(private dialogRef: MatDialogRef<OrganizationComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private _adminService: AdminService) { }
 
   ngOnInit(): void {
     if (this.data) {
       this.organizationId = this.data.org_id;
-      this.getOrganizationById( this.organizationId )
-    
+      this.getOrganizationById(this.organizationId)
     }
   }
   getOrganizationById(id: any) {
@@ -27,7 +26,6 @@ export class ViewOrganizationComponent implements OnInit {
       },
     });
   }
-  
   closeDialog(message?: any) {
     this.dialogRef.close(message);
   }
