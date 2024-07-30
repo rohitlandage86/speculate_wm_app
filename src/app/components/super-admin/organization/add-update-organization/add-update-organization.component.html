@@ -3,373 +3,228 @@
     <div class="col-md-10 mt-5">
       <div class="card p-3">
         <div class="card-header bg-dark d-flex justify-content-between p-3">
-          <strong class="text-white"
-            >{{ isEdit ? " Edit" : "Add " }} Organization</strong
-          >
+          <strong class="text-white">{{ isEdit ? " Edit" : "Add " }} Organization</strong>
         </div>
         <div class="card-body">
-            <!-- {{organizationForm.value | json}} -->
           <form [formGroup]="organizationForm">
             <div class="row">
               <div class="mb-3 col-md-6">
-                <label for="org_name" class="mb-1"
-                  >Organization Name
-                  <span style="color: red" *ngIf="!controls['org_name'].value"
-                    >*</span
-                  >
+                <label for="org_name" class="mb-1">Organization Name
+                  <span style="color: red" *ngIf="!controls['org_name'].value">*</span>
                 </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="exampleInputname1"
-                  formControlName="org_name"
-                  aria-describedby="emailHelp"
-                  [ngClass]="{
+                <input type="text" class="form-control" id="exampleInputname1" formControlName="org_name"
+                  aria-describedby="emailHelp" [ngClass]="{
                     'is-invalid':
                       controls['org_name'].invalid &&
                       (controls['org_name'].dirty ||
                         controls['org_name'].touched)
-                  }"
-                />
-                <div
-                  class="text-danger"
-                  *ngIf="
+                  }" />
+                <div class="text-danger" *ngIf="
                     controls['org_name'].invalid &&
                     (controls['org_name'].dirty || controls['org_name'].touched)
-                  "
-                >
+                  ">
                   <small>Please provide a valid Organization Name.</small>
                 </div>
               </div>
               <div class="mb-3 col-md-6">
-                <label for="short_name" class="mb-1"
-                  >Organization Short Name
-                  <span style="color: red" *ngIf="!controls['short_name'].value"
-                    >*</span
-                  >
+                <label for="short_name" class="mb-1">Organization Short Name
+                  <span style="color: red" *ngIf="!controls['short_name'].value">*</span>
                 </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="exampleInputEmail1"
-                  formControlName="short_name"
-                  aria-describedby="emailHelp"
-                  [ngClass]="{
+                <input type="text" class="form-control" id="exampleInputEmail1" formControlName="short_name"
+                  aria-describedby="emailHelp" [ngClass]="{
                     'is-invalid':
                       controls['short_name'].invalid &&
                       (controls['short_name'].dirty ||
                         controls['short_name'].touched)
-                  }"
-                />
-                <div
-                  class="text-danger"
-                  *ngIf="
+                  }" />
+                <div class="text-danger" *ngIf="
                     controls['short_name'].invalid &&
                     (controls['short_name'].dirty ||
                       controls['short_name'].touched)
-                  "
-                >
+                  ">
                   <small>Please provide a valid Organization Short Name.</small>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="mb-3 col-md-6">
-                <label for="name" class="mb-1"
-                  >Email Id
-                  <span style="color: red" *ngIf="!controls['email_id'].value"
-                    >*</span
-                  >
+                <label for="name" class="mb-1">Email Id
+                  <span style="color: red" *ngIf="!controls['email_id'].value">*</span>
                 </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="exampleInputEmail1"
-                  formControlName="email_id"
-                  aria-describedby="emailHelp"
-                  [ngClass]="{
+                <input type="text" class="form-control" id="exampleInputEmail1" formControlName="email_id"
+                  aria-describedby="emailHelp" [ngClass]="{
                     'is-invalid':
                       controls['email_id'].invalid &&
                       (controls['email_id'].dirty ||
                         controls['email_id'].touched)
-                  }"
-                />
-                <span
-                  class="text-danger"
-                  *ngIf="
+                  }" />
+                <span class="text-danger" *ngIf="
                     controls['email_id'].invalid &&
                     (controls['email_id'].dirty || controls['email_id'].touched)
-                  "
-                >
-                  <div
-                    *ngIf="controls['email_id'].errors?.['required']"
-                    class="d-flex justify-content-start"
-                  >
+                  ">
+                  <div *ngIf="controls['email_id'].errors?.['required']" class="d-flex justify-content-start">
                     <small>Email Address is required</small>
                   </div>
-                  <div
-                    *ngIf="controls['email_id'].errors?.['email']"
-                    class="d-flex justify-content-start"
-                  >
+                  <div *ngIf="controls['email_id'].errors?.['email']" class="d-flex justify-content-start">
                     <small> Email must be a valid email address</small>
                   </div>
                 </span>
               </div>
               <div class="mb-3 col-md-6">
-                <label for="name" class="mb-1"
-                  >Contact Number
-                  <span
-                    style="color: red"
-                    *ngIf="!controls['contact_number'].value"
-                    >*</span
-                  >
+                <label for="name" class="mb-1">Contact Number
+                  <span style="color: red" *ngIf="!controls['contact_number'].value">*</span>
                 </label>
-                <input
-                  type="number"
-                  class="form-control"
-                  id="exampleInputEmail1"
-                   formControlName="contact_number"
-                  aria-describedby="emailHelp"
-                  [ngClass]="{
+                <input type="number" class="form-control" id="exampleInputEmail1" formControlName="contact_number"
+                  aria-describedby="emailHelp" [ngClass]="{
                     'is-invalid':
                       controls['contact_number'].invalid &&
                       (controls['contact_number'].dirty ||
                         controls['contact_number'].touched)
-                  }"
-                />
-                <span
-                  class="text-danger"
-                  *ngIf="
+                  }" />
+                <span class="text-danger" *ngIf="
                     controls['contact_number'].invalid &&
                     (controls['contact_number'].dirty ||
                       controls['contact_number'].touched)
-                  "
-                >
+                  ">
                   <div *ngIf="controls['contact_number'].errors?.['required']">
                     <small>Contact Number is required</small>
                   </div>
                   <div *ngIf="controls['contact_number'].errors?.['pattern']">
-                    <small>Contact Number only 10 digit</small> 
+                    <small>Contact Number only 10 digit</small>
                   </div>
                 </span>
               </div>
             </div>
             <div class="row">
               <div class="mb-3 col-md-4">
-                <label for="name" class="mb-1"
-                  >Country
-                  <span
-                    style="color: red"
-                    *ngIf="!controls['country'].value"
-                    >*</span
-                  >
+                <label for="name" class="mb-1">Country
+                  <span style="color: red" *ngIf="!controls['country'].value">*</span>
                 </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                  formControlName="country"
-                  [ngClass]="{
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                  formControlName="country" [ngClass]="{
                     'is-invalid':
                       controls['country'].invalid &&
                       (controls['country'].dirty ||
                         controls['country'].touched)
-                  }"
-                />
-                <div
-                class="text-danger"
-                *ngIf="
+                  }" />
+                <div class="text-danger" *ngIf="
                   controls['country'].invalid &&
                   (controls['country'].dirty || controls['country'].touched)
-                "
-              >
-                <small>Please provide a valid Country.</small>
-              </div>
+                ">
+                  <small>Please provide a valid Country.</small>
+                </div>
               </div>
               <div class="mb-3 col-md-4">
-                <label for="name" class="mb-1"
-                  >State
-                  <span
-                  style="color: red"
-                  *ngIf="!controls['state'].value"
-                  >*</span
-                >
+                <label for="name" class="mb-1">State
+                  <span style="color: red" *ngIf="!controls['state'].value">*</span>
                 </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                  formControlName="state"
-                  [ngClass]="{
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                  formControlName="state" [ngClass]="{
                     'is-invalid':
                       controls['state'].invalid &&
                       (controls['state'].dirty ||
                         controls['state'].touched)
-                  }"
-                />
-                <div
-                class="text-danger"
-                *ngIf="
+                  }" />
+                <div class="text-danger" *ngIf="
                   controls['state'].invalid &&
                   (controls['state'].dirty || controls['state'].touched)
-                "
-              >
-                <small>Please provide a valid State.</small>
-              </div>
+                ">
+                  <small>Please provide a valid State.</small>
+                </div>
               </div>
               <div class="mb-3 col-md-4">
-                <label for="name" class="mb-1"
-                  >City
-                  <span
-                  style="color: red"
-                  *ngIf="!controls['city'].value"
-                  >*</span
-                >
+                <label for="name" class="mb-1">City
+                  <span style="color: red" *ngIf="!controls['city'].value">*</span>
                 </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                  formControlName="city"
-                  [ngClass]="{
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                  formControlName="city" [ngClass]="{
                     'is-invalid':
                       controls['city'].invalid &&
                       (controls['city'].dirty ||
                         controls['city'].touched)
-                  }"
-                />
-                <div
-                class="text-danger"
-                *ngIf="
+                  }" />
+                <div class="text-danger" *ngIf="
                   controls['city'].invalid &&
                   (controls['city'].dirty || controls['city'].touched)
-                "
-              >
-                <small>Please provide a valid City.</small>
-              </div>
+                ">
+                  <small>Please provide a valid City.</small>
+                </div>
               </div>
             </div>
 
             <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label"
-                >Address</label
-              >
-              <input
-                type="textarea"
-                class="form-control"
-                id="exampleInputPassword1"
-                 formControlName="address"
+              <label for="exampleInputPassword1" class="form-label">Address</label>
+              <input type="textarea" class="form-control" id="exampleInputPassword1" formControlName="address"
                 [ngClass]="{
                     'is-invalid':
                       controls['address'].invalid &&
                       (controls['address'].dirty ||
                         controls['address'].touched)
-                  }"
-              />
-              <div
-                class="text-danger"
-                *ngIf="
+                  }" />
+              <div class="text-danger" *ngIf="
                   controls['address'].invalid &&
                   (controls['address'].dirty || controls['address'].touched)
-                "
-              >
+                ">
                 <small>Please provide a valid Address.</small>
               </div>
             </div>
             <div class="d-flex justify-content-between ">
-             
+
               <div class="col-md-5 ">
                 <div class="form-group">
                   <label for="shortlogoName">Long Image</label>
-                  <input
-                    type="file"
-                    class="form-control"
-                    id="logo1Name"
-             (change)="onshortImageChange($event)"
-                    accept=".jpeg, .jfif, .pjpeg, .pjp, .png, .jpg"
-                    [ngClass]="{
+                  <input type="file" class="form-control" id="logo1Name" (change)="onshortImageChange($event)"
+                    accept=".jpeg, .jfif, .pjpeg, .pjp, .png, .jpg" [ngClass]="{
                       'is-invalid':
                         controls['logo1Name'].invalid &&
                         (controls['logo1Name'].dirty ||
                           controls['logo1Name'].touched)
-                    }"
-                  />
-                  <span
-                    *ngIf="
+                    }" />
+                  <span *ngIf="
                       controls['logo1Name'].invalid &&
                       (controls['logo1Name'].dirty ||
                         controls['logo1Name'].touched)
-                    "
-                    class="text-danger p-1"
-                  >
-                    <span *ngIf="controls['logo1Name'].errors?.['required']"
-                      >Long Image is required.
+                    " class="text-danger p-1">
+                    <span *ngIf="controls['logo1Name'].errors?.['required']">Long Image is required.
                     </span>
                   </span>
                 </div>
-      
-                  <img
-                  #shortimagePreview
-                  class="mt-3 image img-fluid"
-                  src="{{ baseUrl+'images/short_logo/'+logo1Name }}"
-                  style="width: 300px; height: 300px; padding: 15px;"
-                  alt=""
-                />
-                
-             
+
+                <img #shortimagePreview class="mt-3 image img-fluid" src="{{ baseUrlImage+'images/logo1/'+logo1Name }}"
+                  style="width: 300px; height: 300px; padding: 15px;" alt="" />
+
+
               </div>
               <div class="col-md-5">
                 <div class="form-group">
-                  <label for="longLogoName">Short  Image</label>
-                  <input
-                    type="file"
-                    class="form-control"
-                    id="logo2Name"
-                   
-                            (change)="onImageChange($event)"
-                    accept=".jpeg, .jfif, .pjpeg, .pjp, .png, .jpg"
-                    [ngClass]="{
+                  <label for="longLogoName">Short Image</label>
+                  <input type="file" class="form-control" id="logo2Name" (change)="onImageChange($event)"
+                    accept=".jpeg, .jfif, .pjpeg, .pjp, .png, .jpg" [ngClass]="{
                       'is-invalid':
                         controls['logo2Name'].invalid &&
                         (controls['logo2Name'].dirty ||
                           controls['logo2Name'].touched)
-                    }"
-                  />
-                  <span
-                    *ngIf="
+                    }" />
+                  <span *ngIf="
                       controls['logo2Name'].invalid &&
                       (controls['logo2Name'].dirty ||
                         controls['logo2Name'].touched)
-                    "
-                    class="text-danger p-1"
-                  >
-                    <span *ngIf="controls['logo2Name'].errors?.['required']"
-                      >Short Image is required.
+                    " class="text-danger p-1">
+                    <span *ngIf="controls['logo2Name'].errors?.['required']">Short Image is required.
                     </span>
                   </span>
                 </div>
-    
-                <img
-                #imagePreview
-                class="mt-3 image img-fluid"
-                src="{{ baseUrl+'images/sports/'+logo2Name}}"
-                style="width: 300px; height: 300px; padding: 15px;"
-                alt=""
-              />
+
+                <img #imagePreview class="mt-3 image img-fluid" [src]="baseUrlImage+'images/logo2/'+logo2Name"
+                  style="width: 300px; height: 300px; padding: 15px;" alt="" />
               </div>
             </div>
-   
-            <button type="submit" class="btn btn-warning"(click)="submit()">
+
+            <button type="submit" class="btn btn-warning" (click)="submit()">
               {{ isEdit ? "Update" : "Submit" }}
             </button>
-            <button
-              type="submit"
-              class="btn btn-secondary ms-3"
-              [routerLink]="['/super-admin', { outlets: { super_Menu: 'organization' } }]"
-            >
+            <button type="submit" class="btn btn-secondary ms-3"
+              [routerLink]="['/super-admin', { outlets: { super_Menu: 'organization' } }]">
               Cancel
             </button>
           </form>

@@ -25,6 +25,9 @@ export class SportsComponent implements OnInit {
             console.log(res);
             this.allSportsList = res.data;
             this.total = res.pagination.total;
+          }else{
+            this.allSportsList = [];
+            this.total = 0
           }
         }
       });

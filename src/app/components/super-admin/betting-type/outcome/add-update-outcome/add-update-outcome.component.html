@@ -1,152 +1,99 @@
-
-
 <div class="container-fluid">
-    <div class="row justify-content-center">
-      <div class="col-md-10 mt-5">
-        <div class="card p-3">
-          <div class="card-header bg-dark d-flex justify-content-between p-3">
-            <strong class="text-white"
-              >{{ isEdit ? " Edit" : "Add " }} Outcome</strong
-            >
-          </div>
-          <div class="card-body">
-            <form [formGroup]="outcomeForm">
-              <div class="row">
-                <div class="mb-3 col-md-6">
-                  <label for="name" class="mb-1"
-                    > Name
-                    <span style="color: red" *ngIf="!controls['name'].value"
-                      >*</span
-                    >
-                  </label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="exampleInputname1"
-                    formControlName="name"
-                    aria-describedby="emailHelp"
-                    [ngClass]="{
+  <div class="row justify-content-center">
+    <div class="col-md-10 mt-5">
+      <div class="card p-3">
+        <div class="card-header bg-dark d-flex justify-content-between p-3">
+          <strong class="text-white">{{ isEdit ? " Edit" : "Add " }} Outcome</strong>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="outcomeForm">
+            <div class="row">
+              <div class="mb-3 col-md-6">
+                <label for="name" class="mb-1"> Name
+                  <span style="color: red" *ngIf="!controls['name'].value">*</span>
+                </label>
+                <input type="text" class="form-control" id="exampleInputname1" formControlName="name"
+                  aria-describedby="emailHelp" [ngClass]="{
                       'is-invalid':
                         controls['name'].invalid &&
                         (controls['name'].dirty ||
                           controls['name'].touched)
-                    }"
-                  />
-                  <div
-                    class="text-danger"
-                    *ngIf="
+                    }" />
+                <div class="text-danger" *ngIf="
                       controls['name'].invalid &&
                       (controls['name'].dirty ||
                         controls['name'].touched)
-                    "
-                  >
-                    <small>Please provide a valid  Name.</small>
-                  </div>
+                    ">
+                  <small>Please provide a valid Name.</small>
                 </div>
-                <div class="mb-3 col-md-6">
-                  <label for="record_id" class="mb-1"
-                    >Record Id
-                    <span style="color: red" *ngIf="!controls['record_id'].value"
-                      >*</span
-                    >
-                  </label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="exampleInputEmail1"
-                    formControlName="record_id"
-                    aria-describedby="emailHelp"
-                    [ngClass]="{
+              </div>
+              <div class="mb-3 col-md-6">
+                <label for="record_id" class="mb-1">Record Id
+                  <span style="color: red" *ngIf="!controls['record_id'].value">*</span>
+                </label>
+                <input type="text" class="form-control" id="exampleInputEmail1" formControlName="record_id"
+                  aria-describedby="emailHelp" [ngClass]="{
                       'is-invalid':
                         controls['record_id'].invalid &&
                         (controls['record_id'].dirty ||
                           controls['record_id'].touched)
-                    }"
-                  />
-                  <span
-                    class="text-danger"
-                    *ngIf="
+                    }" />
+                <span class="text-danger" *ngIf="
                       controls['record_id'].invalid &&
                       (controls['record_id'].dirty || controls['record_id'].touched)
-                    "
-                  >
-                    <div
-                      *ngIf="controls['record_id'].errors?.['required']"
-                      class="d-flex justify-content-start"
-                    >
-                      <small>Record Id is required</small>
-                    </div>
-                  </span>
-                </div>
+                    ">
+                  <div *ngIf="controls['record_id'].errors?.['required']" class="d-flex justify-content-start">
+                    <small>Record Id is required</small>
+                  </div>
+                </span>
               </div>
-              <div class="row">
-                <div class="col-md-6 mb-3">
-                  <div class="form-float">
-                    <label for="duration" class="mb-1"
-                      >Sports
-                      <span
-                        style="color: red"
-                        *ngIf="!controls['sport_id'].value"
-                        >*</span
-                      ></label
-                    >
-                    <select
-                      class="form-select"
-                      id="Sports"
-                      formControlName="sport_id"
-                      [ngClass]="{
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <div class="form-float">
+                  <label for="duration" class="mb-1">Sports
+                    <span style="color: red" *ngIf="!controls['sport_id'].value">*</span></label>
+                  <select class="form-select" id="Sports" formControlName="sport_id" [ngClass]="{
                         'is-invalid':
                           controls['sport_id'].invalid &&
                           (controls['sport_id'].dirty ||
                             controls['sport_id'].touched)
-                      }"
-                    >
-                      <option value="null" disabled selected class="fs-6">
-                        Select Sports
+                      }">
+                    <option value="null" disabled selected class="fs-6">
+                      Select Sports
+                    </option>
+                    <ng-container *ngFor="let item of allSportslist">
+                      <option [value]="item.sport_id">
+                        {{ item.sports_name }}
                       </option>
-                      <ng-container
-                        *ngFor="let item of allSportslist"
-                      >
-                        <option
-                          [value]="item.sport_id"
-                        >
-                          {{ item.sports_name }}
-                        </option>
-                      </ng-container>
-                    </select>
-                  </div>
-                  <span class="text-danger">
-                    <div
-                      *ngIf="
+                    </ng-container>
+                  </select>
+                </div>
+                <span class="text-danger">
+                  <div *ngIf="
                         controls['sport_id'].invalid &&
                         (controls['sport_id'].dirty ||
                           controls['sport_id'].touched)
-                      "
-                    >
-                      <small>Sports is required</small>
-                    </div>
-                  </span>
-                </div>
+                      ">
+                    <small>Sports is required</small>
+                  </div>
+                </span>
               </div>
-              <div>
-                <button type="submit" class="btn btn-warning" (click)="submit()">
-                  {{ isEdit ? "Update" : "Submit" }}
-                </button>
-                <button
-                  type="submit"
-                  class="btn btn-secondary ms-3"
-                  [routerLink]="[
+            </div>
+            <div>
+              <button type="submit" class="btn btn-warning" (click)="submit()">
+                {{ isEdit ? "Update" : "Submit" }}
+              </button>
+              <button type="submit" class="btn btn-secondary ms-3" [routerLink]="[
                     '/super-admin',
                     { outlets: { super_Menu: 'outcome' } }
-                  ]"
-                >
-                  Cancel
-                </button>
-              </div>
-            </form>
-          </div>
+                  ]">
+                Cancel
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
-  
+</div>

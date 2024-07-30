@@ -3,82 +3,49 @@
     <div class="col-md-10 mt-5">
       <div class="card p-3">
         <div class="card-header bg-dark d-flex justify-content-between p-3">
-          <strong class="text-white"
-            >{{ isEdit ? " Edit" : "Add " }} Organization User</strong
-          >
+          <strong class="text-white">{{ isEdit ? ' Edit' : 'Add ' }} Organization User</strong>
         </div>
         <div class="card-body">
-          <!-- {{organizationForm.value | json}} -->
           <form [formGroup]="organizationUserForm">
             <div class="row">
               <div class="mb-3 col-md-6">
-                <label for="user_name" class="mb-1"
-                  >User Name
-                  <span style="color: red" *ngIf="!controls['user_name'].value"
-                    >*</span
-                  >
+                <label for="user_name" class="mb-1">User Name
+                  <span style="color: red" *ngIf="!controls['user_name'].value">*</span>
                 </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="exampleInputname1"
-                  formControlName="user_name"
-                  aria-describedby="emailHelp"
-                  [ngClass]="{
+                <input type="text" class="form-control" id="exampleInputname1" formControlName="user_name"
+                  aria-describedby="emailHelp" [ngClass]="{
                     'is-invalid':
                       controls['user_name'].invalid &&
                       (controls['user_name'].dirty ||
                         controls['user_name'].touched)
-                  }"
-                />
-                <div
-                  class="text-danger"
-                  *ngIf="
+                  }" />
+                <div class="text-danger" *ngIf="
                     controls['user_name'].invalid &&
                     (controls['user_name'].dirty ||
                       controls['user_name'].touched)
-                  "
-                >
+                  ">
                   <small>Please provide a valid User Name.</small>
                 </div>
               </div>
               <div class="mb-3 col-md-6">
-                <label for="name" class="mb-1"
-                  >Email Id
-                  <span style="color: red" *ngIf="!controls['email_id'].value"
-                    >*</span
-                  >
+                <label for="name" class="mb-1">Email Id
+                  <span style="color: red" *ngIf="!controls['email_id'].value">*</span>
                 </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="exampleInputEmail1"
-                  formControlName="email_id"
-                  aria-describedby="emailHelp"
-                  [ngClass]="{
+                <input type="text" class="form-control" id="exampleInputEmail1" formControlName="email_id"
+                  aria-describedby="emailHelp" [ngClass]="{
                     'is-invalid':
                       controls['email_id'].invalid &&
                       (controls['email_id'].dirty ||
                         controls['email_id'].touched)
-                  }"
-                />
-                <span
-                  class="text-danger"
-                  *ngIf="
+                  }" />
+                <span class="text-danger" *ngIf="
                     controls['email_id'].invalid &&
                     (controls['email_id'].dirty || controls['email_id'].touched)
-                  "
-                >
-                  <div
-                    *ngIf="controls['email_id'].errors?.['required']"
-                    class="d-flex justify-content-start"
-                  >
+                  ">
+                  <div *ngIf="controls['email_id'].errors?.['required']" class="d-flex justify-content-start">
                     <small>Email Address is required</small>
                   </div>
-                  <div
-                    *ngIf="controls['email_id'].errors?.['email']"
-                    class="d-flex justify-content-start"
-                  >
+                  <div *ngIf="controls['email_id'].errors?.['email']" class="d-flex justify-content-start">
                     <small> Email must be a valid email address</small>
                   </div>
                 </span>
@@ -87,92 +54,60 @@
             <div class="row">
               <div class="col-md-6 mb-3">
                 <div class="form-float">
-                  <label for="duration" class="mb-1"
-                    >User Type
-                    <span
-                      style="color: red"
-                      *ngIf="!controls['user_type_id'].value"
-                      >*</span
-                    ></label
-                  >
-                  <select
-                    class="form-select"
-                    id="User"
-                    formControlName="user_type_id"
-                    [ngClass]="{
+                  <label for="duration" class="mb-1">User Type
+                    <span style="color: red" *ngIf="!controls['user_type_id'].value">*</span></label>
+                  <select class="form-select" id="User" formControlName="user_type_id" [ngClass]="{
                       'is-invalid':
                         controls['user_type_id'].invalid &&
                         (controls['user_type_id'].dirty ||
                           controls['user_type_id'].touched)
-                    }"
-                  >
+                    }">
                     <option value="null" disabled selected class="fs-6">
                       Select User Type
                     </option>
-                    <ng-container
-                      *ngFor="let item of allOrganizationUserTypeList"
-                    >
-                      <option
-                        *ngIf="
+                    <ng-container *ngFor="let item of allOrganizationUserTypeList">
+                      <option *ngIf="
                           item.user_type_id !== 1 && item.user_type_id !== 4
-                        "
-                        [value]="item.user_type_id"
-                      >
+                        " [value]="item.user_type_id">
                         {{ item.user_type }}
                       </option>
                     </ng-container>
                   </select>
                 </div>
                 <span class="text-danger">
-                  <div
-                    *ngIf="
+                  <div *ngIf="
                       controls['user_type_id'].invalid &&
                       (controls['user_type_id'].dirty ||
                         controls['user_type_id'].touched)
-                    "
-                  >
+                    ">
                     <small>User type is required</small>
                   </div>
                 </span>
               </div>
               <div class="col-md-6 mb-3">
                 <div class="form-float">
-                  <label for="org id" class="mb-1"
-                    >Organization
-                    <span style="color: red" *ngIf="!controls['org_id'].value"
-                      >*</span
-                    ></label
-                  >
-                  <select
-                    class="form-select"
-                    id="org_id"
-                    formControlName="org_id"
-                    [ngClass]="{
+                  <label for="org id" class="mb-1">Organization
+                    <span style="color: red" *ngIf="!controls['org_id'].value">*</span></label>
+                  <select class="form-select" id="org_id" formControlName="org_id" [ngClass]="{
                       'is-invalid':
                         controls['org_id'].invalid &&
                         (controls['org_id'].dirty || controls['org_id'].touched)
-                    }"
-                  >
+                    }">
                     <option value="null" disabled selected class="fs-6">
-                      Select  Organization Name
+                      Select Organization Name
                     </option>
                     <ng-container>
-                      <option
-                        *ngFor="let item of allOrganizationList"
-                        [value]="item.org_id"
-                      >
+                      <option *ngFor="let item of allOrganizationList" [value]="item.org_id">
                         {{ item.org_name }}
                       </option>
                     </ng-container>
                   </select>
                 </div>
                 <span class="text-danger">
-                  <div
-                    *ngIf="
+                  <div *ngIf="
                       controls['org_id'].invalid &&
                       (controls['org_id'].dirty || controls['org_id'].touched)
-                    "
-                  >
+                    ">
                     <small>Organization is required</small>
                   </div>
                 </span>
@@ -180,16 +115,12 @@
             </div>
             <div>
               <button type="submit" class="btn btn-warning" (click)="submit()">
-                {{ isEdit ? "Update" : "Submit" }}
+                {{ isEdit ? 'Update' : 'Submit' }}
               </button>
-              <button
-                type="submit"
-                class="btn btn-secondary ms-3"
-                [routerLink]="[
+              <button type="submit" class="btn btn-secondary ms-3" [routerLink]="[
                   '/super-admin',
                   { outlets: { super_Menu: 'organization-user' } }
-                ]"
-              >
+                ]">
                 Cancel
               </button>
             </div>

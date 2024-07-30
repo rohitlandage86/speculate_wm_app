@@ -12,28 +12,30 @@ export class EventComponent implements OnInit {
   page = 1;
   perPage = 50;
   total = 0;
-  constructor(private _superAdminService:SuperAdminService) { }
+  constructor(private _superAdminService: SuperAdminService) { }
 
   ngOnInit(): void {
-this.getAllEventList();
+    this.getAllEventList();
   }
- // get all betting event list
- getAllEventList() {
-  this._superAdminService.getAllBettingEventTypeList(this.page,this.perPage).subscribe({
-    next:(res:any)=>{
-      if(res.data.length>0){
-        console.log(res);
-        this.allEventList=res.data;
-        this.total=res.pagination.total;
+  // get all betting event list
+  getAllEventList() {
+    this._superAdminService.getAllBettingEventTypeList(this.page, this.perPage).subscribe({
+      next: (res: any) => {
+        if (res.data.length > 0) {
+          this.allEventList = res.data;
+          this.total = res.pagination.total;
+        } else{
+          this.allEventList=[];
+          this.total = 0
+        }
       }
-    }
-  })
-}
-// pagination 
-onPageChange(event: PageEvent): void {
-  this.page = event.pageIndex + 1;
-  this.perPage = event.pageSize;
-  this.getAllEventList();
-}
+    })
+  }
+  // pagination 
+  onPageChange(event: PageEvent): void {
+    this.page = event.pageIndex + 1;
+    this.perPage = event.pageSize;
+    this.getAllEventList();
+  }
 }
 
