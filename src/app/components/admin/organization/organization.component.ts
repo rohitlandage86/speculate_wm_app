@@ -30,11 +30,14 @@ export class OrganizationComponent implements OnInit {
         if (res.data.length > 0) {
           this.allOrganizationList = res.data;
           this.total = res.pagination.total;
+        } else {
+          this.allOrganizationList = []
+          this.total = 0
         }
       }
     });
   }
-  //open module...
+  //open view organization component ...
   openDialog(data?: any) {
     const dialogRef = this.dialog.open(ViewOrganizationComponent, {
       data: data,
@@ -46,6 +49,7 @@ export class OrganizationComponent implements OnInit {
       console.log('nothing happen');
     });
   }
+  //pagination organization table
   onPageChange(event: PageEvent): void {
     this.page = event.pageIndex + 1;
     this.perPage = event.pageSize;

@@ -31,6 +31,7 @@ export class AddUpdateOrganizationComponent implements OnInit {
 
   ngOnInit(): void {
     this.createOrganizationForm()
+    //active route get organization id
     this.organization_id = this.url.snapshot.params['id']
     if (this.organization_id) {
       this.getOrganizationById(this.organization_id)
@@ -38,6 +39,7 @@ export class AddUpdateOrganizationComponent implements OnInit {
     }
   }
 
+  //organization form
   createOrganizationForm() {
     this.organizationForm = this.fb.group({
       org_name: ['', Validators.required],
@@ -66,6 +68,7 @@ export class AddUpdateOrganizationComponent implements OnInit {
     this.isEdit ? this.updateOrganization() : this.addOrganization()
   }
 
+  //update organization
   updateOrganization() {
     let data = this.organizationForm.getRawValue()
     if (this.organizationForm.valid) {
@@ -96,7 +99,7 @@ export class AddUpdateOrganizationComponent implements OnInit {
       this._toastrService.warning('Fill required fields')
     }
   }
-
+  //add organization
   addOrganization() {
     let data = this.organizationForm.value
     if (this.organizationForm.valid) {
@@ -128,51 +131,52 @@ export class AddUpdateOrganizationComponent implements OnInit {
     }
   }
 
+  // get organization by id
   getOrganizationById(id: any) {
     this._superAdminService.getOrganizationById(id).subscribe({
       next: (result: any) => {
-        this.controls['org_name'].patchValue(result.data.org_name)
-        this.controls['short_name'].patchValue(result.data.short_name)
-        this.controls['email_id'].patchValue(result.data.email_id)
-        this.controls['contact_number'].patchValue(result.data.contact_number)
-        this.controls['country'].patchValue(result.data.country)
-        this.controls['state'].patchValue(result.data.state)
-        this.controls['city'].patchValue(result.data.city)
-        this.controls['address'].patchValue(result.data.address)
-        this.controls['logo1Name'].patchValue(result.data.logo1)
-        this.controls['logo2Name'].patchValue(result.data.logo2)
+        const organizationData = result.data;
+        this.controls['org_name'].patchValue(organizationData.org_name)
+        this.controls['short_name'].patchValue(organizationData.short_name)
+        this.controls['email_id'].patchValue(organizationData.email_id)
+        this.controls['contact_number'].patchValue(organizationData.contact_number)
+        this.controls['country'].patchValue(organizationData.country)
+        this.controls['state'].patchValue(organizationData.state)
+        this.controls['city'].patchValue(organizationData.city)
+        this.controls['address'].patchValue(organizationData.address)
+        this.controls['logo1Name'].patchValue(organizationData.logo1)
+        this.controls['logo2Name'].patchValue(organizationData.logo2)
 
         // Patch long logo
-        if (result.data.longLogoBase64) {
+        if (organizationData.longLogoBase64) {
           const reader1 = new FileReader()
           reader1.onload = (e: any) => {
-            this.controls['logo1Name'].patchValue(result.data.logo1Name)
-            this.controls['logo1Base64'].patchValue(result.data.logo1Base64)
+            this.controls['logo1Name'].patchValue(organizationData.logo1Name)
+            this.controls['logo1Base64'].patchValue(organizationData.logo1Base64)
             this.imagePreview.nativeElement.src =
-              'data:image/png;base64,' + result.data.logo1Base64
+              'data:image/png;base64,' + organizationData.logo1Base64
           }
-          reader1.readAsDataURL(result.data.logo1Base64)
+          reader1.readAsDataURL(organizationData.logo1Base64)
         }
-        this.logo1Name = result.data.logo1
+        this.logo1Name = organizationData.logo1
         // Patch short logo
-        if (result.data.shortLogoBase64) {
+        if (organizationData.shortLogoBase64) {
           const reader2 = new FileReader()
           reader2.onload = (e: any) => {
-            this.controls['logo2Name'].patchValue(result.data.logo2Name)
-            this.controls['logo2Base64'].patchValue(result.data.logo2Base64)
+            this.controls['logo2Name'].patchValue(organizationData.logo2Name)
+            this.controls['logo2Base64'].patchValue(organizationData.logo2Base64)
             this.shortimagePreview.nativeElement.src =
-              'data:image/png;base64,' + result.data.logo2Base64
+              'data:image/png;base64,' + organizationData.logo2Base64
           }
-          reader2.readAsDataURL(result.data.logo2Base64)
+          reader2.readAsDataURL(organizationData.logo2Base64)
         }
-        this.logo2Name = result.data.logo2
+        this.logo2Name = organizationData.logo2
       }
     })
   }
-  //logo 1
+  //logo 1 show
   onImageChange(event: any) {
     const file = event.target.files[0]
-
     if (file) {
       const reader = new FileReader()
       this.controls['logo1Name'].patchValue(file.name)
@@ -185,8 +189,7 @@ export class AddUpdateOrganizationComponent implements OnInit {
       reader.readAsDataURL(file)
     }
   }
-  //logo 2
-
+  //logo 2 show
   onshortImageChange(event: any) {
     const file = event.target.files[0]
     if (file) {

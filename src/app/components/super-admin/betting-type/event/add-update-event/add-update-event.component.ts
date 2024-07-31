@@ -14,15 +14,15 @@ export class AddUpdateEventComponent implements OnInit {
   eventForm!: FormGroup
   event_Id: any
   allSportslist: Array<any> = []
-  constructor (
+  constructor(
     private fb: FormBuilder,
     private _superAdminService: SuperAdminService,
     private _toastrService: ToastrService,
     private router: Router,
     private url: ActivatedRoute
-  ) {}
+  ) { }
 
-  ngOnInit (): void {
+  ngOnInit(): void {
     this.createEventForm()
     this.event_Id = this.url.snapshot.params['id']
     if (this.event_Id) {
@@ -32,24 +32,22 @@ export class AddUpdateEventComponent implements OnInit {
     this.getAllSportsList()
   }
 
-  createEventForm () {
+  createEventForm() {
     this.eventForm = this.fb.group({
       record_id: ['', Validators.required],
       name: ['', Validators.required],
       sport_id: ['', Validators.required]
     })
   }
-  get controls () {
+  get controls() {
     return this.eventForm.controls
   }
 
-  submit () {
+  submit() {
     this.isEdit ? this.updateEvent() : this.addEvent()
   }
-  updateEvent () {
+  updateEvent() {
     let data = this.eventForm.getRawValue()
-
-    console.log(this.eventForm.valid)
     if (this.eventForm.valid) {
       this._superAdminService
         .editBettingEventType(this.event_Id, data)
@@ -79,7 +77,7 @@ export class AddUpdateEventComponent implements OnInit {
     }
   }
 
-  addEvent () {
+  addEvent() {
     let data = this.eventForm.value
     if (this.eventForm.valid) {
       this._superAdminService.addBettingEventType(data).subscribe({
@@ -107,23 +105,24 @@ export class AddUpdateEventComponent implements OnInit {
       this._toastrService.warning('Fill required fields')
     }
   }
-  getEventById (id: any) {
+  getEventById(id: any) {
     this._superAdminService.getBettingEventTypeById(id).subscribe({
       next: (result: any) => {
-        this.controls['record_id'].patchValue(result.data.record_id)
-        this.controls['name'].patchValue(result.data.name)
-        this.controls['sport_id'].patchValue(result.data.sport_id)
+        const eventData = result.data
+        this.controls['record_id'].patchValue(eventData.record_id)
+        this.controls['name'].patchValue(eventData.name)
+        this.controls['sport_id'].patchValue(eventData.sport_id)
       }
     })
   }
   //get Sports wma list...
-  getAllSportsList () {
+  getAllSportsList() {
     this._superAdminService.getAllSportswmaList().subscribe({
       next: (res: any) => {
         if (res.data.length > 0) {
           this.allSportslist = res.data
-        }else {
-          this.allSportslist =[]
+        } else {
+          this.allSportslist = []
         }
       }
     })

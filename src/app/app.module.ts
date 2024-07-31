@@ -22,7 +22,7 @@ import { AdminSidebarComponent } from './sidebar/admin-sidebar/admin-sidebar.com
     SuperAdminSidebarComponent,
     GamblerSidebarComponent,
     AdminSidebarComponent,
-   
+
   ],
   imports: [
     BrowserModule,
@@ -34,19 +34,19 @@ import { AdminSidebarComponent } from './sidebar/admin-sidebar/admin-sidebar.com
       timeOut: 6000,
       positionClass: 'toast-top-right',
       preventDuplicates: true,
-      closeButton:true
+      closeButton: true
     }),
   ],
-  providers: [ AuthGuard,
+  providers: [AuthGuard,
     Title
-    ,provideAnimations(), // required animations providers
-  provideToastr(), provideAnimations(), // Toastr providers
-  {  
-    provide: HTTP_INTERCEPTORS,  
-    useClass: AuthInterceptor,  
-    multi: true  
-  },
-  { provide: LocationStrategy, useClass: HashLocationStrategy }  ],
+    , provideAnimations(), // required animations providers
+    provideToastr(), provideAnimations(), // Toastr providers
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    { provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

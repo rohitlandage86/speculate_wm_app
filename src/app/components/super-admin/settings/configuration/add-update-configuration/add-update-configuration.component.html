@@ -3,67 +3,102 @@
     <div class="col-md-10 mt-5">
       <div class="card p-3">
         <div class="card-header bg-dark d-flex justify-content-between p-3">
-          <strong class="text-white">{{ isEdit ? " Edit" : "Add " }} Configuration</strong>
+          <strong class="text-white"
+            >{{ isEdit ? " Edit" : "Add " }} Configuration</strong
+          >
         </div>
         <div class="card-body">
           <form [formGroup]="configurationForm">
             <div class="row">
               <div class="mb-3 col-md-6">
-                <label for="url_name" class="mb-1">Url Name
-                  <span style="color: red" *ngIf="!controls['url_name'].value">*</span>
+                <label for="url_name" class="mb-1"
+                  >Url Name
+                  <span class="text-danger" *ngIf="!controls['url_name'].value"
+                    >*</span
+                  >
                 </label>
-                <input type="text" class="form-control" id="exampleInputname1" formControlName="url_name"
-                  aria-describedby="emailHelp" [ngClass]="{
-                      'is-invalid':
-                        controls['url_name'].invalid &&
-                        (controls['url_name'].dirty ||
-                          controls['url_name'].touched)
-                    }" />
-                <div class="text-danger" *ngIf="
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleInputname1"
+                  formControlName="url_name"
+                  aria-describedby="emailHelp"
+                  [ngClass]="{
+                    'is-invalid':
                       controls['url_name'].invalid &&
                       (controls['url_name'].dirty ||
                         controls['url_name'].touched)
-                    ">
+                  }"
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    controls['url_name'].invalid &&
+                    (controls['url_name'].dirty || controls['url_name'].touched)
+                  "
+                >
                   <small>Please provide a valid Url Name.</small>
                 </div>
               </div>
               <div class="mb-3 col-md-6">
-                <label for="base_url" class="mb-1">Base Url
-                  <span style="color: red" *ngIf="!controls['base_url'].value">*</span>
+                <label for="base_url" class="mb-1"
+                  >Base Url
+                  <span class="text-danger" *ngIf="!controls['base_url'].value"
+                    >*</span
+                  >
                 </label>
-                <input type="text" class="form-control" id="exampleInputname1" formControlName="base_url"
-                  aria-describedby="emailHelp" [ngClass]="{
-                        'is-invalid':
-                          controls['base_url'].invalid &&
-                          (controls['base_url'].dirty ||
-                            controls['base_url'].touched)
-                      }" />
-                <div class="text-danger" *ngIf="
-                        controls['base_url'].invalid &&
-                        (controls['base_url'].dirty ||
-                          controls['base_url'].touched)
-                      ">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleInputname1"
+                  formControlName="base_url"
+                  aria-describedby="emailHelp"
+                  [ngClass]="{
+                    'is-invalid':
+                      controls['base_url'].invalid &&
+                      (controls['base_url'].dirty ||
+                        controls['base_url'].touched)
+                  }"
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    controls['base_url'].invalid &&
+                    (controls['base_url'].dirty || controls['base_url'].touched)
+                  "
+                >
                   <small>Please provide a valid Base Url.</small>
                 </div>
               </div>
-
             </div>
             <div class="mb-3 col-md-6">
-              <label for="description" class="mb-1">Description
-                <span style="color: red" *ngIf="!controls['description'].value">*</span>
+              <label for="description" class="mb-1"
+                >Description
+                <span class="text-danger" *ngIf="!controls['description'].value"
+                  >*</span
+                >
               </label>
-              <textarea type="text" class="form-control " id="exampleInputname1" formControlName="description"
-                aria-describedby="emailHelp" [ngClass]="{
-                    'is-invalid':
-                      controls['description'].invalid &&
-                      (controls['description'].dirty ||
-                        controls['description'].touched)
-                  }"></textarea>
-              <div class="text-danger" *ngIf="
+              <textarea
+                type="text"
+                class="form-control"
+                id="exampleInputname1"
+                formControlName="description"
+                aria-describedby="emailHelp"
+                [ngClass]="{
+                  'is-invalid':
                     controls['description'].invalid &&
                     (controls['description'].dirty ||
                       controls['description'].touched)
-                  ">
+                }"
+              ></textarea>
+              <div
+                class="text-danger"
+                *ngIf="
+                  controls['description'].invalid &&
+                  (controls['description'].dirty ||
+                    controls['description'].touched)
+                "
+              >
                 <small>Please provide a valid Description.</small>
               </div>
             </div>
@@ -72,10 +107,14 @@
               <button type="submit" class="btn btn-warning" (click)="submit()">
                 {{ isEdit ? "Update" : "Submit" }}
               </button>
-              <button type="submit" class="btn btn-secondary ms-3" [routerLink]="[
-                    '/super-admin',
-                    { outlets: { super_Menu: 'configuration' } }
-                  ]">
+              <button
+                type="submit"
+                class="btn btn-secondary ms-3"
+                [routerLink]="[
+                  '/super-admin',
+                  { outlets: { super_Menu: 'configuration' } }
+                ]"
+              >
                 Cancel
               </button>
             </div>

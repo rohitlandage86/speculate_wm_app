@@ -15,9 +15,9 @@ export class LoginComponent {
   password: string = '';
   passwordVisible: boolean = false;
   isSubmitted = false
- 
-  constructor(private fb: FormBuilder,    private _sharedService: SharedService,   private router: Router, private _authService: AuthService,    private _toastrService: ToastrService,) {}
-  
+
+  constructor(private fb: FormBuilder, private _sharedService: SharedService, private router: Router, private _authService: AuthService, private _toastrService: ToastrService,) { }
+
   ngOnInit(): void {
     this.createForm();
 
@@ -33,7 +33,7 @@ export class LoginComponent {
     return this.form.controls;
   }
   login() {
-  
+
     this.isSubmitted = true; // Set isSubmitted to true when the login process starts.
     if (this.form.valid) {
 
@@ -45,11 +45,10 @@ export class LoginComponent {
             localStorage.setItem("untitled_id", res.data.untitled_id);
             localStorage.setItem("email_id", res.data.email_id);
             localStorage.setItem('tokenExpiresIn', res.tokenExpiresIn);
-            localStorage.setItem('data',  JSON.stringify(res.data));
+            localStorage.setItem('data', JSON.stringify(res.data));
             localStorage.setItem('isLogin', 'true');
             this._sharedService.setIsLogin(true);
             this._toastrService.clear();
-            // console.log('res', res); 
             this._toastrService.success(res.message);
             if (res.data.user_type_id == 1) {
               this.router.navigate(['/super-admin', { outlets: { super_Menu: 'super-admin' } }]);
@@ -79,7 +78,7 @@ export class LoginComponent {
       this._toastrService.warning('Fill required fields');
     }
   }
-//password show and hide
+  //password show and hide
 
   togglePasswordVisibility() {
     this.passwordVisible = !this.passwordVisible;

@@ -1,16 +1,32 @@
 <div class="container-fluid p-0">
   <div class="row mx-5">
-    <section id="nav-bar" *ngIf="!isSuperadmin&&!isAdmin" >
+    <section id="nav-bar" *ngIf="!isSuperadmin && !isAdmin">
       <div class="row">
         <nav class="navbar navbar-expand-lg navbar-light p-0">
           <div class="container p-0 m-0">
             <a class="navbar-brand">
-              <img src="../../assets/images/logo/speculate_logo.png" alt="Logo" routerLink="/" />
+              <img
+                src="../../assets/images/logo/speculate_logo.png"
+                alt="Logo"
+                routerLink="/"
+              />
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
               <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse ps-3" id="navbarNav" *ngIf="isHomePage">
+            <div
+              class="collapse navbar-collapse ps-3"
+              id="navbarNav"
+              *ngIf="isHomePage"
+            >
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                   <a class="nav-link">Today’s Board</a>
@@ -35,8 +51,12 @@
                 </li>
               </ul>
               <div class="d-flex align-items-center mb-3">
-                <button class="btn me-3" [routerLink]="['/auth/sign-up']">Sign Up</button>
-                <button class="btn me-3" routerLink="/auth/login">Log In</button>
+                <button class="btn me-3" [routerLink]="['/auth/sign-up']">
+                  Sign Up
+                </button>
+                <button class="btn me-3" routerLink="/auth/login">
+                  Log In
+                </button>
               </div>
             </div>
           </div>
@@ -52,20 +72,29 @@
         </div>
       </nav>
     </section> -->
-  
   </div>
-  <router-outlet *ngIf="!isSuperadmin&&!isAdmin"></router-outlet>
-  <router-outlet name="sub_Menu" *ngIf="!isHomePage&& !isSuperadmin && !isAdmin"></router-outlet>
-  <app-super-admin-sidebar *ngIf="isSuperadmin&&!isSignUp"></app-super-admin-sidebar>
-  <app-admin-sidebar *ngIf="isAdmin&&!isSuperadmin&&!isSignUp"></app-admin-sidebar>
+  <router-outlet *ngIf="!isSuperadmin && !isAdmin"></router-outlet>
+  <router-outlet
+    name="sub_Menu"
+    *ngIf="!isHomePage && !isSuperadmin && !isAdmin"
+  ></router-outlet>
+  <app-super-admin-sidebar
+    *ngIf="isSuperadmin && !isSignUp"
+  ></app-super-admin-sidebar>
+  <app-admin-sidebar
+    *ngIf="isAdmin && !isSuperadmin && !isSignUp"
+  ></app-admin-sidebar>
   <!-- <router-outlet name="speculate_Menu" *ngIf="isSignUp && isSpeculateDashboard && !isHomePage"></router-outlet>-->
   <!-- <router-outlet name="super_Menu" *ngIf="isSuperAdminDashboard && !isHomePage && !isSpeculateDashboard && !isSignUp"></router-outlet>  -->
 
-  <div class="row footer m-5 mb-0" *ngIf="!isSuperadmin&&!isAdmin">
+  <div class="row footer m-5 mb-0" *ngIf="!isSuperadmin && !isAdmin">
     <div class="col-md-12 d-flex mt-5 mb-3">
       <div class="col-md-3">
         <a class="navbar-brand" href="#">
-          <img src="../../../../assets/images/logo/speculate_logo.png" alt="Logo" />
+          <img
+            src="../../../../assets/images/logo/speculate_logo.png"
+            alt="Logo"
+          />
         </a>
       </div>
       <div class="col-md-2 products">
@@ -103,13 +132,22 @@
         <a href="" class="footer-link">Enable Accessibility</a>
         <div class="d-flex ms-5">
           <a class="navbar-brand m-2" href="#">
-            <img src="../../../../assets/images/logo/facebook-icon.svg" alt="Logo" />
+            <img
+              src="../../../../assets/images/logo/facebook-icon.svg"
+              alt="Logo"
+            />
           </a>
           <a class="navbar-brand m-2" href="#">
-            <img src="../../../../assets/images/logo/instagram-icon.svg" alt="Logo" />
+            <img
+              src="../../../../assets/images/logo/instagram-icon.svg"
+              alt="Logo"
+            />
           </a>
           <a class="navbar-brand m-2" href="#">
-            <img src="../../../../assets/images/logo/twitter-icon.svg" alt="Logo" />
+            <img
+              src="../../../../assets/images/logo/twitter-icon.svg"
+              alt="Logo"
+            />
           </a>
         </div>
       </div>

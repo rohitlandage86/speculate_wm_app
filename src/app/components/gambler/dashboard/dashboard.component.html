@@ -3,7 +3,11 @@
     <div class="col-md-10 m-0 mb-3">
       <div class="d-flex deposit-btn">
         <div class="Search-input">
-          <input type="search" placeholder="Search" class="form-control search-inputs" />
+          <input
+            type="search"
+            placeholder="Search"
+            class="form-control search-inputs"
+          />
           <i class="fa fa-solid fa-magnifying-glass search-icon"></i>
         </div>
         <button mat-button class="btn btn-Sign-up mx-3" routerLink="sign-up">
@@ -15,14 +19,26 @@
           <div class="container">
             <div class="col-md-12 justify-content-center">
               <div class="btn-sports-group">
-                <div class="mat-game-btn mt-3" *ngFor="let item of allSportsList; let i = index">
-                  <button mat-button class="btn border" [ngClass]="{
+                <div
+                  class="mat-game-btn mt-3"
+                  *ngFor="let item of allSportsList; let i = index"
+                >
+                  <button
+                    mat-button
+                    class="btn border"
+                    [ngClass]="{
                       'btn-games': activeButtonIndex === i,
                       'btn-game': activeButtonIndex !== i
-                    }" (click)="handleButtonClick(i,item.sport_id)">
+                    }"
+                    (click)="handleButtonClick(i, item.sport_id)"
+                  >
                     <span class="d-flex text-center">
-                      <img [src]="baseUrlImage + 'images/sports/' + item.image" alt="sport image" class="img-fluid mt-1"
-                        style="height: 20px; width: 20px; margin-right: 8px" />
+                      <img
+                        [src]="baseUrlImage + 'images/sports/' + item.image"
+                        alt="sport image"
+                        class="img-fluid mt-1"
+                        style="height: 20px; width: 20px; margin-right: 8px"
+                      />
                       <label>
                         {{ item.sports_name }}
                       </label>
@@ -31,12 +47,23 @@
                 </div>
               </div>
               <div class="col-md-12 d-flex flex-wrap justify-content-center">
-                <div class="btn-group ms-4 mt-4 row justify-content-center" role="group"
+                <div
+                  class="btn-group ms-4 mt-4 row justify-content-center"
+                  role="group"
                   aria-label="Basic checkbox toggle button group"
-                  *ngFor="let item of allBettingBetwmaList; let i = index">
-                  <input type="checkbox" class="btn-check btn-1" [id]="'btncheck' + i"  autocomplete="off"
-                    (click)="getAllSportsDataList(item.betting_bet_type_id)" />
-                  <label class="btn btn-outline-primary fw-medium m-0" [for]="'btncheck' + i">
+                  *ngFor="let item of allBettingBetwmaList; let i = index"
+                >
+                  <input
+                    type="checkbox"
+                    class="btn-check btn-1"
+                    [id]="'btncheck' + i"
+                    autocomplete="off"
+                    (click)="getAllSportsDataList(item.betting_bet_type_id)"
+                  />
+                  <label
+                    class="btn btn-outline-primary fw-medium m-0"
+                    [for]="'btncheck' + i"
+                  >
                     {{ item.name }}
                   </label>
                 </div>
@@ -44,17 +71,35 @@
 
               <!-- *ngIf="allSportsDatatList.length > 0" -->
               <div class="row">
-                <div class="point-card-nba d-flex flex-wrap"
-                  [ngClass]="{ 'col-md-8': isExpanded && selectedPlayers.length > 0, 'col-md-12': !isExpanded || selectedPlayers.length === 0 }">
-                  <div class="px-4 py-3"
-                    [ngClass]="{ 'col-md-6': isExpanded && selectedPlayers.length > 0, 'col-md-4': !isExpanded || selectedPlayers.length === 0 }"
-                    *ngFor="let player of allSportsDatatList; let i = index">
-                    <div class="card nba-card" [ngClass]="{
+                <div
+                  class="point-card-nba d-flex flex-wrap"
+                  [ngClass]="{
+                    'col-md-8': isExpanded && selectedPlayers.length > 0,
+                    'col-md-12': !isExpanded || selectedPlayers.length === 0
+                  }"
+                >
+                  <div
+                    class="px-4 py-3"
+                    [ngClass]="{
+                      'col-md-6': isExpanded && selectedPlayers.length > 0,
+                      'col-md-4': !isExpanded || selectedPlayers.length === 0
+                    }"
+                    *ngFor="let player of allSportsDatatList; let i = index"
+                  >
+                    <div
+                      class="card nba-card"
+                      [ngClass]="{
                         'border-changed-more': player.clickedMore,
                         'border-changed-less': player.clickedLess
-                      }">
-                      <img [src]="'../../assets/images/dashboard-point-card-img/dash-point-card-stephen curry.svg'"
-                        class="player-img" alt="{{ player.PlayerName }}" />
+                      }"
+                    >
+                      <img
+                        [src]="
+                          '../../assets/images/dashboard-point-card-img/dash-point-card-stephen curry.svg'
+                        "
+                        class="player-img"
+                        alt="{{ player.PlayerName }}"
+                      />
                       <div>
                         <div class="card points-card p-3 mx-4 fs-5 fw-medium">
                           26.0 POINTS
@@ -62,64 +107,108 @@
                       </div>
                       <small class="GSW-text fw-bolded fs-6">GSW-G</small>
                       <small class="GSW-text">Vs. Sac Mon 10:10pm</small>
-                      <h3 class="GSW-text fw-medium fs-4">{{ player.PlayerName }}</h3>
+                      <h3 class="GSW-text fw-medium fs-4">
+                        {{ player.PlayerName }}
+                      </h3>
                       <div class="d-flex">
-                        <button class="form-control btn-more" [ngClass]="{ clicked: player.clickedMore }"
-                          (click)="onSelectPlayer(player, 'more')">
+                        <button
+                          class="form-control btn-more"
+                          [ngClass]="{ clicked: player.clickedMore }"
+                          (click)="onSelectPlayer(player, 'more')"
+                        >
                           MORE
                         </button>
-                        <button class="form-control btn-less" [ngClass]="{ clicked: player.clickedLess }"
-                          (click)="onSelectPlayer(player, 'less')">
+                        <button
+                          class="form-control btn-less"
+                          [ngClass]="{ clicked: player.clickedLess }"
+                          (click)="onSelectPlayer(player, 'less')"
+                        >
                           LESS
                         </button>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-4 player-card pt-3" *ngIf="isExpanded && selectedPlayers.length > 0">
+                <div
+                  class="col-md-4 player-card pt-3"
+                  *ngIf="isExpanded && selectedPlayers.length > 0"
+                >
                   <div class="card select-player">
                     <div>
                       <h2 class="current m-3">Current Roster</h2>
-                      <div class="card selected-card p-2 m-3" *ngFor="let player of selectedPlayers; let i = index">
-                        <a href="javascript:void(0)" class="d-flex justify-content-end cancal-card"
-                          (click)="removePlayer(i)">
+                      <div
+                        class="card selected-card p-2 m-3"
+                        *ngFor="let player of selectedPlayers; let i = index"
+                      >
+                        <a
+                          href="javascript:void(0)"
+                          class="d-flex justify-content-end cancal-card"
+                          (click)="removePlayer(i)"
+                        >
                           <i class="fa fa-times cancal"></i>
                         </a>
                         <div class="d-flex">
                           <div style="margin-top: -20px">
                             <div class="d-flex justify-content-end">
-                              <h3 class="teams-text">{{ player.PlayerName }}</h3>
+                              <h3 class="teams-text">
+                                {{ player.PlayerName }}
+                              </h3>
                             </div>
                             <small class="teams-text">{{ player.match }}</small>
                             <h3 class="player-point fw-medium fs-4">
                               {{ player.points }} POINTS
                             </h3>
                             <div class="d-flex">
-                              <button class="form-control btn-more" [ngClass]="{ clicked: player.clickedMore }">
+                              <button
+                                class="form-control btn-more"
+                                [ngClass]="{ clicked: player.clickedMore }"
+                              >
                                 MORE
                               </button>
-                              <button class="form-control btn-less" [ngClass]="{ clicked: player.clickedLess }">
+                              <button
+                                class="form-control btn-less"
+                                [ngClass]="{ clicked: player.clickedLess }"
+                              >
                                 LESS
                               </button>
                             </div>
                           </div>
                           <div class="d-flex align-items-end">
-                            <img [src]="'../../assets/images/dashboard-point-card-img/' + player.imgSrc"
-                              class="player-img" alt="{{ player.PlayerName }}" />
+                            <img
+                              [src]="
+                                '../../assets/images/dashboard-point-card-img/' +
+                                player.imgSrc
+                              "
+                              class="player-img"
+                              alt="{{ player.PlayerName }}"
+                            />
                           </div>
                         </div>
                       </div>
-                      <div class="row boosted p-4 pt-2" *ngIf="selectedPlayers.length >= 2">
+                      <div
+                        class="row boosted p-4 pt-2"
+                        *ngIf="selectedPlayers.length >= 2"
+                      >
                         <div class="card py-3 boosted-payout m-1">
-                          <p class="fs-3 fw-bold text-center Payouts-text">Boosted Payouts</p>
+                          <p class="fs-3 fw-bold text-center Payouts-text">
+                            Boosted Payouts
+                          </p>
                           <div class="d-flex justify-content-between">
                             <div class="card dynamic-play p-2 border">
                               <div class="d-flex justify-content-between">
-                                <h5 class="dynamic-play-text fs-6">Dynamic Play</h5>
+                                <h5 class="dynamic-play-text fs-6">
+                                  Dynamic Play
+                                </h5>
                                 <div class="form-check">
-                                  <input class="form-check-input checkbox-radio" type="checkbox"
-                                    [formControl]="dynamicPlayControl" (change)="onCheckboxChange(player, 'dynamic')"
-                                    id="flexRadioDynamic" />
+                                  <input
+                                    class="form-check-input checkbox-radio"
+                                    type="checkbox"
+                                    [formControl]="dynamicPlayControl"
+                                    (change)="
+                                      onCheckboxChange(player, 'dynamic')
+                                    "
+                                    id="flexRadioDynamic"
+                                  />
                                 </div>
                               </div>
                               <small class="You-must-text m-1">
@@ -138,13 +227,23 @@
                               <div class="d-flex justify-content-between">
                                 <h5 class="fs-6 fw-bold">Intense Play</h5>
                                 <div class="form-check">
-                                  <input class="form-check-input checkbox-radio" type="checkbox"
-                                    [formControl]="intensePlayControl" (change)="onCheckboxChange(player, 'intense')"
-                                    id="flexRadioIntense" />
+                                  <input
+                                    class="form-check-input checkbox-radio"
+                                    type="checkbox"
+                                    [formControl]="intensePlayControl"
+                                    (change)="
+                                      onCheckboxChange(player, 'intense')
+                                    "
+                                    id="flexRadioIntense"
+                                  />
                                 </div>
                               </div>
-                              <small class="m-1">You must hit 4 out of 4 Rosters</small>
-                              <div class="d-flex border instese-correct p-1 m-1">
+                              <small class="m-1"
+                                >You must hit 4 out of 4 Rosters</small
+                              >
+                              <div
+                                class="d-flex border instese-correct p-1 m-1"
+                              >
                                 <small class="mb-0"> 4 Correct </small>
                                 <small class="mb-0"> 10X </small>
                               </div>
@@ -153,15 +252,22 @@
                         </div>
                       </div>
 
-
                       <div>
                         <div *ngIf="selectedPlayers.length === 1">
                           <div class="one-more-add">
-                            <img src="../../assets/images/dashboard-img/1-more-card.svg" class="player-img" alt="" />
+                            <img
+                              src="../../assets/images/dashboard-img/1-more-card.svg"
+                              class="player-img"
+                              alt=""
+                            />
                           </div>
-                          <small class="almost-text fs-4 fw-bold m-3">Almost There!</small>
+                          <small class="almost-text fs-4 fw-bold m-3"
+                            >Almost There!</small
+                          >
                           <small class="almost-text">Add 1 more Player</small>
-                          <small class="almost-text">to Complete Your Roster</small>
+                          <small class="almost-text"
+                            >to Complete Your Roster</small
+                          >
                         </div>
 
                         <div class="card-investment">
@@ -175,7 +281,9 @@
                           </div>
                         </div>
                         <div class="p-3 m-2">
-                          <button class="form-control Place-Roster-btn fs-5 fw-medium">
+                          <button
+                            class="form-control Place-Roster-btn fs-5 fw-medium"
+                          >
                             Place Roster
                           </button>
                         </div>
@@ -195,7 +303,6 @@
                 </div>
            
               </div> -->
-              
             </div>
           </div>
         </mat-tab>
@@ -221,7 +328,11 @@
                     <small> $25.00</small>
                   </div>
                   <div class="">
-                    <button mat-button class="btn px-4 py-4 ms-2 btn-Sign-up" routerLink="sign-up">
+                    <button
+                      mat-button
+                      class="btn px-4 py-4 ms-2 btn-Sign-up"
+                      routerLink="sign-up"
+                    >
                       Deposit
                     </button>
                   </div>
@@ -238,8 +349,11 @@
                   </div>
 
                   <div class="players">
-                    <img src="../../assets/images/dashboard-point-card-img/dash-point-card-stephen curry.svg"
-                      class="player-img" alt="" />
+                    <img
+                      src="../../assets/images/dashboard-point-card-img/dash-point-card-stephen curry.svg"
+                      class="player-img"
+                      alt=""
+                    />
                     <div>
                       <div class="row mt-3 info">
                         <h3>Stephen Curry</h3>
@@ -247,8 +361,14 @@
                         <small>Vs. Sac Mon 10:10pm</small>
                       </div>
                       <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25"
-                          aria-valuemin="0" aria-valuemax="100"></div>
+                        <div
+                          class="progress-bar"
+                          role="progressbar"
+                          style="width: 25%"
+                          aria-valuenow="25"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        ></div>
                       </div>
                     </div>
 
@@ -260,8 +380,11 @@
                   </div>
 
                   <div class="players">
-                    <img src="../../assets/images/dashboard-point-card-img/dash-point-card-stephen curry.svg"
-                      class="player-img" alt="" />
+                    <img
+                      src="../../assets/images/dashboard-point-card-img/dash-point-card-stephen curry.svg"
+                      class="player-img"
+                      alt=""
+                    />
                     <div>
                       <div class="row mt-3 info">
                         <h3>Stephen Curry</h3>
@@ -269,8 +392,14 @@
                         <small>Vs. Sac Mon 10:10pm</small>
                       </div>
                       <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25"
-                          aria-valuemin="0" aria-valuemax="100"></div>
+                        <div
+                          class="progress-bar"
+                          role="progressbar"
+                          style="width: 25%"
+                          aria-valuenow="25"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        ></div>
                       </div>
                     </div>
 
@@ -282,8 +411,11 @@
                   </div>
 
                   <div class="players">
-                    <img src="../../assets/images/dashboard-point-card-img/dash-point-card-stephen curry.svg"
-                      class="player-img" alt="" />
+                    <img
+                      src="../../assets/images/dashboard-point-card-img/dash-point-card-stephen curry.svg"
+                      class="player-img"
+                      alt=""
+                    />
                     <div>
                       <div class="row mt-3 info">
                         <h3>Stephen Curry</h3>
@@ -291,8 +423,14 @@
                         <small>Vs. Sac Mon 10:10pm</small>
                       </div>
                       <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25"
-                          aria-valuemin="0" aria-valuemax="100"></div>
+                        <div
+                          class="progress-bar"
+                          role="progressbar"
+                          style="width: 25%"
+                          aria-valuenow="25"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        ></div>
                       </div>
                     </div>
 
@@ -314,8 +452,11 @@
             <div class="card my-profile-card m-5">
               <div class="col-md-3 mt-4">
                 <div class="card profile-card m-4 p-4 py-5">
-                  <img src="../../assets/images/dashboard-point-card-img/my profile img/Ellipse 9.svg" alt=""
-                    class="profile-img" />
+                  <img
+                    src="../../assets/images/dashboard-point-card-img/my profile img/Ellipse 9.svg"
+                    alt=""
+                    class="profile-img"
+                  />
                   <h3 class="player-name">Boyd Dave</h3>
                   <small class="player-joined">JOINED MAY 2023</small>
                 </div>
@@ -336,17 +477,28 @@
                       </div>
                       <div class="winning-percentage">
                         <div class="card mt-4 card-winning">
-                          <samp class="d-flex" style="
+                          <samp
+                            class="d-flex"
+                            style="
                               justify-content: space-between;
                               align-items: center;
-                            ">
-                            <small class="winning-lable">Winning Percentage</small>
+                            "
+                          >
+                            <small class="winning-lable"
+                              >Winning Percentage</small
+                            >
                             <p id="percentage-value" class="mb-0">30%</p>
                           </samp>
 
                           <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25"
-                              aria-valuemin="0" aria-valuemax="100"></div>
+                            <div
+                              class="progress-bar"
+                              role="progressbar"
+                              style="width: 25%"
+                              aria-valuenow="25"
+                              aria-valuemin="0"
+                              aria-valuemax="100"
+                            ></div>
                           </div>
                         </div>
                       </div>
@@ -371,8 +523,11 @@
                   </div>
 
                   <div class="players">
-                    <img src="../../assets/images/dashboard-point-card-img/dash-point-card-stephen curry.svg"
-                      class="player-img" alt="" />
+                    <img
+                      src="../../assets/images/dashboard-point-card-img/dash-point-card-stephen curry.svg"
+                      class="player-img"
+                      alt=""
+                    />
                     <div>
                       <div class="row mt-3 info">
                         <h3>Stephen Curry</h3>
@@ -380,8 +535,14 @@
                         <small>Vs. Sac Mon 10:10pm</small>
                       </div>
                       <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25"
-                          aria-valuemin="0" aria-valuemax="100"></div>
+                        <div
+                          class="progress-bar"
+                          role="progressbar"
+                          style="width: 25%"
+                          aria-valuenow="25"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        ></div>
                       </div>
                     </div>
 
@@ -393,8 +554,11 @@
                   </div>
 
                   <div class="players">
-                    <img src="../../assets/images/dashboard-point-card-img/dash-point-card-stephen curry.svg"
-                      class="player-img" alt="" />
+                    <img
+                      src="../../assets/images/dashboard-point-card-img/dash-point-card-stephen curry.svg"
+                      class="player-img"
+                      alt=""
+                    />
                     <div>
                       <div class="row mt-3 info">
                         <h3>Stephen Curry</h3>
@@ -402,8 +566,14 @@
                         <small>Vs. Sac Mon 10:10pm</small>
                       </div>
                       <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25"
-                          aria-valuemin="0" aria-valuemax="100"></div>
+                        <div
+                          class="progress-bar"
+                          role="progressbar"
+                          style="width: 25%"
+                          aria-valuenow="25"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        ></div>
                       </div>
                     </div>
 
@@ -415,8 +585,11 @@
                   </div>
 
                   <div class="players">
-                    <img src="../../assets/images/dashboard-point-card-img/dash-point-card-stephen curry.svg"
-                      class="player-img" alt="" />
+                    <img
+                      src="../../assets/images/dashboard-point-card-img/dash-point-card-stephen curry.svg"
+                      class="player-img"
+                      alt=""
+                    />
                     <div>
                       <div class="row mt-3 info">
                         <h3>Stephen Curry</h3>
@@ -424,8 +597,14 @@
                         <small>Vs. Sac Mon 10:10pm</small>
                       </div>
                       <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25"
-                          aria-valuemin="0" aria-valuemax="100"></div>
+                        <div
+                          class="progress-bar"
+                          role="progressbar"
+                          style="width: 25%"
+                          aria-valuenow="25"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        ></div>
                       </div>
                     </div>
 

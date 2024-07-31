@@ -1,61 +1,140 @@
 <div class="container-fluid p-0">
-    <div class="row h-100 m-0">
-        <div class="side-bar">
-            <div class="logo p-3">
-                <img class="large-logo" src="../../assets/images/logo/speculate_logo.png" alt="SurveyBrewery">
-            </div>
-            <div class="menu">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/admin', { outlets: { admin_Menu: 'admin-dashboard' } }]">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#profileMenu" role="button" aria-expanded="false" aria-controls="profileMenu">
-                            Profile
-                            <span class="arrow"></span>
-                        </a>
-                        <ul class="collapse list-unstyled" id="profileMenu">
-                            <li class="nav-item">
-                                <a class="nav-link" [routerLink]="['/admin', { outlets: { admin_Menu: 'organization' } }]">Organization</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" [routerLink]="['/admin', { outlets: { admin_Menu: 'user-organization' } }]">User</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#mastersMenu" role="button" aria-expanded="false" aria-controls="mastersMenu">
-                            Masters
-                            <span class="arrow"></span>
-                        </a>
-                        <ul class="collapse list-unstyled" id="mastersMenu">
-                            <li class="nav-item">
-                                <a class="nav-link" [routerLink]="['/admin', { outlets: { admin_Menu: 'states' } }]">States</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" [routerLink]="['/admin', { outlets: { admin_Menu: 'sports' } }]">Sports</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#gamblingMenu" role="button" aria-expanded="false" aria-controls="gamblingMenu">
-                            Gambling
-                            <span class="arrow"></span>
-                        </a>
-                        <ul class="collapse list-unstyled" id="gamblingMenu">
-                            <li class="nav-item">
-                                <a class="nav-link" [routerLink]="['/admin', { outlets: { admin_Menu: 'gambler-user' } }]">Users</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="">Logout</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="body">
-            <router-outlet name="admin_Menu"></router-outlet>
-        </div>
+  <div class="row h-100 m-0">
+    <div class="side-bar">
+      <div class="logo p-3">
+        <img
+          class="large-logo"
+          src="../../assets/images/logo/speculate_logo.png"
+          alt="SurveyBrewery"
+        />
+      </div>
+      <div class="menu">
+        <ul class="nav flex-column" id="sidebarMenu">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              [routerLink]="[
+                '/admin',
+                { outlets: { admin_Menu: 'admin-dashboard' } }
+              ]"
+              >Dashboard</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link d-flex justify-content-between align-items-center"
+              data-bs-toggle="collapse"
+              href="#profileMenu"
+              role="button"
+              aria-expanded="false"
+              aria-controls="profileMenu"
+            >
+              Profile
+              <span class="arrow"></span>
+            </a>
+            <ul
+              class="collapse list-unstyled"
+              id="profileMenu"
+              data-bs-parent="#sidebarMenu"
+            >
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  [routerLink]="[
+                    '/admin',
+                    { outlets: { admin_Menu: 'organization' } }
+                  ]"
+                  >Organization</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  [routerLink]="[
+                    '/admin',
+                    { outlets: { admin_Menu: 'user-organization' } }
+                  ]"
+                  >User</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link d-flex justify-content-between align-items-center"
+              data-bs-toggle="collapse"
+              href="#mastersMenu"
+              role="button"
+              aria-expanded="false"
+              aria-controls="mastersMenu"
+            >
+              Masters
+              <span class="arrow"></span>
+            </a>
+            <ul
+              class="collapse list-unstyled"
+              id="mastersMenu"
+              data-bs-parent="#sidebarMenu"
+            >
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  [routerLink]="[
+                    '/admin',
+                    { outlets: { admin_Menu: 'states' } }
+                  ]"
+                  >States</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  [routerLink]="[
+                    '/admin',
+                    { outlets: { admin_Menu: 'sports' } }
+                  ]"
+                  >Sports</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link d-flex justify-content-between align-items-center"
+              data-bs-toggle="collapse"
+              href="#gamblingMenu"
+              role="button"
+              aria-expanded="false"
+              aria-controls="gamblingMenu"
+            >
+              Gambling
+              <span class="arrow"></span>
+            </a>
+            <ul
+              class="collapse list-unstyled"
+              id="gamblingMenu"
+              data-bs-parent="#sidebarMenu"
+            >
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  [routerLink]="[
+                    '/admin',
+                    { outlets: { admin_Menu: 'gambler-user' } }
+                  ]"
+                  >Users</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="">Logout</a>
+          </li>
+        </ul>
+      </div>
     </div>
+    <div class="body">
+      <router-outlet name="admin_Menu"></router-outlet>
+    </div>
+  </div>
 </div>

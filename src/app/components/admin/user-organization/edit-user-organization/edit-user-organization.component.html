@@ -12,7 +12,7 @@
               <div class="mb-3 col-md-6">
                 <label for="user_name" class="mb-1"
                   >User Name
-                  <span style="color: red" *ngIf="!controls['user_name'].value"
+                  <span class="text-danger" *ngIf="!controls['user_name'].value"
                     >*</span
                   >
                 </label>
@@ -43,7 +43,7 @@
               <div class="mb-3 col-md-6">
                 <label for="name" class="mb-1"
                   >Email Id
-                  <span style="color: red" *ngIf="!controls['email_id'].value"
+                  <span class="text-danger" *ngIf="!controls['email_id'].value"
                     >*</span
                   >
                 </label>
@@ -88,7 +88,7 @@
                   <label for="duration" class="mb-1"
                     >User Type
                     <span
-                      style="color: red"
+                      class="text-danger"
                       *ngIf="!controls['user_type_id'].value"
                       >*</span
                     ></label
@@ -137,7 +137,7 @@
                 <div class="form-float">
                   <label for="org id" class="mb-1"
                     >Organization
-                    <span style="color: red" *ngIf="!controls['org_id'].value"
+                    <span class="text-danger" *ngIf="!controls['org_id'].value"
                       >*</span
                     ></label
                   >

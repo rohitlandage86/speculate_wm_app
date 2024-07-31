@@ -21,13 +21,15 @@ export class EditStatesComponent implements OnInit {
 
   ngOnInit(): void {
     this.createStatesForm();
-
+    //active route get state id
     this.state_Id = this.url.snapshot.params['id'];
     if (this.state_Id) {
       this.getStatesById(this.state_Id);
       this.isEdit = true;
     }
   }
+
+  //state form
   createStatesForm() {
     this.statesForm = this.fb.group({
       state_name: ['', Validators.required],
@@ -42,6 +44,8 @@ export class EditStatesComponent implements OnInit {
   submit() {
     this.updateStates();
   }
+
+  //update state
   updateStates() {
     let data = this.statesForm.getRawValue();
     if (this.statesForm.valid) {
@@ -68,13 +72,14 @@ export class EditStatesComponent implements OnInit {
     }
   }
 
+  //get state by id
   getStatesById(id: any) {
     this._superAdminService.getStatesById(id).subscribe({
       next: (result: any) => {
-        this.controls['state_name'].patchValue(result.data.state_name);
-        this.controls['description'].patchValue(result.data.description);
+        const stateData = result.data
+        this.controls['state_name'].patchValue(stateData.state_name);
+        this.controls['description'].patchValue(stateData.description);
       },
     });
   }
-
 }

@@ -25,7 +25,7 @@ export class AddUpdateOrganizationUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.createOrganizationUserForm()
-
+    //active route get organization id
     this.organizationUser_Id = this.url.snapshot.params['id']
     if (this.organizationUser_Id) {
       this.getOrganizationUserById(this.organizationUser_Id)
@@ -34,6 +34,7 @@ export class AddUpdateOrganizationUserComponent implements OnInit {
     this.getAllOrganizationUserTypeList()
     this.getAllOrganizationList()
   }
+  // organization form
   createOrganizationUserForm() {
     this.organizationUserForm = this.fb.group({
       user_name: ['', Validators.required],
@@ -50,6 +51,7 @@ export class AddUpdateOrganizationUserComponent implements OnInit {
   submit() {
     this.isEdit ? this.updateOrganizationUser() : this.addOrganizationUser()
   }
+  //update Organization User...
   updateOrganizationUser() {
     let data = this.organizationUserForm.getRawValue()
     if (this.organizationUserForm.valid) {
@@ -81,6 +83,7 @@ export class AddUpdateOrganizationUserComponent implements OnInit {
     }
   }
 
+  //add Organization User...
   addOrganizationUser() {
     let data = this.organizationUserForm.value
     if (this.organizationUserForm.valid) {
@@ -109,13 +112,15 @@ export class AddUpdateOrganizationUserComponent implements OnInit {
       this._toastrService.warning('Fill required fields')
     }
   }
+  //get Organization User by id...
   getOrganizationUserById(id: any) {
     this._superAdminService.getOrganizationUserById(id).subscribe({
       next: (result: any) => {
-        this.controls['user_name'].patchValue(result.data.user_name)
-        this.controls['email_id'].patchValue(result.data.email_id)
-        this.controls['user_type_id'].patchValue(result.data.user_type_id)
-        this.controls['org_id'].patchValue(result.data.org_id)
+        const organizationUserData = result.data;
+        this.controls['user_name'].patchValue(organizationUserData.user_name)
+        this.controls['email_id'].patchValue(organizationUserData.email_id)
+        this.controls['user_type_id'].patchValue(organizationUserData.user_type_id)
+        this.controls['org_id'].patchValue(organizationUserData.org_id)
       }
     })
   }
@@ -137,6 +142,9 @@ export class AddUpdateOrganizationUserComponent implements OnInit {
       next: (res: any) => {
         if (res.data.length > 0) {
           this.allOrganizationList = res.data
+        }
+        else {
+          this.allOrganizationList = []
         }
       }
     })

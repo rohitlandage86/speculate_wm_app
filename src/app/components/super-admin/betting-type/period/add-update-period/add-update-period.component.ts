@@ -15,15 +15,15 @@ export class AddUpdatePeriodComponent implements OnInit {
   period_Id: any
   allSportslist: Array<any> = []
 
-  constructor (
+  constructor(
     private fb: FormBuilder,
     private _superAdminService: SuperAdminService,
     private _toastrService: ToastrService,
     private router: Router,
     private url: ActivatedRoute
-  ) {}
+  ) { }
 
-  ngOnInit (): void {
+  ngOnInit(): void {
     this.createPeriodForm()
     this.getAllSportsList()
     this.url.params.subscribe(params => {
@@ -34,7 +34,7 @@ export class AddUpdatePeriodComponent implements OnInit {
       }
     })
   }
-  createPeriodForm () {
+  createPeriodForm() {
     this.periodForm = this.fb.group({
       record_id: ['', Validators.required],
       name: ['', Validators.required],
@@ -42,15 +42,15 @@ export class AddUpdatePeriodComponent implements OnInit {
     })
   }
 
-  get controls () {
+  get controls() {
     return this.periodForm.controls
   }
 
-  submit () {
+  submit() {
     this.isEdit ? this.updatePeriod() : this.addPeriod()
   }
 
-  updatePeriod () {
+  updatePeriod() {
     let data = this.periodForm.getRawValue()
     if (this.periodForm.valid) {
       this._superAdminService
@@ -81,7 +81,7 @@ export class AddUpdatePeriodComponent implements OnInit {
     }
   }
 
-  addPeriod () {
+  addPeriod() {
     let data = this.periodForm.getRawValue()
     if (this.periodForm.valid) {
       this._superAdminService.addBettingPeriodType(data).subscribe({
@@ -109,23 +109,25 @@ export class AddUpdatePeriodComponent implements OnInit {
       this._toastrService.warning('Fill required fields')
     }
   }
-  getPeriodById (id: any) {
+  getPeriodById(id: any) {
     this._superAdminService.getBettingPeriodTypeById(id).subscribe({
       next: (result: any) => {
-        this.controls['record_id'].patchValue(result.data.record_id)
-        this.controls['name'].patchValue(result.data.name)
-        this.controls['sport_id'].patchValue(result.data.sport_id)
+        const periodData = result.data
+
+        this.controls['record_id'].patchValue(periodData.record_id)
+        this.controls['name'].patchValue(periodData.name)
+        this.controls['sport_id'].patchValue(periodData.sport_id)
       }
     })
   }
   //get Sports wma list...
-  getAllSportsList () {
+  getAllSportsList() {
     this._superAdminService.getAllSportswmaList().subscribe({
       next: (res: any) => {
         if (res.data.length > 0) {
           this.allSportslist = res.data
         } else {
-          this.allSportslist =[]
+          this.allSportslist = []
         }
       }
     })
