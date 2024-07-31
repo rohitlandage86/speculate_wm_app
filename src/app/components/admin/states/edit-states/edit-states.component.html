@@ -11,7 +11,9 @@
               <div class="mb-3 col-md-6">
                 <label for="state_name" class="mb-1"
                   >State Name
-                  <span style="color: red" *ngIf="!controls['state_name'].value"
+                  <span
+                    class="text-danger"
+                    *ngIf="!controls['state_name'].value"
                     >*</span
                   >
                 </label>
@@ -43,7 +45,7 @@
                 <label for="description" class="mb-1"
                   >Description
                   <span
-                    style="color: red"
+                    class="text-danger"
                     *ngIf="!controls['description'].value"
                     >*</span
                   >

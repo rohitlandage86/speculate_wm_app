@@ -3,15 +3,16 @@ import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [],
-  imports: [ 
+  imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -24,9 +25,10 @@ import { HttpClientModule } from '@angular/common/http';
     MatStepperModule,
     HttpClientModule,
     MatPaginatorModule,
+    MatSlideToggleModule,
     MatDialogModule
   ],
-  exports:[
+  exports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -39,6 +41,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatStepperModule,
     HttpClientModule,
     MatPaginatorModule,
+    MatSlideToggleModule,
     MatDialogModule
   ]
 })

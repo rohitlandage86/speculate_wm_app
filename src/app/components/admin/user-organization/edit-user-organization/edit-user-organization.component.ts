@@ -1,3 +1,4 @@
+import { UserOrganizationComponent } from './../user-organization.component';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -24,6 +25,7 @@ export class EditUserOrganizationComponent implements OnInit {
 
   ngOnInit(): void {
     this.createOrganizationUserForm();
+    //activated route get organization user id
     this.organizationUser_Id = this.url.snapshot.params['id'];
     if (this.organizationUser_Id) {
       this.getOrganizationUserById(this.organizationUser_Id);
@@ -32,6 +34,8 @@ export class EditUserOrganizationComponent implements OnInit {
     this.getAllOrganizationUserTypeList();
     this.getAllOrganizationList();
   }
+
+  // organization user form  
   createOrganizationUserForm() {
     this.organizationUserForm = this.fb.group({
       user_name: ['', Validators.required],
@@ -49,6 +53,7 @@ export class EditUserOrganizationComponent implements OnInit {
   submit() {
     this.updateOrganizationUser();
   }
+  // update organization user
   updateOrganizationUser() {
     let data = this.organizationUserForm.getRawValue();
     if (this.organizationUserForm.valid) {
@@ -74,34 +79,42 @@ export class EditUserOrganizationComponent implements OnInit {
       this._toastrService.warning("Fill required fields");
     }
   }
+
+  //get Organization User by id...
   getOrganizationUserById(id: any) {
     this._superAdminService.getOrganizationUserById(id).subscribe({
       next: (result: any) => {
-        this.controls['user_name'].patchValue(result.data.user_name);
-        this.controls['email_id'].patchValue(result.data.email_id);
-        this.controls['user_type_id'].patchValue(result.data.user_type_id);
-        this.controls['org_id'].patchValue(result.data.org_id);
+        const UserOrganizationData = result.data;
+        this.controls['user_name'].patchValue(UserOrganizationData.user_name);
+        this.controls['email_id'].patchValue(UserOrganizationData.email_id);
+        this.controls['user_type_id'].patchValue(UserOrganizationData.user_type_id);
+        this.controls['org_id'].patchValue(UserOrganizationData.org_id);
       },
     });
   }
+
   //get Organization User Type list...
   getAllOrganizationUserTypeList() {
     this._superAdminService.getAllOrganizationUserTypeList().subscribe({
       next: (res: any) => {
         if (res.data.length > 0) {
           this.allOrganizationUserTypeList = res.data;
-
+        } else {
+          this.allOrganizationUserTypeList = [];
         }
       }
     });
 
   }
+
   //get Organization wma list...
   getAllOrganizationList() {
     this._superAdminService.getAllOrganizationwmaList().subscribe({
       next: (res: any) => {
         if (res.data.length > 0) {
           this.allOrganizationList = res.data;
+        } else {
+          this.allOrganizationList = [];
         }
       }
     });

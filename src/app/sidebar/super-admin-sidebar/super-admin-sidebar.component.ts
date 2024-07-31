@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./super-admin-sidebar.component.scss']
 })
 export class SuperAdminSidebarComponent implements OnInit {
-  showSubMenu: string | null = null;
 
   constructor() {}
 

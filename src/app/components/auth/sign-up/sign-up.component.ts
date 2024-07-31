@@ -19,7 +19,7 @@ export class SignUpComponent implements OnInit {
   days: string[] = [];
   months: string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   years: string[] = [];
-  geoCoder:any;
+  geoCoder: any;
   allStateList: Array<any> = [];
   passwordVisible: boolean = false;
   constructor(
@@ -29,7 +29,7 @@ export class SignUpComponent implements OnInit {
     private _toastr: ToastrService,
     private _sharedService: SharedService,
 
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.createSign_upFormGroup();
@@ -37,21 +37,21 @@ export class SignUpComponent implements OnInit {
     this.initializeYears();
     // Fetch the IP address and patch it to the form
     // this._sharedService.getIPAddress().subscribe((data: any) => {
-    
+
     //   this.sign_upForm.patchValue({
     //     ip_address: data.ip
-        
+
     //   });
 
     // });
-    
+
 
     // Get device information and patch it to the form
     const deviceInfo = this.getDeviceInfo();
     this.sign_upForm.patchValue({
       device_info: deviceInfo
     });
-    
+
 
     // // Fetch live location and patch it to the form
     // this._sharedService.getCurrentPosition().then(position => {
@@ -67,13 +67,6 @@ export class SignUpComponent implements OnInit {
 
   getAddress(latitude: any, longitude: any) {
     this.geoCoder?.geocode({ 'location': { lat: latitude, lng: longitude } }, (results: any, status: any) => {
-      console.log(results[0]);
-      
-    //   this.addressArray = results[0].address_components;
-
- 
-
-    //   });
       if (status === 'OK') {
         if (results[0]) {
         } else {
@@ -176,12 +169,9 @@ export class SignUpComponent implements OnInit {
 
   SubmitSignup() {
     let data = this.sign_upForm.value;
-    console.log("data=", data);
     if (this.sign_upForm.valid) {
-      // console.log('hii', this.sign_upForm.value);
       this._authService.signUp(data).subscribe({
         next: (res: any) => {
-          // console.log(res);
           if (res.status == 200 || res.status == 201) {
             localStorage.setItem('accessToken', res.token);
             localStorage.setItem('expiresin', res.expiresIn);
@@ -206,16 +196,16 @@ export class SignUpComponent implements OnInit {
     };
 
   }
-        //get  State list...
-        getAllStateList() {
-          this._authService.allstateList().subscribe({
-            next: (res: any) => {
-              if (res.data.length > 0) {
-                this.allStateList = res.data;
-              }
-            }
-          });
+  //get  State list...
+  getAllStateList() {
+    this._authService.allstateList().subscribe({
+      next: (res: any) => {
+        if (res.data.length > 0) {
+          this.allStateList = res.data;
         }
+      }
+    });
+  }
 
   onStepChange(event: any) {
     this.selectedIndex = event.selectedIndex;

@@ -5,46 +5,72 @@
         <div class="card-header p-3">
           <strong>States</strong>
         </div>
-        <table class="table table-hover table-bordered table-responsive">
-          <thead class="table-dark">
-            <tr>
-              <th scope="col">Sr.No</th>
-              <th scope="col">State Name</th>
-              <th scope="col">Description</th>
-              <th scope="col">Edit</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of allStatesList; let i = index">
-              <td>{{ i + 1 }}</td>
-              <td>{{ item.state_name | titlecase }}</td>
-              <td>{{ item.description | titlecase }}</td>
-              <td>
-                <i
-                  class="fa fa-solid fa-pen-to-square fs-4"
-                  [routerLink]="[
-                    '/admin',
-                    { outlets: { admin_Menu: ['edit-states', item.state_id] } }
-                  ]"
-                ></i>
-              </td>
-            </tr>
-            <tr class="fw-bold text-center" *ngIf="allStatesList.length === 0">
-              <td colspan="10" class="text-danger">No Data Available</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="card-body">
+          <div class="col-md-12">
+            <div class="table-responsive">
+              <table class="table table-hover table-bordered table-responsive">
+                <thead class="table-dark">
+                  <tr>
+                    <th scope="col">Sr.No</th>
+                    <th scope="col">State Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Edit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of allStatesList; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ item.state_name | titlecase }}</td>
+                    <td>{{ item.description | titlecase }}</td>
+                    <td>
+                      {{ item.status == 1 ? "Activated" : "Deactivated" }}
+                    </td>
+                    <td>
+                      <mat-slide-toggle
+                        (change)="changeEvent($event, item.state_id)"
+                        class="example-margin"
+                        [checked]="item.status == 1 ? true : false"
+                      >
+                      </mat-slide-toggle>
+                    </td>
+                    <td>
+                      <i
+                        class="fa fa-solid fa-pen-to-square fs-4"
+                        [routerLink]="[
+                          '/admin',
+                          {
+                            outlets: {
+                              admin_Menu: ['edit-states', item.state_id]
+                            }
+                          }
+                        ]"
+                      ></i>
+                    </td>
+                  </tr>
+                  <tr
+                    class="fw-bold text-center"
+                    *ngIf="allStatesList.length === 0"
+                  >
+                    <td colspan="10" class="text-danger">No Data Available</td>
+                  </tr>
+                </tbody>
+              </table>
 
-        <div class="col-md-12">
-          <mat-paginator
-            [length]="total"
-            [pageSize]="perPage"
-            [pageSizeOptions]="[5, 10, 25, 100]"
-            aria-label="Select page"
-            [showFirstLastButtons]="true"
-            (page)="onPageChange($event)"
-          >
-          </mat-paginator>
+              <div class="col-md-12">
+                <mat-paginator
+                  [length]="total"
+                  [pageSize]="perPage"
+                  [pageSizeOptions]="[5, 10, 25, 100]"
+                  aria-label="Select page"
+                  [showFirstLastButtons]="true"
+                  (page)="onPageChange($event)"
+                >
+                </mat-paginator>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

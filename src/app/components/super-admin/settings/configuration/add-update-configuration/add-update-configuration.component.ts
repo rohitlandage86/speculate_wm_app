@@ -13,37 +13,40 @@ export class AddUpdateConfigurationComponent implements OnInit {
   isEdit = false
   configurationForm!: FormGroup
   configuration_Id: any
-  constructor (
+  constructor(
     private fb: FormBuilder,
     private _superAdminService: SuperAdminService,
     private _toastrService: ToastrService,
     private router: Router,
     private url: ActivatedRoute
-  ) {}
+  ) { }
 
-  ngOnInit (): void {
+  ngOnInit(): void {
     this.createConfigurationForm()
-
+    //active route get configuration id
     this.configuration_Id = this.url.snapshot.params['id']
     if (this.configuration_Id) {
       this.getConfigurationById(this.configuration_Id)
       this.isEdit = true
     }
   }
-  createConfigurationForm () {
+  //configuration form
+  createConfigurationForm() {
     this.configurationForm = this.fb.group({
       url_name: ['', Validators.required],
       base_url: ['', Validators.required],
       description: ['', Validators.required]
     })
   }
-  get controls () {
+  get controls() {
     return this.configurationForm.controls
   }
-  submit () {
+
+  submit() {
     this.isEdit ? this.updateConfiguration() : this.addConfiguration()
   }
-  updateConfiguration () {
+  //update configuration
+  updateConfiguration() {
     let data = this.configurationForm.getRawValue()
     if (this.configurationForm.valid) {
       this._superAdminService
@@ -74,12 +77,12 @@ export class AddUpdateConfigurationComponent implements OnInit {
     }
   }
 
-  addConfiguration () {
+  //add configuration
+  addConfiguration() {
     let data = this.configurationForm.value
     if (this.configurationForm.valid) {
       this._superAdminService.addConfiguration(data).subscribe({
         next: (res: any) => {
-          console.log('data', res)
           if (res.status == 201 || res.status == 200) {
             this._toastrService.success(res.message)
             this.router.navigate([
@@ -103,12 +106,14 @@ export class AddUpdateConfigurationComponent implements OnInit {
       this._toastrService.warning('Fill required fields')
     }
   }
-  getConfigurationById (id: any) {
+  //get configuration by id
+  getConfigurationById(id: any) {
     this._superAdminService.getConfigurationById(id).subscribe({
       next: (result: any) => {
-        this.controls['url_name'].patchValue(result.data.url_name)
-        this.controls['base_url'].patchValue(result.data.base_url)
-        this.controls['description'].patchValue(result.data.description)
+        const configurationData = result.data
+        this.controls['url_name'].patchValue(configurationData.url_name)
+        this.controls['base_url'].patchValue(configurationData.base_url)
+        this.controls['description'].patchValue(configurationData.description)
       }
     })
   }

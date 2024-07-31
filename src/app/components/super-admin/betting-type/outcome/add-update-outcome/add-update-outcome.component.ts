@@ -49,6 +49,7 @@ export class AddUpdateOutcomeComponent implements OnInit {
   submit() {
     this.isEdit ? this.updateOutcome() : this.addOutcome()
   }
+//update outcome
   updateOutcome() {
     let data = this.outcomeForm.getRawValue()
     if (this.outcomeForm.valid) {
@@ -79,7 +80,7 @@ export class AddUpdateOutcomeComponent implements OnInit {
       this._toastrService.warning('Fill required fields')
     }
   }
-
+//add outcome
   addOutcome() {
     let data = this.outcomeForm.value
     if (this.outcomeForm.valid) {
@@ -108,12 +109,14 @@ export class AddUpdateOutcomeComponent implements OnInit {
       this._toastrService.warning('Fill required fields')
     }
   }
+  //get by id outcome
   getOutcomeById(id: any) {
     this._superAdminService.getBettingOutcomeTypeById(id).subscribe({
       next: (result: any) => {
-        this.controls['record_id'].patchValue(result.data.record_id)
-        this.controls['name'].patchValue(result.data.name)
-        this.controls['sport_id'].patchValue(result.data.sport_id)
+        const outcomeData = result.data
+        this.controls['record_id'].patchValue(outcomeData.record_id)
+        this.controls['name'].patchValue(outcomeData.name)
+        this.controls['sport_id'].patchValue(outcomeData.sport_id)
       }
     })
   }
@@ -123,8 +126,8 @@ export class AddUpdateOutcomeComponent implements OnInit {
       next: (res: any) => {
         if (res.data.length > 0) {
           this.allSportslist = res.data
-        }else{
-          this.allSportslist =[]
+        } else {
+          this.allSportslist = []
         }
       }
     })

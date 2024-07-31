@@ -11,14 +11,14 @@ export class OrganizationComponent implements OnInit {
   page = 1
   perPage = 50
   total = 0
-  constructor (private _superAdminService: SuperAdminService) {}
+  constructor(private _superAdminService: SuperAdminService) { }
 
-  ngOnInit (): void {
+  ngOnInit(): void {
     this.getAllOrganizationList()
   }
 
   //get all Organization List...
-  getAllOrganizationList () {
+  getAllOrganizationList() {
     this._superAdminService
       .getAllOrganizationList(this.page, this.perPage)
       .subscribe({
@@ -33,7 +33,8 @@ export class OrganizationComponent implements OnInit {
         }
       })
   }
-  onPageChange (event: PageEvent): void {
+  //pagination organization  table
+  onPageChange(event: PageEvent): void {
     this.page = event.pageIndex + 1
     this.perPage = event.pageSize
     this.getAllOrganizationList()

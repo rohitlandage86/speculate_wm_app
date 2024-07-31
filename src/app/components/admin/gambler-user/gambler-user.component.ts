@@ -26,16 +26,15 @@ export class GamblerUserComponent implements OnInit {
         if (res.data.length > 0) {
           this.allGamblersList = res.data;
           this.total = res.pagination.total;
+        } else {
+          this.allGamblersList = [];
+          this.total = 0
+
         }
       }
     });
   }
-  onPageChange(event: PageEvent): void {
-    this.page = event.pageIndex + 1;
-    this.perPage = event.pageSize;
-    this.getAllGamblersList();
-  }
-  //open module...
+  //open View Gambler User Component...
   openDialog(data?: any) {
     const dialogRef = this.dialog.open(ViewGamblerUserComponent, {
       data: data,
@@ -45,7 +44,14 @@ export class GamblerUserComponent implements OnInit {
     dialogRef.afterClosed().subscribe((message: any) => {
       this.getAllGamblersList();
       console.log('nothing happen');
-
     });
   }
+
+  //pagination gambler user table
+  onPageChange(event: PageEvent): void {
+    this.page = event.pageIndex + 1;
+    this.perPage = event.pageSize;
+    this.getAllGamblersList();
+  }
+
 }

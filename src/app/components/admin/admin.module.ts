@@ -29,7 +29,7 @@ import { ViewSportsComponent } from './sports/view-sports/view-sports.component'
     ViewGamblerUserComponent,
     ViewOrganizationComponent,
     ViewSportsComponent,
-  
+
   ],
   imports: [
     CommonModule,

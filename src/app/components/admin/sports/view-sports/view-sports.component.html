@@ -9,32 +9,48 @@
           <form>
             <div class="row">
               <div class="mb-3 col-md-4">
-                <label for="user_name" class="mb-1 fw-bold"
-                  >Sport Name :
-                </label>
+                <label for="user_name" class="mb-1 fw-bold">Sport Name : </label
+                ><br />
                 <label cLabel for="weight"
-                  >{{ sportsDetails.sports_name }}
+                  >{{ sportsDetails.sports_name || "--" }}
                 </label>
               </div>
               <div class="mb-3 col-md-3">
-                <label for="name" class="mb-1 fw-bold">Small Name : </label>
+                <label for="name" class="mb-1 fw-bold">Small Name : </label
+                ><br />
                 <label cLabel for="weight"
-                  >{{ sportsDetails.small_name }}
+                  >{{ sportsDetails.small_name || "--" }}
                 </label>
               </div>
               <div class="mb-3 col-md-4">
-                <label for="name" class="mb-1 fw-bold">Description : </label>
+                <label for="name" class="mb-1 fw-bold">Description : </label
+                ><br />
                 <label cLabel for="weight"
-                  >{{ sportsDetails.description }}
+                  >{{ sportsDetails.description || "--" }}
                 </label>
               </div>
             </div>
             <div class="row">
               <div class="mb-3 col-md-12">
-                <label for="name" class="mb-1 fw-bold"> Api Keys : </label>
-                <label cLabel for="weight">{{ sportsDetails.api_keys }} </label>
+                <label for="name" class="mb-1 fw-bold"> Api Keys : </label
+                ><br />
+                <label cLabel for="weight"
+                  >{{ sportsDetails.api_keys || "--" }}
+                </label>
+              </div>
+
+              <div class="mb-3 col-md-12 d-flex flex-column">
+                <label for="name" class="mb-1 fw-bold"> Long Image : </label>
+                <img
+                  #imagePreview
+                  class="mt-3 image img-fluid"
+                  src="{{ baseUrlImage + 'images/sports/' + logo1Name }}"
+                  style="width: 300px; height: 300px; padding: 15px"
+                  alt=""
+                />
               </div>
             </div>
+
             <div>
               <button
                 type="submit"

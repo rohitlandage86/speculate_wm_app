@@ -14,15 +14,15 @@ export class AddUpdateMarketComponent implements OnInit {
   marketForm: any
   market_Id: any
   allSportslist: Array<any> = []
-  constructor (
+  constructor(
     private fb: FormBuilder,
     private _superAdminService: SuperAdminService,
     private _toastrService: ToastrService,
     private router: Router,
     private url: ActivatedRoute
-  ) {}
+  ) { }
 
-  ngOnInit (): void {
+  ngOnInit(): void {
     this.createMarketForm()
     this.market_Id = this.url.snapshot.params['id']
     if (this.market_Id) {
@@ -32,7 +32,7 @@ export class AddUpdateMarketComponent implements OnInit {
     this.getAllSportsList()
   }
 
-  createMarketForm () {
+  createMarketForm() {
     this.marketForm = this.fb.group({
       record_id: ['', Validators.required],
       name: ['', Validators.required],
@@ -40,14 +40,14 @@ export class AddUpdateMarketComponent implements OnInit {
     })
   }
 
-  get controls () {
+  get controls() {
     return this.marketForm.controls
   }
 
-  submit () {
+  submit() {
     this.isEdit ? this.updateMarket() : this.addMarket()
   }
-  updateMarket () {
+  updateMarket() {
     let data = this.marketForm.getRawValue()
     if (this.marketForm.valid) {
       this._superAdminService
@@ -78,7 +78,7 @@ export class AddUpdateMarketComponent implements OnInit {
     }
   }
 
-  addMarket () {
+  addMarket() {
     let data = this.marketForm.value
     if (this.marketForm.valid) {
       this._superAdminService.addBettingMarketType(data).subscribe({
@@ -106,23 +106,25 @@ export class AddUpdateMarketComponent implements OnInit {
       this._toastrService.warning('Fill required fields')
     }
   }
-  getMarketById (id: any) {
+  getMarketById(id: any) {
     this._superAdminService.getBettingMarketTypeById(id).subscribe({
       next: (result: any) => {
-        this.controls['record_id'].patchValue(result.data.record_id)
-        this.controls['name'].patchValue(result.data.name)
-        this.controls['sport_id'].patchValue(result.data.sport_id)
+        const marketData = result.data
+
+        this.controls['record_id'].patchValue(marketData.record_id)
+        this.controls['name'].patchValue(marketData.name)
+        this.controls['sport_id'].patchValue(marketData.sport_id)
       }
     })
   }
   //get Sports wma list...
-  getAllSportsList () {
+  getAllSportsList() {
     this._superAdminService.getAllSportswmaList().subscribe({
       next: (res: any) => {
         if (res.data.length > 0) {
           this.allSportslist = res.data
-        }else{
-          this.allSportslist=[]
+        } else {
+          this.allSportslist = []
         }
       }
     })

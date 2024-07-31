@@ -18,16 +18,16 @@ export class AddUpdateSportsComponent implements OnInit {
   baseUrlImage = environment.baseUrlImage
   logo1Name: any
   @ViewChild('imagePreview') imagePreview!: ElementRef<HTMLImageElement>
-  constructor (
+  constructor(
     private fb: FormBuilder,
     private _superAdminService: SuperAdminService,
     private _toastrService: ToastrService,
     private router: Router,
     private url: ActivatedRoute
-  ) {}
-  ngOnInit (): void {
+  ) { }
+  ngOnInit(): void {
     this.createSportsForm()
-
+    //activate route get sports id
     this.sports_Id = this.url.snapshot.params['id']
     if (this.sports_Id) {
       this.getSportsById(this.sports_Id)
@@ -35,7 +35,7 @@ export class AddUpdateSportsComponent implements OnInit {
     }
   }
   //sports form
-  createSportsForm () {
+  createSportsForm() {
     this.sportsForm = this.fb.group({
       sports_name: ['', Validators.required],
       small_name: ['', Validators.required],
@@ -45,13 +45,16 @@ export class AddUpdateSportsComponent implements OnInit {
       description: ['', Validators.required]
     })
   }
-  get controls () {
+  get controls() {
     return this.sportsForm.controls
   }
-  submit () {
+
+  submit() {
     this.isEdit ? this.updateSports() : this.addSports()
   }
-  updateSports () {
+
+  //update sports
+  updateSports() {
     let data = this.sportsForm.getRawValue()
     if (this.sportsForm.valid) {
       this._superAdminService.editSports(this.sports_Id, data).subscribe({
@@ -80,14 +83,12 @@ export class AddUpdateSportsComponent implements OnInit {
     }
   }
 
-  addSports () {
+  //add sports
+  addSports() {
     let data = this.sportsForm.value
-    console.log('data', data)
-
     if (this.sportsForm.valid) {
       this._superAdminService.addSports(data).subscribe({
         next: (res: any) => {
-          console.log('data', res)
           if (res.status == 201 || res.status == 200) {
             this._toastrService.success(res.message)
             this.router.navigate([
@@ -111,32 +112,34 @@ export class AddUpdateSportsComponent implements OnInit {
       this._toastrService.warning('Fill required fields')
     }
   }
-  getSportsById (id: any) {
+
+  //get sports by id
+  getSportsById(id: any) {
     this._superAdminService.getSportsById(id).subscribe({
       next: (result: any) => {
-        console.log('data', result.data)
-        this.controls['sports_name'].patchValue(result.data.sports_name)
-        this.controls['small_name'].patchValue(result.data.small_name)
-        this.controls['api_keys'].patchValue(result.data.api_keys)
-        this.controls['description'].patchValue(result.data.description)
-        if (result.data.longLogoBase64) {
+        const sportsData = result.data;
+        this.controls['sports_name'].patchValue(sportsData.sports_name)
+        this.controls['small_name'].patchValue(sportsData.small_name)
+        this.controls['api_keys'].patchValue(sportsData.api_keys)
+        this.controls['description'].patchValue(sportsData.description)
+        //patch logo 
+        if (sportsData.longLogoBase64) {
           const reader1 = new FileReader()
           reader1.onload = (e: any) => {
-            this.controls['logo1Name'].patchValue(result.data.logo1Name)
-            this.controls['logo1Base64'].patchValue(result.data.logo1Base64)
+            this.controls['logo1Name'].patchValue(sportsData.logo1Name)
+            this.controls['logo1Base64'].patchValue(sportsData.logo1Base64)
             this.imagePreview.nativeElement.src =
-              'data:image/png;base64,' + result.data.logo1Base64
+              'data:image/png;base64,' + sportsData.logo1Base64
           }
-          reader1.readAsDataURL(result.data.logo1Base64)
+          reader1.readAsDataURL(sportsData.logo1Base64)
         }
-        this.logo1Name = result.data.image
+        this.logo1Name = sportsData.image
       }
     })
   }
-  //logo 1
-  onImageChange (event: any) {
+  //logo 1 show
+  onImageChange(event: any) {
     const file = event.target.files[0]
-
     if (file) {
       const reader = new FileReader()
       this.controls['logo1Name'].patchValue(file.name)

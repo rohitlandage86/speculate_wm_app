@@ -99,7 +99,10 @@ export class DashboardComponent implements OnInit {
           this.allSportsList = res.data
           this.getBettingBetwma(this.allSportsList[0].sport_id)
           this.sport_id = this.allSportsList[0].sport_id
+        }else{
+          this.allSportsList = [];
         }
+
       }
     })
   }

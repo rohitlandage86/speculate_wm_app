@@ -25,9 +25,9 @@ const routes: Routes = [
     component: DashboardComponent,
     pathMatch: "full",
     outlet: "sub_Menu",
-    canActivate:[AuthGuard]
+    canActivate: [AuthGuard]
   },
- 
+
 ];
 
 @NgModule({

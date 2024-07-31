@@ -13,65 +13,66 @@ import { GamblerUserComponent } from './gambler-user/gambler-user.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "admin", pathMatch: "full" },
-  { path: "", 
+  {
+    path: "",
     component: AdminDashboardComponent,
-    canActivate:[AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: "admin-dashboard",
     component: AdminDashboardComponent,
     pathMatch: "full",
     outlet: "admin_Menu",
-    canActivate:[AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: "organization",
     component: OrganizationComponent,
     pathMatch: "full",
     outlet: "admin_Menu",
-    canActivate:[AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: "user-organization",
     component: UserOrganizationComponent,
     pathMatch: "full",
     outlet: "admin_Menu",
-    canActivate:[AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: "edit-user-organization/:id",
     component: EditUserOrganizationComponent,
     pathMatch: "full",
     outlet: "admin_Menu",
-    canActivate:[AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: "sports",
     component: SportsComponent,
     pathMatch: "full",
     outlet: "admin_Menu",
-    canActivate:[AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: "states",
     component: StatesComponent,
     pathMatch: "full",
     outlet: "admin_Menu",
-    canActivate:[AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: "edit-states/:id",
     component: EditStatesComponent,
     pathMatch: "full",
     outlet: "admin_Menu",
-    canActivate:[AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: "gambler-user",
     component: GamblerUserComponent,
     pathMatch: "full",
     outlet: "admin_Menu",
-    canActivate:[AuthGuard]
+    canActivate: [AuthGuard]
   },
 
 ];

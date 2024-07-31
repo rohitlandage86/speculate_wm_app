@@ -31,7 +31,8 @@
               <div class="mb-3 col-md-4">
                 <label for="name" class="mb-1 fw-bold">Address : </label>
                 <label cLabel for="weight">
-                  {{ gamblerDetails.address }}
+                  {{ gamblerDetails.address || '--' }}
+
                 </label>
               </div>
               <div class="mb-3 col-md-4">
@@ -43,7 +44,8 @@
               <div class="mb-3 col-md-4">
                 <label for="name" class="mb-1 fw-bold">Platform : </label>
                 <label cLabel for="weight"
-                  >{{ gamblerDetails.platform }}
+                  >{{ gamblerDetails.platform  || '--'}}
+
                 </label>
               </div>
             </div>
@@ -51,13 +53,14 @@
               <div class="mb-3 col-md-4">
                 <label for="name" class="mb-1 fw-bold">IP Address : </label>
                 <label cLabel for="weight">
-                  {{ gamblerDetails.ip_address }}
+                  {{ gamblerDetails.ip_address || '--'  }}
+
                 </label>
               </div>
               <div class="mb-3 col-md-4">
                 <label for="name" class="mb-1 fw-bold">Device Info: </label>
                 <label cLabel for="weight"
-                  >{{ gamblerDetails.device_info }}
+                  >{{ gamblerDetails.device_info  || '--'}}
                 </label>
               </div>
             </div>
